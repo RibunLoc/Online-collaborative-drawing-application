@@ -1,0 +1,13 @@
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\bin\Debug\ProjectTeam.exe.config
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\bin\Debug\ProjectTeam.exe
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\bin\Debug\ProjectTeam.pdb
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.csproj.AssemblyReference.cache
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.Properties.Resources.resources
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.csproj.GenerateResource.cache
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.csproj.CoreCompileInputs.cache
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.exe
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.pdb
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.DangKi.resources
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.DangNhap.resources
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.QuenMatKhau.resources
+D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.SanhChinh.resources
