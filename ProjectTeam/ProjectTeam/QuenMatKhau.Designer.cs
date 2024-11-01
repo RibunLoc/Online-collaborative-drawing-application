@@ -30,21 +30,21 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuenMatKhau));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.btnLogin = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnShowHide = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnShowHide = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -75,38 +75,45 @@
             this.panel1.Size = new System.Drawing.Size(617, 718);
             this.panel1.TabIndex = 2;
             // 
-            // lblUsername
+            // button2
             // 
-            this.lblUsername.Location = new System.Drawing.Point(35, 247);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(117, 31);
-            this.lblUsername.TabIndex = 2;
-            this.lblUsername.Text = "Tài khoản";
-            this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(435, 480);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(33, 34);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "👁";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // btnShowHide
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 301);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 24);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Email";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.btnShowHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowHide.Location = new System.Drawing.Point(435, 418);
+            this.btnShowHide.Name = "btnShowHide";
+            this.btnShowHide.Size = new System.Drawing.Size(33, 34);
+            this.btnShowHide.TabIndex = 16;
+            this.btnShowHide.Text = "👁";
+            this.btnShowHide.UseVisualStyleBackColor = true;
             // 
-            // txtUsername
+            // button1
             // 
-            this.txtUsername.Location = new System.Drawing.Point(216, 247);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(252, 32);
-            this.txtUsername.TabIndex = 4;
+            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.Location = new System.Drawing.Point(369, 360);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 32);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Lấy mã";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // txtPassword
+            // pictureBox1
             // 
-            this.txtPassword.Location = new System.Drawing.Point(216, 301);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(252, 32);
-            this.txtPassword.TabIndex = 5;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(216, 50);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(160, 160);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
             // 
             // btnLogin
             // 
@@ -121,42 +128,12 @@
             this.btnLogin.Text = "Đặt lại mật khẩu";
             this.btnLogin.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
+            // textBox3
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(216, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 160);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 363);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 24);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Mã xác thực";
-            this.label1.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(216, 360);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 32);
-            this.textBox1.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(35, 428);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 24);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Mật khẩu mới";
-            this.label3.Click += new System.EventHandler(this.label2_Click);
+            this.textBox3.Location = new System.Drawing.Point(216, 482);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(220, 32);
+            this.textBox3.TabIndex = 5;
             // 
             // textBox2
             // 
@@ -176,42 +153,65 @@
             this.label4.Text = "Nhập lại mật khẩu";
             this.label4.Click += new System.EventHandler(this.label2_Click);
             // 
-            // textBox3
+            // textBox1
             // 
-            this.textBox3.Location = new System.Drawing.Point(216, 482);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(220, 32);
-            this.textBox3.TabIndex = 5;
+            this.textBox1.Location = new System.Drawing.Point(216, 360);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(147, 32);
+            this.textBox1.TabIndex = 5;
             // 
-            // button1
+            // label3
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.Location = new System.Drawing.Point(369, 360);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(99, 32);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "Lấy mã";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(35, 428);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(136, 24);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Mật khẩu mới";
+            this.label3.Click += new System.EventHandler(this.label2_Click);
             // 
-            // btnShowHide
+            // txtPassword
             // 
-            this.btnShowHide.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnShowHide.Location = new System.Drawing.Point(435, 418);
-            this.btnShowHide.Name = "btnShowHide";
-            this.btnShowHide.Size = new System.Drawing.Size(33, 34);
-            this.btnShowHide.TabIndex = 16;
-            this.btnShowHide.Text = "👁";
-            this.btnShowHide.UseVisualStyleBackColor = true;
+            this.txtPassword.Location = new System.Drawing.Point(216, 301);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(252, 32);
+            this.txtPassword.TabIndex = 5;
             // 
-            // button2
+            // label1
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(435, 480);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(33, 34);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "👁";
-            this.button2.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(35, 363);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 24);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Mã xác thực";
+            this.label1.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(216, 247);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(252, 32);
+            this.txtUsername.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 301);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(61, 24);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Email";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.Location = new System.Drawing.Point(35, 247);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(117, 31);
+            this.lblUsername.TabIndex = 2;
+            this.lblUsername.Text = "Tài khoản";
+            this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
             // 
             // QuenMatKhau
             // 

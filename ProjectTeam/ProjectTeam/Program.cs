@@ -16,7 +16,7 @@ namespace ProjectTeam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SanhChinh());
+            Application.Run(new DangNhap());
         }
     }
 }

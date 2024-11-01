@@ -32,27 +32,27 @@ namespace ProjectTeam
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangKi));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btn_Register = new System.Windows.Forms.Button();
+            this.cmbOptions = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btn_Anh = new System.Windows.Forms.Button();
             this.btnShowHide = new System.Windows.Forms.Button();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cmbOptions = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.btn_Register = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtPasswordAuth = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtUsername = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblUsername = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -74,11 +74,11 @@ namespace ProjectTeam
             this.panel1.Controls.Add(this.textBox5);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.txtEmail);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.txtPasswordAuth);
             this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.txtPassword);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtUsername);
             this.panel1.Controls.Add(this.label3);
@@ -89,6 +89,44 @@ namespace ProjectTeam
             this.panel1.Size = new System.Drawing.Size(555, 756);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.button1.Location = new System.Drawing.Point(374, 598);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(113, 36);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Lấy mã";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btn_Register
+            // 
+            this.btn_Register.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btn_Register.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Register.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_Register.ForeColor = System.Drawing.Color.White;
+            this.btn_Register.Location = new System.Drawing.Point(189, 650);
+            this.btn_Register.Name = "btn_Register";
+            this.btn_Register.Size = new System.Drawing.Size(185, 64);
+            this.btn_Register.TabIndex = 14;
+            this.btn_Register.Text = "Đăng kí";
+            this.btn_Register.UseVisualStyleBackColor = false;
+            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
+            // 
+            // cmbOptions
+            // 
+            this.cmbOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOptions.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.cmbOptions.FormattingEnabled = true;
+            this.cmbOptions.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.cmbOptions.Location = new System.Drawing.Point(213, 552);
+            this.cmbOptions.Name = "cmbOptions";
+            this.cmbOptions.Size = new System.Drawing.Size(274, 32);
+            this.cmbOptions.TabIndex = 13;
+            this.cmbOptions.SelectedIndexChanged += new System.EventHandler(this.cmbOptions_SelectedIndexChanged);
             // 
             // pictureBox1
             // 
@@ -126,33 +164,6 @@ namespace ProjectTeam
             this.btnShowHide.Text = "👁";
             this.btnShowHide.UseVisualStyleBackColor = false;
             // 
-            // txtUsername
-            // 
-            this.txtUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtUsername.Location = new System.Drawing.Point(216, 304);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(272, 32);
-            this.txtUsername.TabIndex = 4;
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblUsername.Location = new System.Drawing.Point(66, 307);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(117, 31);
-            this.lblUsername.TabIndex = 2;
-            this.lblUsername.Text = "Tài khoản";
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(66, 257);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 31);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "ID của bạn";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -161,65 +172,13 @@ namespace ProjectTeam
             this.textBox1.Size = new System.Drawing.Size(273, 32);
             this.textBox1.TabIndex = 4;
             // 
-            // label3
+            // textBox6
             // 
-            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label3.Location = new System.Drawing.Point(66, 359);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(117, 31);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Mật khẩu:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox2.Location = new System.Drawing.Point(215, 356);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(240, 32);
-            this.textBox2.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.Location = new System.Drawing.Point(65, 410);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(197, 31);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Xác nhận mật khẩu:";
-            // 
-            // textBox3
-            // 
-            this.textBox3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox3.Location = new System.Drawing.Point(289, 405);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(198, 32);
-            this.textBox3.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label4.Location = new System.Drawing.Point(66, 457);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 31);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Email:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox4.Location = new System.Drawing.Point(214, 452);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(273, 32);
-            this.textBox4.TabIndex = 4;
-            // 
-            // label5
-            // 
-            this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label5.Location = new System.Drawing.Point(65, 505);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 31);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Ngày sinh:";
+            this.textBox6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.textBox6.Location = new System.Drawing.Point(216, 600);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(132, 32);
+            this.textBox6.TabIndex = 4;
             // 
             // textBox5
             // 
@@ -239,20 +198,6 @@ namespace ProjectTeam
             this.label6.Text = "Giới tính:";
             this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // cmbOptions
-            // 
-            this.cmbOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOptions.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.cmbOptions.FormattingEnabled = true;
-            this.cmbOptions.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this.cmbOptions.Location = new System.Drawing.Point(213, 552);
-            this.cmbOptions.Name = "cmbOptions";
-            this.cmbOptions.Size = new System.Drawing.Size(274, 32);
-            this.cmbOptions.TabIndex = 13;
-            this.cmbOptions.SelectedIndexChanged += new System.EventHandler(this.cmbOptions_SelectedIndexChanged);
-            // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -262,37 +207,92 @@ namespace ProjectTeam
             this.label7.TabIndex = 2;
             this.label7.Text = "Mã xác thực";
             // 
-            // textBox6
+            // txtEmail
             // 
-            this.textBox6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox6.Location = new System.Drawing.Point(216, 600);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(132, 32);
-            this.textBox6.TabIndex = 4;
+            this.txtEmail.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtEmail.Location = new System.Drawing.Point(214, 452);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(273, 32);
+            this.txtEmail.TabIndex = 4;
             // 
-            // btn_Register
+            // label5
             // 
-            this.btn_Register.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btn_Register.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Register.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btn_Register.ForeColor = System.Drawing.Color.White;
-            this.btn_Register.Location = new System.Drawing.Point(189, 650);
-            this.btn_Register.Name = "btn_Register";
-            this.btn_Register.Size = new System.Drawing.Size(185, 64);
-            this.btn_Register.TabIndex = 14;
-            this.btn_Register.Text = "Đăng kí";
-            this.btn_Register.UseVisualStyleBackColor = false;
-            this.btn_Register.Click += new System.EventHandler(this.btn_Register_Click);
+            this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label5.Location = new System.Drawing.Point(65, 505);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(116, 31);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Ngày sinh:";
             // 
-            // button1
+            // txtPasswordAuth
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.Location = new System.Drawing.Point(374, 598);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 36);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Lấy mã";
-            this.button1.UseVisualStyleBackColor = true;
+            this.txtPasswordAuth.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtPasswordAuth.Location = new System.Drawing.Point(289, 405);
+            this.txtPasswordAuth.Name = "txtPasswordAuth";
+            this.txtPasswordAuth.Size = new System.Drawing.Size(198, 32);
+            this.txtPasswordAuth.TabIndex = 4;
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label4.Location = new System.Drawing.Point(66, 457);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 31);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Email:";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtPassword.Location = new System.Drawing.Point(215, 356);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Size = new System.Drawing.Size(240, 32);
+            this.txtPassword.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.Location = new System.Drawing.Point(65, 410);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(197, 31);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Xác nhận mật khẩu:";
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtUsername.Location = new System.Drawing.Point(216, 304);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(272, 32);
+            this.txtUsername.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label3.Location = new System.Drawing.Point(66, 359);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(117, 31);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Mật khẩu:";
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(66, 257);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 31);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "ID của bạn";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblUsername.Location = new System.Drawing.Point(66, 307);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(117, 31);
+            this.lblUsername.TabIndex = 2;
+            this.lblUsername.Text = "Tài khoản";
             // 
             // DangKi
             // 
@@ -323,11 +323,11 @@ namespace ProjectTeam
         private Label label1;
         private TextBox textBox5;
         private Label label6;
-        private TextBox textBox4;
+        private TextBox txtEmail;
         private Label label5;
-        private TextBox textBox3;
+        private TextBox txtPasswordAuth;
         private Label label4;
-        private TextBox textBox2;
+        private TextBox txtPassword;
         private Label label2;
         private Label label3;
         private ComboBox cmbOptions;

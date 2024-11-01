@@ -13,12 +13,13 @@ namespace ProjectTeam
 {
     public partial class DangKi : Form
     {
+        private readonly DatabaseHelper databaseHelper;
+
         public DangKi()
         {
             InitializeComponent();
-
+            databaseHelper = new DatabaseHelper("ep-blue-pond-a5kovr60-pooler.us-east-2.aws.neon.tech", 5432, "neondb", "ThanhLoc", "4XGEjWJphk9R");
         }
-
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
@@ -53,7 +54,19 @@ namespace ProjectTeam
 
         private void btn_Register_Click(object sender, EventArgs e)
         {
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
 
+            if(databaseHelper.NguoiDungDangKi(email, password))
+            {
+                MessageBox.Show("Đăng kí thành công!", "Thông báo");
+
+            }
+            else
+            {
+                MessageBox.Show("Đăng kí thất bại. Email có thể đã tồn tại", "Lỗi");
+            }
+            
         }
     }
 }
