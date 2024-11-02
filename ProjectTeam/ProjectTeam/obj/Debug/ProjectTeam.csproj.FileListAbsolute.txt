@@ -12,7 +12,6 @@ D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\P
 D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.QuenMatKhau.resources
 D:\Document\WinformC#\MangCanBan\ProjectTeam\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.SanhChinh.resources
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.csproj.AssemblyReference.cache
-D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.DangKi.resources
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.DangNhap.resources
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.Properties.Resources.resources
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.QuenMatKhau.resources
@@ -24,7 +23,6 @@ D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-applic
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\ProjectTeam.exe.config
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\ProjectTeam.exe
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\ProjectTeam.pdb
-D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Firebase.Auth.dll
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Microsoft.Bcl.HashCode.dll
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.dll
@@ -42,7 +40,6 @@ D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-applic
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Threading.Channels.dll
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Threading.Tasks.Extensions.dll
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.ValueTuple.dll
-D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Firebase.Auth.xml
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Microsoft.Bcl.HashCode.xml
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\Microsoft.Extensions.DependencyInjection.Abstractions.xml
@@ -61,3 +58,19 @@ D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-applic
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.ValueTuple.xml
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectT.A5D3C58F.Up2Date
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\RestSharp.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.CodeDom.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\RestSharp.xml
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.CodeDom.xml
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.DangKyControl.resources
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Drawing.Common.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.AccessControl.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.Permissions.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.Principal.Windows.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Text.Encoding.CodePages.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Drawing.Common.pdb
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Drawing.Common.xml
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.AccessControl.xml
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.Permissions.xml
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.Principal.Windows.xml
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Text.Encoding.CodePages.xml

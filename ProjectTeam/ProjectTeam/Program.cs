@@ -16,7 +16,15 @@ namespace ProjectTeam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new DangNhap());
+
+
+            DangNhap dangnhap = new DangNhap();
+            if (dangnhap.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new SanhChinh());
+            }
+
+           
         }
     }
 }
