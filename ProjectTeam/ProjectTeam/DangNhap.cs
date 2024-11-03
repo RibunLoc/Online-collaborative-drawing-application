@@ -17,7 +17,7 @@ namespace ProjectTeam
     {
 
         private readonly DatabaseHelper databaseHelper;
-        private bool isClicked = false;
+        private bool isClicked = false; // hiện password
 
         public DangNhap()
         {
@@ -130,8 +130,7 @@ namespace ProjectTeam
             InitializeComponent();
         }
 
-
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void btnLogin_Click_1(object sender, EventArgs e)
         {
             string email = txtUsername.Text;
             string password = txtPassword.Text;

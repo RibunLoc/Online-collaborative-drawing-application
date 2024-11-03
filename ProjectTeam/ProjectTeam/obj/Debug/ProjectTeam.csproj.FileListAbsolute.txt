@@ -74,3 +74,5 @@ D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-applic
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.Permissions.xml
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Security.Principal.Windows.xml
 D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\System.Text.Encoding.CodePages.xml
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\FontAwesome.Sharp.dll
+D:\Document\WinformC#\MangCanBan\ProjectTeam\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\RJCodeAdvance.RJControls.dll

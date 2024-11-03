@@ -16,15 +16,24 @@ namespace ProjectTeam
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
+            //while (true) {
+            //    DangNhap dangnhap = new DangNhap();
+            //    if (dangnhap.ShowDialog() == DialogResult.OK)
+            //    {
+            //        SanhChinh home = new SanhChinh();
+            //        home.ShowDialog();
 
+            //        if (home.DialogResult == DialogResult.Cancel)
+            //            continue;
+            //        else
+            //            break;
+            //    }
+            //    else
+            //        break;
+            //}
 
-            DangNhap dangnhap = new DangNhap();
-            if (dangnhap.ShowDialog() == DialogResult.OK)
-            {
-                Application.Run(new SanhChinh());
-            }
-
-           
+           Application.Run(new SanhChinh());
         }
     }
 }
