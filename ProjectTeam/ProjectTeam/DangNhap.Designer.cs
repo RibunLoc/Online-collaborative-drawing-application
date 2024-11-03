@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangNhap));
             this.lblTitle = new System.Windows.Forms.Label();
             this.Panel_login = new System.Windows.Forms.Panel();
+            this.btnLogin = new ProjectTeam.Controls.RJButton();
             this.PanelPassword = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnShowHide = new System.Windows.Forms.Button();
@@ -40,14 +41,22 @@
             this.PanelUsername = new System.Windows.Forms.Panel();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.linkForgotPassword = new System.Windows.Forms.LinkLabel();
-            this.btnLogin = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.img_title = new System.Windows.Forms.PictureBox();
+            this.Status = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Img_Avatar = new System.Windows.Forms.PictureBox();
             this.Panel_login.SuspendLayout();
             this.PanelPassword.SuspendLayout();
             this.PanelUsername.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_title)).BeginInit();
+            this.Status.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Img_Avatar)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -69,11 +78,11 @@
             this.Panel_login.AutoSize = true;
             this.Panel_login.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(224)))));
             this.Panel_login.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel_login.Controls.Add(this.btnLogin);
             this.Panel_login.Controls.Add(this.PanelPassword);
             this.Panel_login.Controls.Add(this.linkLabel2);
             this.Panel_login.Controls.Add(this.PanelUsername);
             this.Panel_login.Controls.Add(this.linkForgotPassword);
-            this.Panel_login.Controls.Add(this.btnLogin);
             this.Panel_login.Controls.Add(this.label2);
             this.Panel_login.Controls.Add(this.lblUsername);
             this.Panel_login.Controls.Add(this.img_title);
@@ -82,6 +91,29 @@
             this.Panel_login.Name = "Panel_login";
             this.Panel_login.Size = new System.Drawing.Size(765, 775);
             this.Panel_login.TabIndex = 1;
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogin.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnLogin.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.btnLogin.BorderColor = System.Drawing.Color.Black;
+            this.btnLogin.BorderRadius = 40;
+            this.btnLogin.BorderSize = 0;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(200, 613);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(217, 62);
+            this.btnLogin.TabIndex = 9;
+            this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.TextColor = System.Drawing.Color.White;
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
             // 
             // PanelPassword
             // 
@@ -189,24 +221,6 @@
             this.linkForgotPassword.TabStop = true;
             this.linkForgotPassword.Text = "Quên mật khẩu?";
             // 
-            // btnLogin
-            // 
-            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogin.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(215, 606);
-            this.btnLogin.MaximumSize = new System.Drawing.Size(360, 50);
-            this.btnLogin.MinimumSize = new System.Drawing.Size(195, 50);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(343, 50);
-            this.btnLogin.TabIndex = 6;
-            this.btnLogin.Text = "Đăng nhập";
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -239,18 +253,100 @@
             this.img_title.TabIndex = 1;
             this.img_title.TabStop = false;
             // 
+            // Status
+            // 
+            this.Status.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Status.Controls.Add(this.button4);
+            this.Status.Controls.Add(this.label7);
+            this.Status.Controls.Add(this.label6);
+            this.Status.Controls.Add(this.label5);
+            this.Status.Controls.Add(this.label4);
+            this.Status.Controls.Add(this.Img_Avatar);
+            this.Status.Location = new System.Drawing.Point(78, 290);
+            this.Status.Name = "Status";
+            this.Status.Size = new System.Drawing.Size(679, 116);
+            this.Status.TabIndex = 6;
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.ForeColor = System.Drawing.Color.Black;
+            this.button4.ImageIndex = 1;
+            this.button4.Location = new System.Drawing.Point(443, 66);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(50, 50);
+            this.button4.TabIndex = 18;
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label7.Location = new System.Drawing.Point(539, 82);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(133, 30);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "ID: 99999999";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(381, 18);
+            this.label6.Name = "label6";
+            this.label6.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label6.Size = new System.Drawing.Size(233, 27);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Xin chào, Thanh Lộc";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.ImageIndex = 0;
+            this.label5.Location = new System.Drawing.Point(499, 50);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(20, 20);
+            this.label5.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 6.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label4.Location = new System.Drawing.Point(523, 48);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 21);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "online";
+            // 
+            // Img_Avatar
+            // 
+            this.Img_Avatar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Img_Avatar.Image = global::ProjectTeam.Properties.Resources.question_953840;
+            this.Img_Avatar.Location = new System.Drawing.Point(602, 9);
+            this.Img_Avatar.Name = "Img_Avatar";
+            this.Img_Avatar.Size = new System.Drawing.Size(70, 70);
+            this.Img_Avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Img_Avatar.TabIndex = 13;
+            this.Img_Avatar.TabStop = false;
+            // 
             // DangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(168F, 168F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(229)))), ((int)(((byte)(232)))));
             this.ClientSize = new System.Drawing.Size(1406, 895);
+            this.Controls.Add(this.Status);
             this.Controls.Add(this.Panel_login);
             this.Font = new System.Drawing.Font("Arial", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "DangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Vẽ chung qua mạng";
+            this.Text = "Draw - Đăng nhập";
             this.Load += new System.EventHandler(this.SignUp_Load);
             this.Panel_login.ResumeLayout(false);
             this.Panel_login.PerformLayout();
@@ -259,6 +355,9 @@
             this.PanelUsername.ResumeLayout(false);
             this.PanelUsername.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.img_title)).EndInit();
+            this.Status.ResumeLayout(false);
+            this.Status.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Img_Avatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,7 +371,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.LinkLabel linkForgotPassword;
-        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnShowHide;
         private System.Windows.Forms.Label lblUsername;
         public System.Windows.Forms.ImageList pasword;
@@ -280,6 +378,14 @@
         private System.Windows.Forms.Panel PanelUsername;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.TextBox txtPassword;
+        private Controls.RJButton btnLogin;
+        private System.Windows.Forms.Panel Status;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox Img_Avatar;
     }
 }
 
