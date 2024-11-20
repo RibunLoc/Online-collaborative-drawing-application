@@ -8,16 +8,18 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.AspNetCore.SignalR.Client;
+
 
 namespace ProjectTeam
 {
     public partial class SanhChinh : Form
     {
-
         private int borderSize = 2;
-
         private Color defaultcolor_close_backcolor;
         private Color defaultcolor_close_iconcolor;
+        private Form currentChildForm = null;
+
 
         public SanhChinh()
         {
@@ -33,6 +35,10 @@ namespace ProjectTeam
             iconBtnCloseDesktop.MouseDown += iconBtnCloseDesktop_MouseDown;
             iconBtnCloseDesktop.MouseUp += iconBtnCloseDesktop_MouseUp;
 
+            OpenChildForm(new Home());
+            Heading.Text = IconHome.Tag.ToString();
+            subheading.Text = "Chào mừng bạn đã quay trờ lại";
+
         }
 
         //Drag Form
@@ -41,6 +47,7 @@ namespace ProjectTeam
 
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
 
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -62,7 +69,7 @@ namespace ProjectTeam
 
         private void SanhChinh_Load(object sender, EventArgs e)
         {
-            Label lineLabel = new Label
+            Label lineLabel = new Label// đường line phân cách
             {
                 BorderStyle = BorderStyle.Fixed3D,
                 AutoSize = false,
@@ -72,6 +79,34 @@ namespace ProjectTeam
                 BackColor = Color.Gray   // Màu của line
             };
             taskbarMenu.Controls.Add(lineLabel);
+        }
+
+        //thao tác form con
+        private void OpenChildForm(Form childForm)
+        {
+            if (currentChildForm == childForm) return; // cố gắng fix ấn lại bị load lên lại
+
+            if (currentChildForm != null)
+                    currentChildForm.Close();
+                
+
+                currentChildForm = childForm;
+                childForm.TopLevel = false;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.Dock = DockStyle.Fill;
+
+                PanelDesktop.Controls.Clear();
+                PanelDesktop.Controls.Add(childForm);
+                PanelDesktop.Tag = childForm;
+
+                childForm.BringToFront();
+                childForm.Show();
+
+                //// Xử lý các sự kiện giao diện ngay lập tức để đảm bảo form con hiển thị đúng
+                //Application.DoEvents();
+            
+
+            
         }
 
         private void btn_group_Click(object sender, EventArgs e)
@@ -194,6 +229,41 @@ namespace ProjectTeam
                     menuButton.Padding = new Padding(10,10,10,10);
                 }
             }
+        }
+
+        private void iconMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rjCircularPictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButton2_Click(object sender, EventArgs e) // click menu tạo bản vẽ
+        {
+            OpenChildForm(new Draw());
+            Heading.Text = CreateDraw.Tag.ToString();
+            subheading.Text = "Bản vẽ cho bạn";
+        }
+
+        private void IconHome_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new Home());
+            Heading.Text = IconHome.Tag.ToString();
+            subheading.Text = "Chào mừng bạn đã quay trờ lại";
+        }
+
+        private void PanelDesktop_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void iconButton6_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new QuenMatKhau());
+            //Heading.Text = taskbarMenu.Tag.ToString();
         }
     }
 }
