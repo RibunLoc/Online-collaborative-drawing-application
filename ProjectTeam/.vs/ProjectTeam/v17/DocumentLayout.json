@@ -1,46 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\",
+  "WorkspaceRootPath": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|d:\\document\\winformc#\\mangcanban\\projectteam\\projectteam\\projectteam\\quenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\quenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\projectteam\\model\\drawconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\model\\drawconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\dangki.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\dangki.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|d:\\document\\winformc#\\mangcanban\\projectteam\\online-collaborative-drawing-application\\projectteam\\projectteam\\draw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\draw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\sanhchinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\sanhchinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\sanhchinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\sanhchinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\quenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\quenmatkhau.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\dangnhap.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\dangnhap.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\dangki.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\dangki.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\projectteam\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\dangnhap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\projectteam\\draw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{AFCAEE51-BB3B-4A72-9631-17517A5FE83B}|ProjectTeam\\ProjectTeam.csproj|solutionrelative:projectteam\\draw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,125 +22,48 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\Program.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\Program.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\Program.cs",
-              "RelativeToolTip": "ProjectTeam\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T18:02:05.969Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SanhChinh.cs",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\SanhChinh.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\SanhChinh.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\SanhChinh.cs",
-              "RelativeToolTip": "ProjectTeam\\SanhChinh.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAQwB8AAAAEAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "DrawConnection.cs",
+              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\ProjectTeam\\Model\\DrawConnection.cs",
+              "RelativeDocumentMoniker": "ProjectTeam\\Model\\DrawConnection.cs",
+              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\ProjectTeam\\Model\\DrawConnection.cs",
+              "RelativeToolTip": "ProjectTeam\\Model\\DrawConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T18:26:01.852Z"
+              "WhenOpened": "2024-11-17T08:44:28.26Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SanhChinh.cs [Design]",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\SanhChinh.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\SanhChinh.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\SanhChinh.cs [Design]",
-              "RelativeToolTip": "ProjectTeam\\SanhChinh.cs [Design]",
+              "DocumentIndex": 1,
+              "Title": "Draw.cs",
+              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\ProjectTeam\\Draw.cs",
+              "RelativeDocumentMoniker": "ProjectTeam\\Draw.cs",
+              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\ProjectTeam\\Draw.cs",
+              "RelativeToolTip": "ProjectTeam\\Draw.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T18:15:56.137Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "QuenMatKhau.cs",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\QuenMatKhau.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\QuenMatKhau.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\QuenMatKhau.cs",
-              "RelativeToolTip": "ProjectTeam\\QuenMatKhau.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAA1wB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T18:02:21.703Z",
+              "WhenOpened": "2024-11-09T16:05:17.961Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DangNhap.cs [Design]",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangNhap.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\DangNhap.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangNhap.cs [Design]",
-              "RelativeToolTip": "ProjectTeam\\DangNhap.cs [Design]",
+              "Title": "Draw.cs [Design]",
+              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\ProjectTeam\\Draw.cs",
+              "RelativeDocumentMoniker": "ProjectTeam\\Draw.cs",
+              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\Online-collaborative-drawing-application\\ProjectTeam\\ProjectTeam\\Draw.cs [Design]",
+              "RelativeToolTip": "ProjectTeam\\Draw.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T17:30:20.617Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "QuenMatKhau.cs [Design]",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\QuenMatKhau.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\QuenMatKhau.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\QuenMatKhau.cs [Design]",
-              "RelativeToolTip": "ProjectTeam\\QuenMatKhau.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T17:15:18.401Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DangKi.cs",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangKi.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\DangKi.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangKi.cs",
-              "RelativeToolTip": "ProjectTeam\\DangKi.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T16:26:27.871Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DangKi.cs [Design]",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangKi.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\DangKi.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangKi.cs [Design]",
-              "RelativeToolTip": "ProjectTeam\\DangKi.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T16:16:33.169Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DangNhap.cs",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangNhap.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\DangNhap.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangNhap.cs",
-              "RelativeToolTip": "ProjectTeam\\DangNhap.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwB8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T14:59:38.94Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "DangNhap.Designer.cs",
-              "DocumentMoniker": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangNhap.Designer.cs",
-              "RelativeDocumentMoniker": "ProjectTeam\\DangNhap.Designer.cs",
-              "ToolTip": "D:\\Document\\WinformC#\\MangCanBan\\ProjectTeam\\ProjectTeam\\ProjectTeam\\DangNhap.Designer.cs",
-              "RelativeToolTip": "ProjectTeam\\DangNhap.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-27T14:58:06.219Z"
+              "WhenOpened": "2024-11-09T15:08:02.159Z"
             }
           ]
         }
