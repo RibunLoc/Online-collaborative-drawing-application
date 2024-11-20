@@ -14,10 +14,12 @@ namespace ProjectTeam
         [STAThread]
         static void Main()
         {
+            if (Environment.OSVersion.Version.Major >= 6) SetProcessDPIAware();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            //while (true) {
+
+            //while (true)
+            //{
             //    DangNhap dangnhap = new DangNhap();
             //    if (dangnhap.ShowDialog() == DialogResult.OK)
             //    {
@@ -33,7 +35,11 @@ namespace ProjectTeam
             //        break;
             //}
 
-           Application.Run(new SanhChinh());
+            Application.Run(new SanhChinh());
+
+
         }
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        static extern bool SetProcessDPIAware();
     }
 }
