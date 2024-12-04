@@ -17,17 +17,24 @@ using ProjectTeam.Model;
 
 namespace ProjectTeam
 {
+    
     public partial class Draw : Form
     {
         private DrawConnection drawConnection; // sử dụng lớp DrawConnection để gửi dữ liệu
         private bool isDrawing = false;        // Biến để kiểm tra trạng thái vẽ
-        private Point previousPoint;           // Điểm trước đó của chuột
+        private DrawingPoint previousPoint;           // Điểm trước đó của chuột
         private Graphics graphics;             // Đối tượng Graphics để vẽ lên Panel
         private Pen pen;                       // Bút để vẽ
-        private List<Point> points;
+        private List<DrawingPoint> points;
         private BufferedGraphics bufferedGraphics; //Tránh hiệu ứng nhấp nháy
         private DateTime ThoiGianGuiLanCuoi = DateTime.MinValue;
         private readonly int senIntervalMs = 50;
+
+        public class DrawingPoint
+        {
+            public Point point;
+            public bool isLastStroke;
+        }
         public Draw()
         {
             InitializeComponent();
@@ -40,14 +47,14 @@ namespace ProjectTeam
             drawConnection = new DrawConnection("localhost", 5000);
 
             panel_Draw.MouseDown += Panel_Draw_MouseDown;
-            panel_Draw.MouseUp += Panel_Draw_MouseMove;
+            panel_Draw.MouseUp += Panel_Draw_MouseUp;
             panel_Draw.MouseMove += Panel_Draw_MouseMove;
             panel_Draw.Paint += Panel_Draw_Paint_On_Canvas;
             panel_Draw.Resize += Panel_Draw_Resize;
 
 
-            points = new List<Point>();
-
+            points = new List<DrawingPoint>();
+            previousPoint = new DrawingPoint();
             BufferedGraphicsContext NoiDungHienTai = BufferedGraphicsManager.Current;
             bufferedGraphics = NoiDungHienTai.Allocate(panel_Draw.CreateGraphics(), panel_Draw.ClientRectangle);
         }
@@ -77,7 +84,7 @@ namespace ProjectTeam
         }
 
 
-        private void DrawLines(Graphics graphics, List<Point> points, Color color, float pensize )
+        private void DrawLines(Graphics graphics, List<DrawingPoint> points, Color color, float pensize )
         {
             if (points.Count > 1)
             {
@@ -85,7 +92,14 @@ namespace ProjectTeam
                 {
                     for (int i = 0; i < points.Count - 1; i++)
                     {
-                        graphics.DrawLine(pen , points[i], points[i + 1]); 
+                        if (points[i].isLastStroke)
+                        {
+                            points.Remove(points[i]);
+                            continue;
+                        }
+
+                        graphics.DrawLine(pen, points[i].point, points[i + 1].point);
+                        
                     }
                 }
 
@@ -113,7 +127,9 @@ namespace ProjectTeam
                     return; // Dừng nếu buffer chưa khởi tạo
                 }
 
-                Point currentPoint = e.Location;
+                DrawingPoint currentPoint = new DrawingPoint();
+                currentPoint.point = e.Location;
+                currentPoint.isLastStroke = false;
                 points.Add(currentPoint);
 
                 // Làm sạch buffer trước khi vẽ
@@ -140,19 +156,38 @@ namespace ProjectTeam
         private void Panel_Draw_MouseDown(object sender, MouseEventArgs e)
         {
             isDrawing = true;
-            points.Clear();
-            previousPoint = e.Location;
-            points.Add(previousPoint); // Lưu điểm bắt đầu
+            //points.Clear();
+           /* previousPoint.point = e.Location;
+            previousPoint.isLastStroke = false;*/
+
+            DrawingPoint currentPoint = new DrawingPoint();
+            currentPoint.point = e.Location;
+            currentPoint.isLastStroke = false;
+
+            //points.Clear();
+            points.Add(currentPoint); // Lưu điểm bắt đầu
+        }
+
+        private void Panel_Draw_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDrawing = false;
+            //points.Clear();
+            DrawingPoint currentPoint = new DrawingPoint();
+            currentPoint.point = e.Location;
+            currentPoint.isLastStroke = true;
+
+            //points.Clear();
+            points.Add(currentPoint); // Lưu điểm bắt đầu
         }
 
 
 
 
-        private async void SendDrawDataToServer(Point start, Point end)
+        private async void SendDrawDataToServer(DrawingPoint start, DrawingPoint end)
         {
             if ((DateTime.Now - ThoiGianGuiLanCuoi).TotalMilliseconds >= senIntervalMs)
             {
-                string DulieuVe = $"{start.X},{start.Y},{end.X},{end.Y},{panel_Draw.Width},{panel_Draw.Height}";
+                string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}";
                 await drawConnection.GuiDuLieuAsync(DulieuVe);
                 ThoiGianGuiLanCuoi = DateTime.Now;
 
@@ -165,8 +200,9 @@ namespace ProjectTeam
 
         }
 
+        private void Bar_btn_2_Click(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }

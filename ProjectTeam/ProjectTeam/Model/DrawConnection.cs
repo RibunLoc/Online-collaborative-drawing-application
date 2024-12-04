@@ -13,6 +13,8 @@ namespace ProjectTeam.Model
     {
         private string DiaChiServer;
         private int CongServer;
+        private bool isConnected = false;
+        TcpClient tcpClient;
 
         public DrawConnection(string DiaChiServer, int CongServer)
         {
@@ -49,23 +51,27 @@ namespace ProjectTeam.Model
         /// <param name="data"></param>
         public async Task GuiDuLieuAsync(string data)
         {
+            if(!isConnected)
+            {
+                tcpClient = new TcpClient(DiaChiServer, CongServer);
+                isConnected = true;
+            }
             try
             {
-                using (TcpClient tcpClient = new TcpClient(DiaChiServer, CongServer))
-                using (NetworkStream stream = tcpClient.GetStream())
-                {
+                NetworkStream stream = tcpClient.GetStream();
+        
                     if (stream.CanWrite)
                     {
                         byte[] bodem = Encoding.ASCII.GetBytes(data);
                         await stream.WriteAsync(bodem, 0, bodem.Length);
-                        await stream.FlushAsync();
+                        //await stream.FlushAsync();
                     }
                     else
                     {
                         MessageBox.Show("Không thể ghi vào Async");
                     }
 
-                }
+                
             }
             catch (Exception ex)
             {
