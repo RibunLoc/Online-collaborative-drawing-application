@@ -15,7 +15,6 @@ namespace ProjectTeam
 {
     public partial class DangNhap : Form
     {
-
         private readonly DatabaseHelper databaseHelper;
         private bool isClicked = false; // hiện password
 

@@ -54,5 +54,33 @@ namespace ProjectTeam
                 return result > 0;
             }
         }
+
+        public List<Model.Room> LayDanhSachPhong()
+        {
+            var danhsachphongve = new List<Model.Room>();
+
+            using (var ketnoi = new NpgsqlConnection(connectionString))
+            {
+                ketnoi.Open ();
+                var command = new NpgsqlCommand("SELECT maphong, tenphong, sothamgia, chuphong FROM DanhSachPhongVe", ketnoi);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var phong = new Model.Room
+                        {
+                            MaPhong = reader.GetString(0),
+                            TenPhong = reader.GetString(1),
+                            SoNguoiThamGia = reader.GetInt32(2),
+                            TenChuPhong = reader.GetString(3)
+
+                        };
+                        danhsachphongve.Add(phong);
+                    }
+                }
+            }
+            return danhsachphongve;
+        }
     }
 }

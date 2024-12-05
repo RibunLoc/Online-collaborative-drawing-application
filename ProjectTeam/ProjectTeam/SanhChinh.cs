@@ -82,7 +82,7 @@ namespace ProjectTeam
         }
 
         //thao tác form con
-        private void OpenChildForm(Form childForm)
+        public void OpenChildForm(Form childForm)
         {
             if (currentChildForm == childForm) return; // cố gắng fix ấn lại bị load lên lại
 
@@ -104,8 +104,7 @@ namespace ProjectTeam
 
                 //// Xử lý các sự kiện giao diện ngay lập tức để đảm bảo form con hiển thị đúng
                 //Application.DoEvents();
-            
-
+           
             
         }
 
@@ -264,6 +263,13 @@ namespace ProjectTeam
         {
             OpenChildForm(new QuenMatKhau());
             //Heading.Text = taskbarMenu.Tag.ToString();
+        }
+
+        private void iconButton3_Click(object sender, EventArgs e) // tham gia phong ve
+        {
+            OpenChildForm(new ThamGiaPhongVe());
+            Heading.Text = IconEnjoy.Tag.ToString();
+            subheading.Text = "Phát triển kỹ năng hội họa và khám phá niềm đam mệ nghệ thuật";
         }
     }
 }

@@ -34,32 +34,32 @@
             this.slogan = new System.Windows.Forms.Panel();
             this.icon_exit = new System.Windows.Forms.ImageList(this.components);
             this.taskbarMenu = new System.Windows.Forms.Panel();
-            this.iconButton7 = new FontAwesome.Sharp.IconButton();
-            this.iconButton6 = new FontAwesome.Sharp.IconButton();
-            this.iconButton5 = new FontAwesome.Sharp.IconButton();
-            this.iconButton4 = new FontAwesome.Sharp.IconButton();
-            this.iconButton3 = new FontAwesome.Sharp.IconButton();
-            this.CreateDraw = new FontAwesome.Sharp.IconButton();
-            this.IconHome = new FontAwesome.Sharp.IconButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnMenu = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.PanelTitleBar = new System.Windows.Forms.Panel();
             this.subheading = new System.Windows.Forms.Label();
-            this.iconBtnScaleDesktop = new FontAwesome.Sharp.IconButton();
-            this.iconBtnExpandDesktop = new FontAwesome.Sharp.IconButton();
-            this.iconBtnCloseDesktop = new FontAwesome.Sharp.IconButton();
             this.Heading = new System.Windows.Forms.Label();
             this.PanelDesktop = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.iconBtnScaleDesktop = new FontAwesome.Sharp.IconButton();
+            this.iconBtnExpandDesktop = new FontAwesome.Sharp.IconButton();
+            this.iconBtnCloseDesktop = new FontAwesome.Sharp.IconButton();
+            this.iconButton7 = new FontAwesome.Sharp.IconButton();
+            this.iconButton6 = new FontAwesome.Sharp.IconButton();
+            this.iconButton5 = new FontAwesome.Sharp.IconButton();
+            this.iconButton4 = new FontAwesome.Sharp.IconButton();
+            this.IconEnjoy = new FontAwesome.Sharp.IconButton();
+            this.CreateDraw = new FontAwesome.Sharp.IconButton();
+            this.IconHome = new FontAwesome.Sharp.IconButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMenu = new FontAwesome.Sharp.IconButton();
             this.taskbarMenu.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PanelTitleBar.SuspendLayout();
             this.PanelDesktop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // iconMenu
@@ -92,7 +92,7 @@
             this.taskbarMenu.Controls.Add(this.iconButton6);
             this.taskbarMenu.Controls.Add(this.iconButton5);
             this.taskbarMenu.Controls.Add(this.iconButton4);
-            this.taskbarMenu.Controls.Add(this.iconButton3);
+            this.taskbarMenu.Controls.Add(this.IconEnjoy);
             this.taskbarMenu.Controls.Add(this.CreateDraw);
             this.taskbarMenu.Controls.Add(this.IconHome);
             this.taskbarMenu.Controls.Add(this.panel1);
@@ -105,6 +105,149 @@
             this.taskbarMenu.Size = new System.Drawing.Size(320, 1058);
             this.taskbarMenu.TabIndex = 2;
             this.taskbarMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.taskbarMenu_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Controls.Add(this.btnMenu);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(318, 207);
+            this.panel1.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Black;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Location = new System.Drawing.Point(-4, 203);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(322, 4);
+            this.label3.TabIndex = 2;
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 63);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 30);
+            this.label2.TabIndex = 1;
+            // 
+            // PanelTitleBar
+            // 
+            this.PanelTitleBar.BackColor = System.Drawing.Color.White;
+            this.PanelTitleBar.Controls.Add(this.subheading);
+            this.PanelTitleBar.Controls.Add(this.iconBtnScaleDesktop);
+            this.PanelTitleBar.Controls.Add(this.iconBtnExpandDesktop);
+            this.PanelTitleBar.Controls.Add(this.iconBtnCloseDesktop);
+            this.PanelTitleBar.Controls.Add(this.Heading);
+            this.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelTitleBar.Location = new System.Drawing.Point(320, 0);
+            this.PanelTitleBar.Name = "PanelTitleBar";
+            this.PanelTitleBar.Size = new System.Drawing.Size(1349, 126);
+            this.PanelTitleBar.TabIndex = 4;
+            // 
+            // subheading
+            // 
+            this.subheading.AutoSize = true;
+            this.subheading.Location = new System.Drawing.Point(43, 81);
+            this.subheading.Name = "subheading";
+            this.subheading.Size = new System.Drawing.Size(302, 30);
+            this.subheading.TabIndex = 4;
+            this.subheading.Text = "Chào mừng bạn đã quay trở lại";
+            // 
+            // Heading
+            // 
+            this.Heading.AutoSize = true;
+            this.Heading.BackColor = System.Drawing.Color.Transparent;
+            this.Heading.Font = new System.Drawing.Font("Segoe UI", 15.85714F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.Heading.Location = new System.Drawing.Point(39, 31);
+            this.Heading.Name = "Heading";
+            this.Heading.Size = new System.Drawing.Size(133, 50);
+            this.Heading.TabIndex = 0;
+            this.Heading.Text = "HOME";
+            // 
+            // PanelDesktop
+            // 
+            this.PanelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.PanelDesktop.Controls.Add(this.pictureBox2);
+            this.PanelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelDesktop.Location = new System.Drawing.Point(320, 126);
+            this.PanelDesktop.Name = "PanelDesktop";
+            this.PanelDesktop.Size = new System.Drawing.Size(1349, 932);
+            this.PanelDesktop.TabIndex = 5;
+            this.PanelDesktop.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDesktop_Paint_1);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(1349, 932);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // iconBtnScaleDesktop
+            // 
+            this.iconBtnScaleDesktop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconBtnScaleDesktop.BackColor = System.Drawing.Color.Transparent;
+            this.iconBtnScaleDesktop.FlatAppearance.BorderSize = 0;
+            this.iconBtnScaleDesktop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnScaleDesktop.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
+            this.iconBtnScaleDesktop.IconColor = System.Drawing.Color.DarkGray;
+            this.iconBtnScaleDesktop.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnScaleDesktop.IconSize = 36;
+            this.iconBtnScaleDesktop.Location = new System.Drawing.Point(1151, 3);
+            this.iconBtnScaleDesktop.Margin = new System.Windows.Forms.Padding(0);
+            this.iconBtnScaleDesktop.Name = "iconBtnScaleDesktop";
+            this.iconBtnScaleDesktop.Size = new System.Drawing.Size(65, 41);
+            this.iconBtnScaleDesktop.TabIndex = 3;
+            this.iconBtnScaleDesktop.UseVisualStyleBackColor = false;
+            this.iconBtnScaleDesktop.Click += new System.EventHandler(this.iconBtnScaleDesktop_Click);
+            // 
+            // iconBtnExpandDesktop
+            // 
+            this.iconBtnExpandDesktop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconBtnExpandDesktop.BackColor = System.Drawing.Color.Transparent;
+            this.iconBtnExpandDesktop.FlatAppearance.BorderSize = 0;
+            this.iconBtnExpandDesktop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnExpandDesktop.IconChar = FontAwesome.Sharp.IconChar.ExpandAlt;
+            this.iconBtnExpandDesktop.IconColor = System.Drawing.Color.DarkGray;
+            this.iconBtnExpandDesktop.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnExpandDesktop.IconSize = 36;
+            this.iconBtnExpandDesktop.Location = new System.Drawing.Point(1216, 3);
+            this.iconBtnExpandDesktop.Margin = new System.Windows.Forms.Padding(0);
+            this.iconBtnExpandDesktop.Name = "iconBtnExpandDesktop";
+            this.iconBtnExpandDesktop.Size = new System.Drawing.Size(65, 41);
+            this.iconBtnExpandDesktop.TabIndex = 2;
+            this.iconBtnExpandDesktop.UseVisualStyleBackColor = false;
+            this.iconBtnExpandDesktop.Click += new System.EventHandler(this.iconBtnExpandDesktop_Click);
+            // 
+            // iconBtnCloseDesktop
+            // 
+            this.iconBtnCloseDesktop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.iconBtnCloseDesktop.BackColor = System.Drawing.Color.Transparent;
+            this.iconBtnCloseDesktop.FlatAppearance.BorderSize = 0;
+            this.iconBtnCloseDesktop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.iconBtnCloseDesktop.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
+            this.iconBtnCloseDesktop.IconColor = System.Drawing.Color.DarkGray;
+            this.iconBtnCloseDesktop.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconBtnCloseDesktop.IconSize = 36;
+            this.iconBtnCloseDesktop.Location = new System.Drawing.Point(1281, 3);
+            this.iconBtnCloseDesktop.Margin = new System.Windows.Forms.Padding(0);
+            this.iconBtnCloseDesktop.Name = "iconBtnCloseDesktop";
+            this.iconBtnCloseDesktop.Size = new System.Drawing.Size(65, 41);
+            this.iconBtnCloseDesktop.TabIndex = 1;
+            this.iconBtnCloseDesktop.UseVisualStyleBackColor = false;
+            this.iconBtnCloseDesktop.Click += new System.EventHandler(this.iconBtnCloseDesktop_Click);
             // 
             // iconButton7
             // 
@@ -196,27 +339,28 @@
             this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton4.UseVisualStyleBackColor = true;
             // 
-            // iconButton3
+            // IconEnjoy
             // 
-            this.iconButton3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.iconButton3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.iconButton3.FlatAppearance.BorderSize = 0;
-            this.iconButton3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.iconButton3.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
-            this.iconButton3.IconColor = System.Drawing.Color.Black;
-            this.iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton3.Location = new System.Drawing.Point(0, 349);
-            this.iconButton3.Name = "iconButton3";
-            this.iconButton3.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
-            this.iconButton3.Size = new System.Drawing.Size(318, 71);
-            this.iconButton3.TabIndex = 7;
-            this.iconButton3.Tag = "Tham gia phòng vẽ";
-            this.iconButton3.Text = "Tham gia phòng vẽ";
-            this.iconButton3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.iconButton3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton3.UseVisualStyleBackColor = true;
+            this.IconEnjoy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.IconEnjoy.Dock = System.Windows.Forms.DockStyle.Top;
+            this.IconEnjoy.FlatAppearance.BorderSize = 0;
+            this.IconEnjoy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.IconEnjoy.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.IconEnjoy.IconChar = FontAwesome.Sharp.IconChar.PeopleGroup;
+            this.IconEnjoy.IconColor = System.Drawing.Color.Black;
+            this.IconEnjoy.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.IconEnjoy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.IconEnjoy.Location = new System.Drawing.Point(0, 349);
+            this.IconEnjoy.Name = "IconEnjoy";
+            this.IconEnjoy.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.IconEnjoy.Size = new System.Drawing.Size(318, 71);
+            this.IconEnjoy.TabIndex = 7;
+            this.IconEnjoy.Tag = "Tham gia phòng vẽ";
+            this.IconEnjoy.Text = "Tham gia phòng vẽ";
+            this.IconEnjoy.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.IconEnjoy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.IconEnjoy.UseVisualStyleBackColor = true;
+            this.IconEnjoy.Click += new System.EventHandler(this.iconButton3_Click);
             // 
             // CreateDraw
             // 
@@ -264,17 +408,6 @@
             this.IconHome.UseVisualStyleBackColor = true;
             this.IconHome.Click += new System.EventHandler(this.IconHome_Click);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Controls.Add(this.btnMenu);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(318, 207);
-            this.panel1.TabIndex = 5;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
@@ -301,138 +434,6 @@
             this.btnMenu.UseVisualStyleBackColor = true;
             this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.Color.Black;
-            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label3.Location = new System.Drawing.Point(-4, 203);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(322, 4);
-            this.label3.TabIndex = 2;
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 63);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 30);
-            this.label2.TabIndex = 1;
-            // 
-            // PanelTitleBar
-            // 
-            this.PanelTitleBar.BackColor = System.Drawing.Color.White;
-            this.PanelTitleBar.Controls.Add(this.subheading);
-            this.PanelTitleBar.Controls.Add(this.iconBtnScaleDesktop);
-            this.PanelTitleBar.Controls.Add(this.iconBtnExpandDesktop);
-            this.PanelTitleBar.Controls.Add(this.iconBtnCloseDesktop);
-            this.PanelTitleBar.Controls.Add(this.Heading);
-            this.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelTitleBar.Location = new System.Drawing.Point(320, 0);
-            this.PanelTitleBar.Name = "PanelTitleBar";
-            this.PanelTitleBar.Size = new System.Drawing.Size(1349, 126);
-            this.PanelTitleBar.TabIndex = 4;
-            // 
-            // subheading
-            // 
-            this.subheading.AutoSize = true;
-            this.subheading.Location = new System.Drawing.Point(43, 81);
-            this.subheading.Name = "subheading";
-            this.subheading.Size = new System.Drawing.Size(302, 30);
-            this.subheading.TabIndex = 4;
-            this.subheading.Text = "Chào mừng bạn đã quay trở lại";
-            // 
-            // iconBtnScaleDesktop
-            // 
-            this.iconBtnScaleDesktop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconBtnScaleDesktop.BackColor = System.Drawing.Color.Transparent;
-            this.iconBtnScaleDesktop.FlatAppearance.BorderSize = 0;
-            this.iconBtnScaleDesktop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBtnScaleDesktop.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
-            this.iconBtnScaleDesktop.IconColor = System.Drawing.Color.DarkGray;
-            this.iconBtnScaleDesktop.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnScaleDesktop.IconSize = 36;
-            this.iconBtnScaleDesktop.Location = new System.Drawing.Point(1151, 3);
-            this.iconBtnScaleDesktop.Margin = new System.Windows.Forms.Padding(0);
-            this.iconBtnScaleDesktop.Name = "iconBtnScaleDesktop";
-            this.iconBtnScaleDesktop.Size = new System.Drawing.Size(65, 41);
-            this.iconBtnScaleDesktop.TabIndex = 3;
-            this.iconBtnScaleDesktop.UseVisualStyleBackColor = false;
-            this.iconBtnScaleDesktop.Click += new System.EventHandler(this.iconBtnScaleDesktop_Click);
-            // 
-            // iconBtnExpandDesktop
-            // 
-            this.iconBtnExpandDesktop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconBtnExpandDesktop.BackColor = System.Drawing.Color.Transparent;
-            this.iconBtnExpandDesktop.FlatAppearance.BorderSize = 0;
-            this.iconBtnExpandDesktop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBtnExpandDesktop.IconChar = FontAwesome.Sharp.IconChar.ExpandAlt;
-            this.iconBtnExpandDesktop.IconColor = System.Drawing.Color.DarkGray;
-            this.iconBtnExpandDesktop.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnExpandDesktop.IconSize = 36;
-            this.iconBtnExpandDesktop.Location = new System.Drawing.Point(1216, 3);
-            this.iconBtnExpandDesktop.Margin = new System.Windows.Forms.Padding(0);
-            this.iconBtnExpandDesktop.Name = "iconBtnExpandDesktop";
-            this.iconBtnExpandDesktop.Size = new System.Drawing.Size(65, 41);
-            this.iconBtnExpandDesktop.TabIndex = 2;
-            this.iconBtnExpandDesktop.UseVisualStyleBackColor = false;
-            this.iconBtnExpandDesktop.Click += new System.EventHandler(this.iconBtnExpandDesktop_Click);
-            // 
-            // iconBtnCloseDesktop
-            // 
-            this.iconBtnCloseDesktop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.iconBtnCloseDesktop.BackColor = System.Drawing.Color.Transparent;
-            this.iconBtnCloseDesktop.FlatAppearance.BorderSize = 0;
-            this.iconBtnCloseDesktop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconBtnCloseDesktop.IconChar = FontAwesome.Sharp.IconChar.CircleXmark;
-            this.iconBtnCloseDesktop.IconColor = System.Drawing.Color.DarkGray;
-            this.iconBtnCloseDesktop.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconBtnCloseDesktop.IconSize = 36;
-            this.iconBtnCloseDesktop.Location = new System.Drawing.Point(1281, 3);
-            this.iconBtnCloseDesktop.Margin = new System.Windows.Forms.Padding(0);
-            this.iconBtnCloseDesktop.Name = "iconBtnCloseDesktop";
-            this.iconBtnCloseDesktop.Size = new System.Drawing.Size(65, 41);
-            this.iconBtnCloseDesktop.TabIndex = 1;
-            this.iconBtnCloseDesktop.UseVisualStyleBackColor = false;
-            this.iconBtnCloseDesktop.Click += new System.EventHandler(this.iconBtnCloseDesktop_Click);
-            // 
-            // Heading
-            // 
-            this.Heading.AutoSize = true;
-            this.Heading.BackColor = System.Drawing.Color.Transparent;
-            this.Heading.Font = new System.Drawing.Font("Segoe UI", 15.85714F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Heading.Location = new System.Drawing.Point(39, 31);
-            this.Heading.Name = "Heading";
-            this.Heading.Size = new System.Drawing.Size(133, 50);
-            this.Heading.TabIndex = 0;
-            this.Heading.Text = "HOME";
-            // 
-            // PanelDesktop
-            // 
-            this.PanelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.PanelDesktop.Controls.Add(this.pictureBox2);
-            this.PanelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelDesktop.Location = new System.Drawing.Point(320, 126);
-            this.PanelDesktop.Name = "PanelDesktop";
-            this.PanelDesktop.Size = new System.Drawing.Size(1349, 932);
-            this.PanelDesktop.TabIndex = 5;
-            this.PanelDesktop.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDesktop_Paint_1);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(1349, 932);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
-            // 
             // SanhChinh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(168F, 168F);
@@ -453,11 +454,11 @@
             this.taskbarMenu.ResumeLayout(false);
             this.taskbarMenu.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.PanelTitleBar.ResumeLayout(false);
             this.PanelTitleBar.PerformLayout();
             this.PanelDesktop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -478,7 +479,7 @@
         private FontAwesome.Sharp.IconButton iconButton6;
         private FontAwesome.Sharp.IconButton iconButton5;
         private FontAwesome.Sharp.IconButton iconButton4;
-        private FontAwesome.Sharp.IconButton iconButton3;
+        private FontAwesome.Sharp.IconButton IconEnjoy;
         private System.Windows.Forms.Label Heading;
         private FontAwesome.Sharp.IconButton iconBtnCloseDesktop;
         private FontAwesome.Sharp.IconButton iconBtnScaleDesktop;
