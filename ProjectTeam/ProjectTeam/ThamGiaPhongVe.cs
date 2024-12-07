@@ -74,8 +74,13 @@ namespace ProjectTeam
                 {
                     var listviewItem = new ListViewItem(phong.MaPhong);
                     listviewItem.SubItems.Add(phong.TenPhong);
-                    listviewItem.SubItems.Add(phong.SoNguoiThamGia.ToString() + "/4");
+                    listviewItem.SubItems.Add("1/" + phong.SoNguoiThamGia.ToString());
                     listviewItem.SubItems.Add(phong.TenChuPhong);
+
+                    if (phong.MatKhau != "công khai")
+                        listviewItem.SubItems.Add("riêng tư");
+                    else
+                        listviewItem.SubItems.Add(phong.MatKhau);
 
                     DanhSachPhongVe.Items.Add(listviewItem);
                 }

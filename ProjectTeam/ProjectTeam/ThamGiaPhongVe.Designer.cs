@@ -39,8 +39,9 @@
             this.btnLamMoi = new RJCodeAdvance.RJControls.RJButton();
             this.btnThamGia = new MaterialSkin.Controls.MaterialButton();
             this.panelQuanLyDanhSachPhong = new System.Windows.Forms.Panel();
-            this.Progressbar = new MaterialSkin.Controls.MaterialProgressBar();
             this.lbl_DangTai = new MaterialSkin.Controls.MaterialLabel();
+            this.Progressbar = new MaterialSkin.Controls.MaterialProgressBar();
+            this.MatKhau = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panelQuanLyDanhSachPhong.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,12 +88,14 @@
             this.MaPhong,
             this.TenPhong,
             this.SoNguoiThamGia,
-            this.TenChuPhong});
+            this.TenChuPhong,
+            this.MatKhau});
             this.DanhSachPhongVe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.DanhSachPhongVe.Depth = 0;
             this.DanhSachPhongVe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DanhSachPhongVe.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.DanhSachPhongVe.FullRowSelect = true;
+            this.DanhSachPhongVe.HideSelection = false;
             this.DanhSachPhongVe.Location = new System.Drawing.Point(0, 0);
             this.DanhSachPhongVe.MinimumSize = new System.Drawing.Size(200, 100);
             this.DanhSachPhongVe.MouseLocation = new System.Drawing.Point(-1, -1);
@@ -107,7 +110,7 @@
             // 
             // MaPhong
             // 
-            this.MaPhong.Text = "Mã phòng";
+            this.MaPhong.Text = "     Mã phòng";
             this.MaPhong.Width = 185;
             // 
             // TenPhong
@@ -123,7 +126,7 @@
             // TenChuPhong
             // 
             this.TenChuPhong.Text = "Tên chủ phòng";
-            this.TenChuPhong.Width = 200;
+            this.TenChuPhong.Width = 250;
             // 
             // btnTimKiem
             // 
@@ -204,6 +207,20 @@
             this.panelQuanLyDanhSachPhong.Size = new System.Drawing.Size(1280, 546);
             this.panelQuanLyDanhSachPhong.TabIndex = 7;
             // 
+            // lbl_DangTai
+            // 
+            this.lbl_DangTai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_DangTai.AutoSize = true;
+            this.lbl_DangTai.Depth = 0;
+            this.lbl_DangTai.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lbl_DangTai.Location = new System.Drawing.Point(614, 259);
+            this.lbl_DangTai.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lbl_DangTai.Name = "lbl_DangTai";
+            this.lbl_DangTai.Size = new System.Drawing.Size(73, 19);
+            this.lbl_DangTai.TabIndex = 9;
+            this.lbl_DangTai.Text = "Đang tải...";
+            this.lbl_DangTai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Progressbar
             // 
             this.Progressbar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -219,19 +236,10 @@
             this.Progressbar.TabIndex = 8;
             this.Progressbar.Visible = false;
             // 
-            // lbl_DangTai
+            // MatKhau
             // 
-            this.lbl_DangTai.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_DangTai.AutoSize = true;
-            this.lbl_DangTai.Depth = 0;
-            this.lbl_DangTai.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbl_DangTai.Location = new System.Drawing.Point(614, 259);
-            this.lbl_DangTai.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lbl_DangTai.Name = "lbl_DangTai";
-            this.lbl_DangTai.Size = new System.Drawing.Size(73, 19);
-            this.lbl_DangTai.TabIndex = 9;
-            this.lbl_DangTai.Text = "Đang tải...";
-            this.lbl_DangTai.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MatKhau.Text = "Mật khẩu";
+            this.MatKhau.Width = 100;
             // 
             // ThamGiaPhongVe
             // 
@@ -271,5 +279,6 @@
         private System.Windows.Forms.Panel panelQuanLyDanhSachPhong;
         private MaterialSkin.Controls.MaterialProgressBar Progressbar;
         private MaterialSkin.Controls.MaterialLabel lbl_DangTai;
+        private System.Windows.Forms.ColumnHeader MatKhau;
     }
 }

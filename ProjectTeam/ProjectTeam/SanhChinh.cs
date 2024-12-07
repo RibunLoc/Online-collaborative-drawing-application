@@ -60,11 +60,54 @@ namespace ProjectTeam
         protected override void WndProc(ref Message m)
         {
             const int WM_NCCALCSIZE = 0x0083;
-            if(m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
+            const int WM_NCHITTEST = 0x84;
+            const int HTLEFT = 10;
+            const int HTRIGHT = 11;
+            const int HTTOP = 12;
+            const int HTTOPLEFT = 13;
+            const int HTTOPRIGHT = 14;
+            const int HTBOTTOM = 15;
+            const int HTBOTTOMLEFT = 16;
+            const int HTBOTTOMRIGHT = 17;
+
+
+            if (m.Msg == WM_NCCALCSIZE && m.WParam.ToInt32() == 1)
             {
                 return;
             }    
             base.WndProc(ref m);
+
+            if (m.Msg == WM_NCHITTEST && WindowState == FormWindowState.Normal)
+            {
+                // Lấy tọa độ con trỏ (client)
+                int x = (m.LParam.ToInt32() & 0xFFFF);
+                int y = (m.LParam.ToInt32() >> 16);
+                Point pt = PointToClient(new Point(x, y));
+
+                int resizeArea = 10; // khoảng cách từ viền để nhận resize
+
+                bool left = pt.X <= resizeArea;
+                bool right = pt.X >= this.ClientSize.Width - resizeArea;
+                bool top = pt.Y <= resizeArea;
+                bool bottom = pt.Y >= this.ClientSize.Height - resizeArea;
+
+                if (left && top)
+                    m.Result = (IntPtr)HTTOPLEFT;
+                else if (right && top)
+                    m.Result = (IntPtr)HTTOPRIGHT;
+                else if (left && bottom)
+                    m.Result = (IntPtr)HTBOTTOMLEFT;
+                else if (right && bottom)
+                    m.Result = (IntPtr)HTBOTTOMRIGHT;
+                else if (left)
+                    m.Result = (IntPtr)HTLEFT;
+                else if (right)
+                    m.Result = (IntPtr)HTRIGHT;
+                else if (top)
+                    m.Result = (IntPtr)HTTOP;
+                else if (bottom)
+                    m.Result = (IntPtr)HTBOTTOM;
+            }
         }
 
         private void SanhChinh_Load(object sender, EventArgs e)
@@ -242,7 +285,7 @@ namespace ProjectTeam
 
         private void iconButton2_Click(object sender, EventArgs e) // click menu tạo bản vẽ
         {
-            OpenChildForm(new Draw());
+            OpenChildForm(new TaoBanVe());
             Heading.Text = CreateDraw.Tag.ToString();
             subheading.Text = "Bản vẽ cho bạn";
         }
