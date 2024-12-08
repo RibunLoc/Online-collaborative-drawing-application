@@ -88,6 +88,7 @@
             // 
             // panel_GiaoDien
             // 
+            this.panel_GiaoDien.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel_GiaoDien.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel_GiaoDien.Controls.Add(this.btn_random);
             this.panel_GiaoDien.Controls.Add(this.btn_TaoPhong);

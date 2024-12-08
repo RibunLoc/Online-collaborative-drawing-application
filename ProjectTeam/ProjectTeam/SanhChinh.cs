@@ -134,6 +134,14 @@ namespace ProjectTeam
                 
 
                 currentChildForm = childForm;
+
+            if (childForm is TaoBanVe create)
+                create.YeuCauMoForm += GiaiQuyetYeuCauMoForm;
+
+            if (childForm is Draw draw)
+                draw.YeuCauMoForm += GiaiQuyetYeuCauMoTaoBanVe;
+            
+
                 childForm.TopLevel = false;
                 childForm.FormBorderStyle = FormBorderStyle.None;
                 childForm.Dock = DockStyle.Fill;
@@ -149,6 +157,24 @@ namespace ProjectTeam
                 //Application.DoEvents();
            
             
+        }
+
+        private void GiaiQuyetYeuCauMoForm(string forName)
+        {
+            if (forName == "OpenDraw")
+            {
+                OpenChildForm(new Draw());
+                CreateDraw.Enabled = false;
+            }
+        }
+
+        private void GiaiQuyetYeuCauMoTaoBanVe(string forName)
+        {
+            if(forName == "OpenCreateDraw")
+            {
+                OpenChildForm(new TaoBanVe());
+                CreateDraw.Enabled = true;
+            }
         }
 
         private void btn_group_Click(object sender, EventArgs e)
@@ -312,7 +338,7 @@ namespace ProjectTeam
         {
             OpenChildForm(new ThamGiaPhongVe());
             Heading.Text = IconEnjoy.Tag.ToString();
-            subheading.Text = "Phát triển kỹ năng hội họa và khám phá niềm đam mệ nghệ thuật";
+            subheading.Text = "Phát triển kỹ năng hội họa và khám phá niềm đam mê nghệ thuật";
         }
     }
 }
