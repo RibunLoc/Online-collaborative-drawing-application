@@ -11,6 +11,7 @@ namespace ProjectTeam.Model
         public string MaPhong { get; set; }
         public string TenPhong { get; set; }
 
+        public int SoLuongToiDa { get; set; }
         public int SoNguoiThamGia { get; set; }
 
         public string TenChuPhong { get; set; }

@@ -263,8 +263,10 @@
     </Compile>
     <Compile Include="Helper\DatabaseHelper.cs" />
     <Compile Include="Model\DrawConnection.cs" />
+    <Compile Include="Model\HamMaHoa.cs" />
     <Compile Include="Model\RandomCode.cs" />
     <Compile Include="Model\Room.cs" />
+    <Compile Include="Model\user_info.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuenMatKhau.cs">

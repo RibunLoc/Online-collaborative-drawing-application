@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace ProjectTeam
     public partial class TaoBanVe : Form
     {
         private DatabaseHelper dbhp;
+        private HamMaHoa mahoa = new HamMaHoa();
 
         public TaoBanVe()
         {
@@ -29,6 +31,7 @@ namespace ProjectTeam
             Bo_Goc_Panel();
             Bo_goc_Panel_TieuDe();
             Dieu_Chinh_btn_TaoMa();
+            
         }
 
         private void Bo_Goc_Panel()
@@ -101,9 +104,6 @@ namespace ProjectTeam
 
         private void btn_TaoPhong_Click(object sender, EventArgs e)
         {
-
-           
-
             if (string.IsNullOrEmpty(tb_NhapMaPhong.Texts.Trim()) || string.IsNullOrEmpty(tb_NhapTenPhong.Texts.Trim()) || string.IsNullOrEmpty(combobox_SoLuong.Texts.Trim()))
             {
                 MessageBox.Show("Bạn chưa nhập đầy đủ thông tin phòng mã phòng, tên phòng hoặc chọn số người tham gia!", "Xin vui lòng nhập đầy đủ thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -116,8 +116,6 @@ namespace ProjectTeam
                     MessageBox.Show("Bạn chưa nhập mật khẩu", "Xin vui lòng nhập đầy đủ thông tin", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-
             try
             {
                 Cursor.Current = Cursors.WaitCursor;
@@ -130,6 +128,7 @@ namespace ProjectTeam
                 string maphong = tb_NhapMaPhong.Texts.Trim();
                 string tenphong = tb_NhapTenPhong.Texts.Trim();
                 int soluong = int.Parse(combobox_SoLuong.Texts.Trim());
+                user_info user = new user_info();
 
                 if (check_RiengTu.Checked)
                     matkhau = tb_NhapMatKhau.Texts.Trim();
@@ -138,20 +137,47 @@ namespace ProjectTeam
                 check = databaseHelper.KiemTraTonTaiPhong(maphongcheck);
 
                 if (check)
-                    MessageBox.Show("Mã phòng đã tồn tại xin vui lòng nhập mã khác!", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                {
+                    MessageBox.Show("Mã phòng đã tồn tại xin vui lòng nhập mã khác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }  
                 else
                 {
+                    // Người tạo phòng có vai trò là admin
+                    user = databaseHelper.LayThongTinNguoiDung(1);
+
+                    if (user == null || string.IsNullOrEmpty(user.name))
+                    {
+                        MessageBox.Show("Không tìm thấy thông tin người dùng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     // tạo truy vấn lưu vào csdl
                     if (check_RiengTu.Checked)
-                        check = databaseHelper.TaoDanhSachPhongCoMatKhau(maphong, tenphong, soluong, "Mat khau", matkhau);
+                    {
+                        string MaHoaMatKhau = mahoa.HamBamSha256(matkhau);
+                        check = databaseHelper.TaoDanhSachPhongCoMatKhau(maphong, tenphong, soluong, user.name, MaHoaMatKhau);
+                    }     
                     else
-                        check = databaseHelper.TaoDanhSachPhong(maphong, tenphong, soluong, "Thanh Loc");
+                        check = databaseHelper.TaoDanhSachPhong(maphong, tenphong, soluong, user.name);
+ 
+                    
                 } 
 
                 if (check)
-                    MessageBox.Show("Tạo thành công!");
-               
+                {
+                    // Thêm người dùng đó vào phòng vẽ
+                    bool IsThemChua = false;
+                    string vaitro = "admin";
+                    IsThemChua = databaseHelper.ThemThanhVienPhongVe(maphong, user.name, user.user_id, vaitro);
+                    if (IsThemChua)
+                    {
+                        MessageBox.Show("Tạo thành công!");
 
+                    }
+                    else
+                        MessageBox.Show("Lỗi tạo phòng!");
+                }
             }
             catch (Exception ex)
             {

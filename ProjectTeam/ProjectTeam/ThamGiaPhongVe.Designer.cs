@@ -35,13 +35,16 @@
             this.TenPhong = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SoNguoiThamGia = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TenChuPhong = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.MatKhau = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnTimKiem = new RJCodeAdvance.RJControls.RJButton();
             this.btnLamMoi = new RJCodeAdvance.RJControls.RJButton();
             this.btnThamGia = new MaterialSkin.Controls.MaterialButton();
             this.panelQuanLyDanhSachPhong = new System.Windows.Forms.Panel();
             this.lbl_DangTai = new MaterialSkin.Controls.MaterialLabel();
             this.Progressbar = new MaterialSkin.Controls.MaterialProgressBar();
-            this.MatKhau = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tb_NhapMatKhau = new RJCodeAdvance.RJControls.RJTextBox();
+            this.lbl_NhapMatKhau = new System.Windows.Forms.Label();
+            this.iconbtn_Eye = new FontAwesome.Sharp.IconButton();
             this.panelQuanLyDanhSachPhong.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +130,11 @@
             // 
             this.TenChuPhong.Text = "Tên chủ phòng";
             this.TenChuPhong.Width = 250;
+            // 
+            // MatKhau
+            // 
+            this.MatKhau.Text = "Mật khẩu";
+            this.MatKhau.Width = 100;
             // 
             // btnTimKiem
             // 
@@ -236,10 +244,58 @@
             this.Progressbar.TabIndex = 8;
             this.Progressbar.Visible = false;
             // 
-            // MatKhau
+            // tb_NhapMatKhau
             // 
-            this.MatKhau.Text = "Mật khẩu";
-            this.MatKhau.Width = 100;
+            this.tb_NhapMatKhau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.tb_NhapMatKhau.BackColor = System.Drawing.SystemColors.Window;
+            this.tb_NhapMatKhau.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.tb_NhapMatKhau.BorderFocusColor = System.Drawing.Color.HotPink;
+            this.tb_NhapMatKhau.BorderRadius = 0;
+            this.tb_NhapMatKhau.BorderSize = 2;
+            this.tb_NhapMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tb_NhapMatKhau.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tb_NhapMatKhau.Location = new System.Drawing.Point(744, 757);
+            this.tb_NhapMatKhau.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_NhapMatKhau.Multiline = false;
+            this.tb_NhapMatKhau.Name = "tb_NhapMatKhau";
+            this.tb_NhapMatKhau.Padding = new System.Windows.Forms.Padding(10, 7, 10, 7);
+            this.tb_NhapMatKhau.PasswordChar = true;
+            this.tb_NhapMatKhau.PlaceholderColor = System.Drawing.Color.DarkGray;
+            this.tb_NhapMatKhau.PlaceholderText = "";
+            this.tb_NhapMatKhau.Size = new System.Drawing.Size(292, 44);
+            this.tb_NhapMatKhau.TabIndex = 8;
+            this.tb_NhapMatKhau.Texts = "";
+            this.tb_NhapMatKhau.UnderlinedStyle = false;
+            this.tb_NhapMatKhau.Visible = false;
+            // 
+            // lbl_NhapMatKhau
+            // 
+            this.lbl_NhapMatKhau.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbl_NhapMatKhau.Font = new System.Drawing.Font("Segoe UI", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbl_NhapMatKhau.Location = new System.Drawing.Point(547, 762);
+            this.lbl_NhapMatKhau.Name = "lbl_NhapMatKhau";
+            this.lbl_NhapMatKhau.Size = new System.Drawing.Size(195, 39);
+            this.lbl_NhapMatKhau.TabIndex = 9;
+            this.lbl_NhapMatKhau.Text = "Nhập mật khẩu: ";
+            this.lbl_NhapMatKhau.Visible = false;
+            // 
+            // iconbtn_Eye
+            // 
+            this.iconbtn_Eye.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.iconbtn_Eye.AutoSize = true;
+            this.iconbtn_Eye.BackColor = System.Drawing.Color.Transparent;
+            this.iconbtn_Eye.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.iconbtn_Eye.IconChar = FontAwesome.Sharp.IconChar.EyeSlash;
+            this.iconbtn_Eye.IconColor = System.Drawing.Color.Black;
+            this.iconbtn_Eye.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconbtn_Eye.IconSize = 32;
+            this.iconbtn_Eye.Location = new System.Drawing.Point(1042, 758);
+            this.iconbtn_Eye.Name = "iconbtn_Eye";
+            this.iconbtn_Eye.Size = new System.Drawing.Size(44, 44);
+            this.iconbtn_Eye.TabIndex = 10;
+            this.iconbtn_Eye.UseVisualStyleBackColor = false;
+            this.iconbtn_Eye.Visible = false;
+            this.iconbtn_Eye.Click += new System.EventHandler(this.iconbtn_Eye_Click);
             // 
             // ThamGiaPhongVe
             // 
@@ -247,6 +303,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(247)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(1412, 840);
+            this.Controls.Add(this.iconbtn_Eye);
+            this.Controls.Add(this.lbl_NhapMatKhau);
+            this.Controls.Add(this.tb_NhapMatKhau);
             this.Controls.Add(this.panelQuanLyDanhSachPhong);
             this.Controls.Add(this.btnThamGia);
             this.Controls.Add(this.btnLamMoi);
@@ -280,5 +339,8 @@
         private MaterialSkin.Controls.MaterialProgressBar Progressbar;
         private MaterialSkin.Controls.MaterialLabel lbl_DangTai;
         private System.Windows.Forms.ColumnHeader MatKhau;
+        private RJCodeAdvance.RJControls.RJTextBox tb_NhapMatKhau;
+        private System.Windows.Forms.Label lbl_NhapMatKhau;
+        private FontAwesome.Sharp.IconButton iconbtn_Eye;
     }
 }
