@@ -35,7 +35,7 @@
             this.lblCodeRoom = new System.Windows.Forms.Label();
             this.iconButton2 = new FontAwesome.Sharp.IconButton();
             this.Bar_btn_2 = new FontAwesome.Sharp.IconButton();
-            this.Bar_btn1 = new FontAwesome.Sharp.IconButton();
+            this.btn_Thoat = new FontAwesome.Sharp.IconButton();
             this.panel_Draw = new System.Windows.Forms.Panel();
             this.rjDropdownMenu1 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.ádsadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +52,7 @@
             this.panel1.Controls.Add(this.panelCodeRoom);
             this.panel1.Controls.Add(this.iconButton2);
             this.panel1.Controls.Add(this.Bar_btn_2);
-            this.panel1.Controls.Add(this.Bar_btn1);
+            this.panel1.Controls.Add(this.btn_Thoat);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -126,25 +126,26 @@
             this.Bar_btn_2.UseVisualStyleBackColor = true;
             this.Bar_btn_2.Click += new System.EventHandler(this.Bar_btn_2_Click);
             // 
-            // Bar_btn1
+            // btn_Thoat
             // 
-            this.Bar_btn1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Bar_btn1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Bar_btn1.Font = new System.Drawing.Font("Segoe UI", 6.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.Bar_btn1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(223)))), ((int)(((byte)(204)))));
-            this.Bar_btn1.IconChar = FontAwesome.Sharp.IconChar.CircleArrowLeft;
-            this.Bar_btn1.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(223)))), ((int)(((byte)(204)))));
-            this.Bar_btn1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.Bar_btn1.IconSize = 40;
-            this.Bar_btn1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Bar_btn1.Location = new System.Drawing.Point(0, 0);
-            this.Bar_btn1.Margin = new System.Windows.Forms.Padding(0);
-            this.Bar_btn1.Name = "Bar_btn1";
-            this.Bar_btn1.Size = new System.Drawing.Size(70, 70);
-            this.Bar_btn1.TabIndex = 0;
-            this.Bar_btn1.Text = "Thoát";
-            this.Bar_btn1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Bar_btn1.UseVisualStyleBackColor = true;
+            this.btn_Thoat.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btn_Thoat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Thoat.Font = new System.Drawing.Font("Segoe UI", 6.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btn_Thoat.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(223)))), ((int)(((byte)(204)))));
+            this.btn_Thoat.IconChar = FontAwesome.Sharp.IconChar.CircleArrowLeft;
+            this.btn_Thoat.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(223)))), ((int)(((byte)(204)))));
+            this.btn_Thoat.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btn_Thoat.IconSize = 40;
+            this.btn_Thoat.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btn_Thoat.Location = new System.Drawing.Point(0, 0);
+            this.btn_Thoat.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_Thoat.Name = "btn_Thoat";
+            this.btn_Thoat.Size = new System.Drawing.Size(70, 70);
+            this.btn_Thoat.TabIndex = 0;
+            this.btn_Thoat.Text = "Thoát";
+            this.btn_Thoat.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_Thoat.UseVisualStyleBackColor = true;
+            this.btn_Thoat.Click += new System.EventHandler(this.btn_Thoat_Click);
             // 
             // panel_Draw
             // 
@@ -213,7 +214,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private FontAwesome.Sharp.IconButton Bar_btn1;
+        private FontAwesome.Sharp.IconButton btn_Thoat;
         private FontAwesome.Sharp.IconButton iconButton2;
         private FontAwesome.Sharp.IconButton Bar_btn_2;
         private System.Windows.Forms.Panel panel_Draw;

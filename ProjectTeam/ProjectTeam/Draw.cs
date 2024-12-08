@@ -28,6 +28,8 @@ namespace ProjectTeam
         private DateTime ThoiGianGuiLanCuoi = DateTime.MinValue;
         private readonly int senIntervalMs = 1;
         private bool isBufferInitialized = false;
+        public event Action<string> YeuCauMoForm;
+
 
         public class DrawingPoint
         {
@@ -37,6 +39,11 @@ namespace ProjectTeam
         public Draw()
         {
             InitializeComponent();
+        }
+
+        private void SomeConditionMet()
+        {
+            YeuCauMoForm?.Invoke("OpenCreateDraw");
         }
 
         private void Draw_Load(object sender, EventArgs e)
@@ -190,6 +197,11 @@ namespace ProjectTeam
         private void Bar_btn_2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_Thoat_Click(object sender, EventArgs e)
+        {
+            SomeConditionMet();
         }
     }
 }

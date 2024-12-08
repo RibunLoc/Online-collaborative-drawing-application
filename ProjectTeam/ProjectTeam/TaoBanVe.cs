@@ -20,10 +20,15 @@ namespace ProjectTeam
     {
         private DatabaseHelper dbhp;
         private HamMaHoa mahoa = new HamMaHoa();
-
+        public event Action<string> YeuCauMoForm;
         public TaoBanVe()
         {
             InitializeComponent();
+        }
+
+        private void SomeConditionMet()
+        {
+            YeuCauMoForm?.Invoke("OpenDraw");
         }
 
         private void TaoBanVe_Load(object sender, EventArgs e)
@@ -173,7 +178,7 @@ namespace ProjectTeam
                     if (IsThemChua)
                     {
                         MessageBox.Show("Tạo thành công!");
-
+                        SomeConditionMet();
                     }
                     else
                         MessageBox.Show("Lỗi tạo phòng!");
