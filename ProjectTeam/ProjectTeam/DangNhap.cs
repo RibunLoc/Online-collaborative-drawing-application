@@ -17,6 +17,7 @@ namespace ProjectTeam
     {
         private readonly DatabaseHelper databaseHelper;
         private bool isClicked = false; // hiện password
+        public string username { get; set; }
 
         public DangNhap()
         {
@@ -136,8 +137,10 @@ namespace ProjectTeam
 
             if (databaseHelper.NguoiDungDangNhap(email, password))
             {
+                username = email;
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo");
                 this.DialogResult = DialogResult.OK;
+
             }
             else
             {

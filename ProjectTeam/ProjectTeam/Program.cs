@@ -18,26 +18,22 @@ namespace ProjectTeam
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //while (true)
-            //{
-            //    DangNhap dangnhap = new DangNhap();
-            //    if (dangnhap.ShowDialog() == DialogResult.OK)
-            //    {
-            //        SanhChinh home = new SanhChinh();
-            //        home.ShowDialog();
+            while (true)
+            {
+                DangNhap dangnhap = new DangNhap();
+                if (dangnhap.ShowDialog() == DialogResult.OK)
+                {
+                    SanhChinh home = new SanhChinh(dangnhap.username);
+                    home.ShowDialog();
 
-            //        if (home.DialogResult == DialogResult.Cancel)
-            //            continue;
-            //        else
-            //            break;
-            //    }
-            //    else
-            //        break;
-            //}
-
-            Application.Run(new SanhChinh());
-
-
+                    if (home.DialogResult == DialogResult.Cancel)
+                        continue;
+                    else
+                        break;
+                }
+                else
+                    break;
+            }
         }
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         static extern bool SetProcessDPIAware();

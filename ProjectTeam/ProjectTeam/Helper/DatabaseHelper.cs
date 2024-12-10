@@ -292,5 +292,49 @@ namespace ProjectTeam
             return nguoidung;
         }
 
+        public user_info LayThongTinNguoiDung(string TenDangNhap)
+        {
+            var nguoidung = new user_info();
+            string query = "SELECT userinfo.tennguoidung, userinfo.sdt, userinfo.user_id, userinfo.id FROM userinfo INNER JOIN users ON userinfo.id = users.id WHERE users.email = @TenDangNhap";
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("TenDangNhap", TenDangNhap);
+                    try
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                nguoidung.name = reader.GetString(0);
+                                nguoidung.sdt = reader.GetString(1);
+                                nguoidung.user_id = reader.GetInt32(2);
+                                nguoidung.id = reader.GetInt32(3);
+                            }
+                            else
+                            {
+                                throw new Exception("Không tìm thấy người dùng ID đã cung cấp.");
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                  
+                }
+            }
+            return nguoidung;
+        }
+
+
+
+
+
+
     }
+
 }

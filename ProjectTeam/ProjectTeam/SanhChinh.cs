@@ -8,7 +8,9 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.SignalR.Client;
+using ProjectTeam.Model;
 
 
 namespace ProjectTeam
@@ -19,7 +21,10 @@ namespace ProjectTeam
         private Color defaultcolor_close_backcolor;
         private Color defaultcolor_close_iconcolor;
         private Form currentChildForm = null;
+        private string username;
+        public user_info UserInfo;
 
+        private DatabaseHelper databaseHelper;
 
         public SanhChinh()
         {
@@ -36,6 +41,27 @@ namespace ProjectTeam
             iconBtnCloseDesktop.MouseUp += iconBtnCloseDesktop_MouseUp;
 
             OpenChildForm(new Home());
+            Heading.Text = IconHome.Tag.ToString();
+            subheading.Text = "Chào mừng bạn đã quay trờ lại";
+
+        }
+
+        public SanhChinh(string tendangnhap)
+        {
+            InitializeComponent();
+            ThuGonMenu();
+            username = tendangnhap;
+
+            this.Padding = new System.Windows.Forms.Padding(borderSize); //Border size
+            this.BackColor = Color.FromArgb(196, 215, 255); //Border color
+            PanelTitleBar.MouseDown += panelTitleBar_MouseDown;
+
+            defaultcolor_close_backcolor = iconBtnCloseDesktop.BackColor;
+            defaultcolor_close_iconcolor = iconBtnCloseDesktop.IconColor;
+            iconBtnCloseDesktop.MouseDown += iconBtnCloseDesktop_MouseDown;
+            iconBtnCloseDesktop.MouseUp += iconBtnCloseDesktop_MouseUp;
+
+
             Heading.Text = IconHome.Tag.ToString();
             subheading.Text = "Chào mừng bạn đã quay trờ lại";
 
@@ -122,6 +148,16 @@ namespace ProjectTeam
                 BackColor = Color.Gray   // Màu của line
             };
             taskbarMenu.Controls.Add(lineLabel);
+
+            databaseHelper = new DatabaseHelper();
+            UserInfo = new user_info();
+            UserInfo = databaseHelper.LayThongTinNguoiDung(username);
+
+
+            OpenChildForm(new Home(UserInfo));
+
+
+
         }
 
         //thao tác form con
@@ -336,7 +372,7 @@ namespace ProjectTeam
 
         private void iconButton3_Click(object sender, EventArgs e) // tham gia phong ve
         {
-            OpenChildForm(new ThamGiaPhongVe());
+            OpenChildForm(new ThamGiaPhongVe(UserInfo));
             Heading.Text = IconEnjoy.Tag.ToString();
             subheading.Text = "Phát triển kỹ năng hội họa và khám phá niềm đam mê nghệ thuật";
         }

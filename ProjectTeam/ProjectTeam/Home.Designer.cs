@@ -1252,6 +1252,7 @@
             this.TxtName.TabIndex = 19;
             this.TxtName.Text = "Thanh Lộc";
             this.TxtName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.TxtName.Click += new System.EventHandler(this.TxtName_Click);
             // 
             // Hello
             // 
