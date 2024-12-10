@@ -20,10 +20,18 @@ namespace ProjectTeam
     {
         private DatabaseHelper dbhp;
         private HamMaHoa mahoa = new HamMaHoa();
+        private user_info user;
         public event Action<string> YeuCauMoForm;
-        public TaoBanVe()
+        public TaoBanVe( )
         {
             InitializeComponent();
+        }
+
+        public TaoBanVe(user_info TruyenUser)
+        {
+            InitializeComponent();
+            user = new user_info();
+            user = TruyenUser;
         }
 
         private void SomeConditionMet()

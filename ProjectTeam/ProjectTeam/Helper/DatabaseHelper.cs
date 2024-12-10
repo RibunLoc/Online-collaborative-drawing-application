@@ -330,6 +330,22 @@ namespace ProjectTeam
             return nguoidung;
         }
 
+        public bool XoaMotThanhVien(int user_id)
+        {
+            string query = "DELETE FROM thanhvien WHERE id_member = @user_id";
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("user_id", user_id);
+                    int rowAffected = command.ExecuteNonQuery();
+                    if (rowAffected > 0)
+                        return true;
+                }
+            }
+            return false;
+        }
 
 
 

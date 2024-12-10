@@ -23,6 +23,7 @@ namespace ProjectTeam
         private bool CoMatKhauPhong = false;
         private SanhChinh sanhChinh;
         private user_info user;
+        public event Action<string> YeuCauMoForm;
         public ThamGiaPhongVe()
         {
             sanhChinh = new SanhChinh();
@@ -37,6 +38,11 @@ namespace ProjectTeam
             user = new user_info();
             user = truyenUser; // thông tin xác định người dùng
 
+        }
+
+        private void someConditionMet()
+        {
+            YeuCauMoForm?.Invoke("OpenDraw");
         }
 
         private void ThamGiaPhongVe_Load(object sender, EventArgs e)
@@ -207,13 +213,10 @@ namespace ProjectTeam
             {
                 if (databaseHelper.KiemTraSoLuongThamGia(maphong))
                 {
-
-
                     isthamgia = databaseHelper.ThemThanhVienPhongVe(maphong, user.name, user.user_id, "member");
                     if (isthamgia)
                     {
-                        Draw draw = new Draw();
-                        sanhChinh.OpenChildForm(draw);
+                        someConditionMet();
                         MessageBox.Show("Tham gia thành công!");
                     }
                     else
