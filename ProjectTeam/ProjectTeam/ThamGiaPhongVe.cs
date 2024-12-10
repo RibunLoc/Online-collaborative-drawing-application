@@ -21,8 +21,10 @@ namespace ProjectTeam
     {
         private int ChonMaPhong;
         private bool CoMatKhauPhong = false;
+        private SanhChinh sanhChinh;
         public ThamGiaPhongVe()
         {
+            sanhChinh = new SanhChinh();
             InitializeComponent();      
         }
 
@@ -164,6 +166,8 @@ namespace ProjectTeam
             }
         }
 
+
+
         private void btnThamGia_Click(object sender, EventArgs e)
         {
             var databaseHelper = new DatabaseHelper();
@@ -201,6 +205,8 @@ namespace ProjectTeam
                     isthamgia = databaseHelper.ThemThanhVienPhongVe(maphong, user.name, user.user_id, "member");
                     if (isthamgia)
                     {
+                        Draw draw = new Draw();
+                        sanhChinh.OpenChildForm(draw);
                         MessageBox.Show("Tham gia thành công!");
                     }
                     else
