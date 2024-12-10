@@ -7,19 +7,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace ProjectTeam.Model
 {
     public class DrawConnection
     {
         private string DiaChiServer;
         private int CongServer;
-        private bool isConnected = false;
-        TcpClient tcpClient;
+        public bool isConnected = false;
+        public TcpClient tcpClient;
 
         public DrawConnection(string DiaChiServer, int CongServer)
         {
             this.DiaChiServer = DiaChiServer;
             this.CongServer = CongServer;
+            this.tcpClient = new TcpClient(DiaChiServer, CongServer);
 
         }
 
@@ -28,11 +30,11 @@ namespace ProjectTeam.Model
         /// vẽ như màu, cỡ, xóa.... (sau này sẽ thêm sau) 
         /// </summary>
         /// <param name="data">Dư liệu vẽ (chuỗi định dạng) </param>
-        public void GuiDuLieuVe(string data)
+        public void GuiDuLieuVe(string data, TcpClient tcpclient)
         {
             try
             {
-                using (TcpClient tcpclient = new TcpClient(DiaChiServer, CongServer))
+                
                 using (NetworkStream stream = tcpclient.GetStream())
                 {
                     byte[] bodem = Encoding.ASCII.GetBytes(data);
@@ -58,7 +60,7 @@ namespace ProjectTeam.Model
             }
             try
             {
-                NetworkStream stream = tcpClient.GetStream();
+                    NetworkStream stream = tcpClient.GetStream();
         
                     if (stream.CanWrite)
                     {
@@ -80,12 +82,14 @@ namespace ProjectTeam.Model
 
         }
 
+        
+
         /// <summary>
         /// Gửi tín hiệu bắt đầu vẽ
         /// </summary>
         public void GuiTinHieuBatDau()
         {
-            GuiDuLieuVe("START");
+            //GuiDuLieuVe("START");
         }
         
         /// <summary>
@@ -93,7 +97,7 @@ namespace ProjectTeam.Model
         /// </summary>
         public void GuiTinHieuXoaHet()
         {
-            GuiDuLieuVe("CLEAR");
+            //GuiDuLieuVe("CLEAR");
         }
 
 

@@ -340,5 +340,10 @@ namespace ProjectTeam
             Heading.Text = IconEnjoy.Tag.ToString();
             subheading.Text = "Phát triển kỹ năng hội họa và khám phá niềm đam mê nghệ thuật";
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
