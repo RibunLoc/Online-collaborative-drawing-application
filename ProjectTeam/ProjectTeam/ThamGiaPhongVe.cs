@@ -22,10 +22,21 @@ namespace ProjectTeam
         private int ChonMaPhong;
         private bool CoMatKhauPhong = false;
         private SanhChinh sanhChinh;
+        private user_info user;
         public ThamGiaPhongVe()
         {
             sanhChinh = new SanhChinh();
             InitializeComponent();      
+        }
+
+        public ThamGiaPhongVe(user_info truyenUser)
+        {
+            sanhChinh = new SanhChinh();
+            InitializeComponent();
+
+            user = new user_info();
+            user = truyenUser; // thông tin xác định người dùng
+
         }
 
         private void ThamGiaPhongVe_Load(object sender, EventArgs e)
@@ -174,7 +185,6 @@ namespace ProjectTeam
             string maphong = TbNhapMaPhong.Texts.Trim();
             bool isthamgia = false;
             string matkhau = tb_NhapMatKhau.Texts.Trim();
-            user_info user = new user_info();
             Cursor.Current = Cursors.WaitCursor;
 
             if(CoMatKhauPhong)
@@ -195,12 +205,9 @@ namespace ProjectTeam
 
             try
             {
-
-
                 if (databaseHelper.KiemTraSoLuongThamGia(maphong))
                 {
-                    //Lấy thông tin của người dùng hiện tại
-                    user = databaseHelper.LayThongTinNguoiDung(2);//làm phần đăng nhập mới có thông tin id tạm thời để 1
+
 
                     isthamgia = databaseHelper.ThemThanhVienPhongVe(maphong, user.name, user.user_id, "member");
                     if (isthamgia)
@@ -221,7 +228,7 @@ namespace ProjectTeam
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show($"Error: {ex.Message}");
             }finally
             {
                 Cursor.Current = Cursors.Default;

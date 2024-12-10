@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectTeam.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,16 +14,27 @@ namespace ProjectTeam
 {
     public partial class Home : Form
     {
-       
+        user_info user_Info;
+        private DatabaseHelper databaseHelper;
+
         public Home()
         {
             InitializeComponent();
-          
+        }
+        public Home(user_info user)
+        {
+            InitializeComponent();
+            user_Info = new user_info();
+            user_Info = user;
         }
 
         private void Home_Load(object sender, EventArgs e)
         {
+            databaseHelper = new DatabaseHelper();
 
+            TxtName.Text = user_Info.name;
+            lbl_id.Text = "User id: " + user_Info.user_id.ToString();
+            //sau này load avatar
         }
 
         private void icon_btn_close_info_Click(object sender, EventArgs e)
@@ -105,6 +117,9 @@ namespace ProjectTeam
             
         }
 
-        
+        private void TxtName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

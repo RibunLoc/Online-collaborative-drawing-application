@@ -386,17 +386,18 @@ namespace ProjectTeam
                             int.Parse(parts[3]) * panel_Draw.Height / int.Parse(parts[5])
                             );
 
-                    panel_Draw.Invoke(new Action(() =>
-                    {
-                        DrawLineOnServer(start, end);
-                    }));
-                    lock (drawQueue)
+                        panel_Draw.Invoke(new Action(() =>
+                        {
+                            DrawLineOnServer(start, end);
+                        }));
+
+                        lock (drawQueue)
                         {
                             drawQueue.Enqueue((start, end));
                         }
                     
 
-                    continue;
+                        continue;
                         
                     }
                         
