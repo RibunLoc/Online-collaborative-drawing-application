@@ -23,6 +23,7 @@ namespace ProjectTeam
         private Form currentChildForm = null;
         private string username;
         public user_info UserInfo;
+        private string previous_form;
 
         private DatabaseHelper databaseHelper;
 
@@ -155,9 +156,6 @@ namespace ProjectTeam
 
 
             OpenChildForm(new Home(UserInfo));
-
-
-
         }
 
         //thao tác form con
@@ -171,11 +169,14 @@ namespace ProjectTeam
 
                 currentChildForm = childForm;
 
-            if (childForm is TaoBanVe create)
+            if (childForm is TaoBanVe create) // lắng nghe form TaoBanVe gọi draw
                 create.YeuCauMoForm += GiaiQuyetYeuCauMoForm;
 
-            if (childForm is Draw draw)
+            if (childForm is Draw draw) // lắng nghe form draw gọi 2 form TaoBanVe hoặc ThamGiaPhongVe
                 draw.YeuCauMoForm += GiaiQuyetYeuCauMoTaoBanVe;
+
+            if (childForm is ThamGiaPhongVe thamgia) // lắng nghe form ThamGiaPhongVe gọi draw
+                thamgia.YeuCauMoForm += GiaiQuyetYeuCauMoForm;
             
 
                 childForm.TopLevel = false;
@@ -189,8 +190,6 @@ namespace ProjectTeam
                 childForm.BringToFront();
                 childForm.Show();
 
-                //// Xử lý các sự kiện giao diện ngay lập tức để đảm bảo form con hiển thị đúng
-                //Application.DoEvents();
            
             
         }
@@ -199,8 +198,9 @@ namespace ProjectTeam
         {
             if (forName == "OpenDraw")
             {
-                OpenChildForm(new Draw());
+                OpenChildForm(new Draw(UserInfo, previous_form));
                 CreateDraw.Enabled = false;
+                IconEnjoy.Enabled = false;
             }
         }
 
@@ -208,10 +208,20 @@ namespace ProjectTeam
         {
             if(forName == "OpenCreateDraw")
             {
-                OpenChildForm(new TaoBanVe());
+                OpenChildForm(new TaoBanVe(UserInfo));
                 CreateDraw.Enabled = true;
+                IconEnjoy.Enabled = true;
+            }
+
+            if (forName == "OpenEnjoyRoom")
+            {
+                OpenChildForm(new ThamGiaPhongVe(UserInfo));
+                CreateDraw.Enabled = true;
+                IconEnjoy.Enabled = true;
             }
         }
+
+
 
         private void btn_group_Click(object sender, EventArgs e)
         {
@@ -348,13 +358,14 @@ namespace ProjectTeam
         private void iconButton2_Click(object sender, EventArgs e) // click menu tạo bản vẽ
         {
             OpenChildForm(new TaoBanVe());
+            previous_form = "Tao Ban Ve";
             Heading.Text = CreateDraw.Tag.ToString();
             subheading.Text = "Bản vẽ cho bạn";
         }
 
         private void IconHome_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new Home());
+            OpenChildForm(new Home(UserInfo));
             Heading.Text = IconHome.Tag.ToString();
             subheading.Text = "Chào mừng bạn đã quay trờ lại";
         }
@@ -373,6 +384,7 @@ namespace ProjectTeam
         private void iconButton3_Click(object sender, EventArgs e) // tham gia phong ve
         {
             OpenChildForm(new ThamGiaPhongVe(UserInfo));
+            previous_form = "Tham Gia Phong Ve";
             Heading.Text = IconEnjoy.Tag.ToString();
             subheading.Text = "Phát triển kỹ năng hội họa và khám phá niềm đam mê nghệ thuật";
         }

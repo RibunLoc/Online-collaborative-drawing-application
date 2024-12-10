@@ -37,8 +37,8 @@ namespace ProjectTeam
         private List<(Point start, Point end)> lines = new List<(Point, Point)>(); // tạo danh sách lưu trữ đường vẽ
         private Queue<(Point start, Point end)> drawQueue = new Queue<(Point, Point)>();
         private bool isRunning = false;
-
-
+        private user_info user; // thông tin xác định đầy đủ của người dùng 
+        private string previous_form;
         public class DrawingPoint
         {
             public Point point;
@@ -48,10 +48,28 @@ namespace ProjectTeam
         {
             InitializeComponent();
         }
+        public Draw(user_info TruyenUser, string form_truoc_do)
+        {
+            InitializeComponent();
+
+            user = new user_info(); 
+            user = TruyenUser; // truyền vào từ lớp cha
+
+            previous_form = form_truoc_do;
+        }
 
         private void SomeConditionMet()
         {
-            YeuCauMoForm?.Invoke("OpenCreateDraw");
+            if (previous_form == "Tao Ban Ve")
+                YeuCauMoForm?.Invoke("OpenCreateDraw");
+            else if (previous_form == "Tham Gia Phong Ve")
+                YeuCauMoForm?.Invoke("OpenEnjoyRoom");
+            else if (previous_form == "") // sau này nếu mở lại form trước đó hãy điền nó vào ""
+            {
+                return;
+            }
+            else
+                return;
         }
 
         private void Draw_Load(object sender, EventArgs e)
@@ -428,9 +446,25 @@ namespace ProjectTeam
 
         }
 
+
         private void btn_Thoat_Click(object sender, EventArgs e)
         {
-            SomeConditionMet();
+            
+            DialogResult result = MessageBox.Show("Bạn có chắc sẽ thoát khỏi phòng này!", "Thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if(result == DialogResult.OK)
+            {
+                
+                // cần xử lý ngắt tới server bất đồng bộ
+                // here
+
+                // xóa người dùng trên cơ sở dữ liệu từ phòng vẽ đó
+                DatabaseHelper dbhp = new DatabaseHelper();
+                if (dbhp.XoaMotThanhVien(user.user_id))
+                    SomeConditionMet();
+
+            }
+           
+           
         }
 
 
