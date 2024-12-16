@@ -37,11 +37,11 @@
             this.Bar_btn_2 = new FontAwesome.Sharp.IconButton();
             this.btn_Thoat = new FontAwesome.Sharp.IconButton();
             this.panel_Draw = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.rjDropdownMenu1 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
             this.ádsadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ádasdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rjDropdownMenu2 = new RJCodeAdvance.RJControls.RJDropdownMenu(this.components);
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.panelCodeRoom.SuspendLayout();
             this.panel_Draw.SuspendLayout();
@@ -68,7 +68,7 @@
             this.panelCodeRoom.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panelCodeRoom.Controls.Add(this.lblCodeRoom);
             this.panelCodeRoom.Location = new System.Drawing.Point(766, 9);
-            this.panelCodeRoom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelCodeRoom.Margin = new System.Windows.Forms.Padding(2);
             this.panelCodeRoom.Name = "panelCodeRoom";
             this.panelCodeRoom.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.panelCodeRoom.Size = new System.Drawing.Size(234, 31);
@@ -102,7 +102,7 @@
             this.iconButton2.IconSize = 40;
             this.iconButton2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.iconButton2.Location = new System.Drawing.Point(100, 0);
-            this.iconButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.iconButton2.Margin = new System.Windows.Forms.Padding(2);
             this.iconButton2.Name = "iconButton2";
             this.iconButton2.Size = new System.Drawing.Size(50, 50);
             this.iconButton2.TabIndex = 2;
@@ -122,7 +122,7 @@
             this.Bar_btn_2.IconSize = 40;
             this.Bar_btn_2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.Bar_btn_2.Location = new System.Drawing.Point(50, 0);
-            this.Bar_btn_2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Bar_btn_2.Margin = new System.Windows.Forms.Padding(2);
             this.Bar_btn_2.Name = "Bar_btn_2";
             this.Bar_btn_2.Size = new System.Drawing.Size(50, 50);
             this.Bar_btn_2.TabIndex = 1;
@@ -157,11 +157,19 @@
             this.panel_Draw.Controls.Add(this.richTextBox1);
             this.panel_Draw.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_Draw.Location = new System.Drawing.Point(0, 50);
-            this.panel_Draw.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_Draw.Margin = new System.Windows.Forms.Padding(2);
             this.panel_Draw.Name = "panel_Draw";
             this.panel_Draw.Size = new System.Drawing.Size(1009, 550);
             this.panel_Draw.TabIndex = 1;
             this.panel_Draw.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_Draw_Paint);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(770, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(227, 415);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // rjDropdownMenu1
             // 
@@ -199,15 +207,6 @@
             this.rjDropdownMenu2.PrimaryColor = System.Drawing.Color.Empty;
             this.rjDropdownMenu2.Size = new System.Drawing.Size(119, 28);
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(770, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(227, 415);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            //this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
-            // 
             // Draw
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -216,7 +215,7 @@
             this.Controls.Add(this.panel_Draw);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Draw";
             this.Text = "Draw";
             this.Load += new System.EventHandler(this.Draw_Load);
