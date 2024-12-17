@@ -139,6 +139,7 @@ namespace ProjectTeam
                 string maphongcheck = tb_NhapMaPhong.Texts.Trim();
                 string matkhau = "";
                 string maphong = tb_NhapMaPhong.Texts.Trim();
+                GlobalVariables.Maphong = maphong;
                 string tenphong = tb_NhapTenPhong.Texts.Trim();
                 int soluong = int.Parse(combobox_SoLuong.Texts.Trim());
                 user_info user = new user_info();

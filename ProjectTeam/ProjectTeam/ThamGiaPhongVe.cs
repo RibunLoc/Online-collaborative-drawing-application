@@ -24,6 +24,7 @@ namespace ProjectTeam
         private SanhChinh sanhChinh;
         private user_info user;
         public event Action<string> YeuCauMoForm;
+
         public ThamGiaPhongVe()
         {
             sanhChinh = new SanhChinh();
@@ -189,6 +190,7 @@ namespace ProjectTeam
         {
             var databaseHelper = new DatabaseHelper();
             string maphong = TbNhapMaPhong.Texts.Trim();
+            GlobalVariables.Maphong = maphong;
             bool isthamgia = false;
             string matkhau = tb_NhapMatKhau.Texts.Trim();
             Cursor.Current = Cursors.WaitCursor;

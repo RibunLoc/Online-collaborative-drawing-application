@@ -16,12 +16,27 @@ namespace ProjectTeam.Model
         private int CongServer;
         public bool isConnected = false;
         public TcpClient tcpClient;
+        private string roomId = GlobalVariables.Maphong;
 
         public DrawConnection(string DiaChiServer, int CongServer)
         {
             this.DiaChiServer = DiaChiServer;
             this.CongServer = CongServer;
-            this.tcpClient = new TcpClient(DiaChiServer, CongServer);
+
+            try
+            {
+                this.tcpClient = new TcpClient(DiaChiServer, CongServer);
+                isConnected = true;
+                // Send roomId immediately after connecting
+                GuiDuLieuVe("roomid:" + roomId + "\n", this.tcpClient);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error while connecting: {ex.Message}");
+            }
+
+
+
 
         }
 
@@ -34,12 +49,12 @@ namespace ProjectTeam.Model
         {
             try
             {
+
+                NetworkStream stream = tcpclient.GetStream();
                 
-                using (NetworkStream stream = tcpclient.GetStream())
-                {
                     byte[] bodem = Encoding.ASCII.GetBytes(data);
                     stream.Write(bodem, 0 , bodem.Length);
-                }
+                
             }
             catch (Exception ex)
             {
@@ -66,7 +81,7 @@ namespace ProjectTeam.Model
                     {
                         byte[] bodem = Encoding.ASCII.GetBytes(data);
                         await stream.WriteAsync(bodem, 0, bodem.Length);
-                        //await stream.FlushAsync();
+                        await stream.FlushAsync();
                     }
                     else
                     {
