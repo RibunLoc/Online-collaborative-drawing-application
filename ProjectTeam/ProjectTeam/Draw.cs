@@ -39,11 +39,14 @@ namespace ProjectTeam
         private bool isRunning = false;
         private user_info user; // thông tin xác định đầy đủ của người dùng 
         private string previous_form;
+        private string roomId = GlobalVariables.Maphong;
         public class DrawingPoint
         {
             public Point point;
             public bool isLastStroke;
         }
+
+
         public Draw()
         {
             InitializeComponent();
@@ -54,7 +57,7 @@ namespace ProjectTeam
 
             user = new user_info(); 
             user = TruyenUser; // truyền vào từ lớp cha
-
+            richTextBox1.Text = roomId;
             previous_form = form_truoc_do;
         }
 
@@ -221,7 +224,7 @@ namespace ProjectTeam
         {
             if ((DateTime.Now - ThoiGianGuiLanCuoi).TotalMilliseconds >= senIntervalMs)
             {
-                string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}";
+                string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height},{roomId}\n";
                 await drawConnection.GuiDuLieuAsync(DulieuVe);
                 ThoiGianGuiLanCuoi = DateTime.Now;
             }
@@ -251,89 +254,6 @@ namespace ProjectTeam
             }
         }
 
-
-        private async void ListenForClient()
-        {
-            try
-            {
-                isRunning = true;
-                while (isRunning)  // Use isRunning to allow for graceful shutdown
-                {
-                    try
-                    {
-                        TcpClient client = await server.AcceptTcpClientAsync();
-                        ProcessClient(client);  // Handle the accepted client
-                    }
-                    catch (ObjectDisposedException)
-                    {
-                        // This exception is expected when the server is stopped
-                        break; // Exit the loop on server shutdown
-                    }
-                    catch (SocketException ex)
-                    {
-                        // Handle socket exceptions appropriately
-                        MessageBox.Show($"Socket error: {ex.Message}");
-                        break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // General exception handling
-                MessageBox.Show($"An error occurred while listening for clients: {ex.Message}");
-            }
-            finally
-            {
-                // Clean-up if necessary when the loop exits
-                server.Stop();
-                isRunning = false;
-            }
-        }
-
-        private async void ProcessClient(TcpClient client)
-        {
-            try
-            {
-                using (NetworkStream stream = client.GetStream())
-                {
-                    byte[] bodem = new byte[1024];
-                    int bytesRead;
-
-                    while ((bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length)) > 0)
-                    {
-                        string data = Encoding.ASCII.GetString(bodem, 0, bytesRead);
-
-                        //tách dữ liệu và xử lý
-                        string[] parts = data.Split(',');
-                        Point start = new Point(
-                            int.Parse(parts[0]) * panel_Draw.Width / int.Parse(parts[4]),
-                            int.Parse(parts[1]) * panel_Draw.Height / int.Parse(parts[5])
-                            );
-                        Point end = new Point(
-                            int.Parse(parts[2]) * panel_Draw.Width / int.Parse(parts[4]),
-                            int.Parse(parts[3]) * panel_Draw.Height / int.Parse(parts[5])
-                            );
-
-                        panel_Draw.Invoke(new Action(() =>
-                        {
-                            DrawLineOnServer(start, end);
-                        }));
-                        lock (drawQueue)
-                        {
-                            drawQueue.Enqueue((start, end));
-                        }
-
-
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
 
         private void panel_draw_Paint(object sender, PaintEventArgs e)
         {
@@ -369,7 +289,7 @@ namespace ProjectTeam
                 invalidRect.Inflate(margin, margin); // Increase the invalidation area by a small amount
 
 
-                panel_Draw.Invalidate();
+                panel_Draw.Invalidate(invalidRect);
             }
         }
 
@@ -379,18 +299,10 @@ namespace ProjectTeam
 
                 byte[] bodem = new byte[1024];
                 int bytesRead;
-                try
+                while ((bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length)) > 0)
+                {
+                    try
                     {
-                    while(true)
-                    {
-
-                        bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length);
-                        if(bytesRead == 0)
-                        {
-                            MessageBox.Show("Connection closed by the client.");
-                            continue;
-                        }
-
                         string data = Encoding.ASCII.GetString(bodem, 0, bytesRead);
 
                         //tách dữ liệu và xử lý
@@ -408,32 +320,17 @@ namespace ProjectTeam
                         {
                             DrawLineOnServer(start, end);
                         }));
-
                         lock (drawQueue)
                         {
                             drawQueue.Enqueue((start, end));
                         }
-                    
-
-                        continue;
-                        
                     }
-                        
-
-                            
-
-                
-
-
-            }
                     catch (Exception ex)
                     {
                         MessageBox.Show(ex.Message);
                     }
-                
-                
-                
-           
+                }       
+       
         }
 
         private void panel_Draw_Paint(object sender, EventArgs e)
