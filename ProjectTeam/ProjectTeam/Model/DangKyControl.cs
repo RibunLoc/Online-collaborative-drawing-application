@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using ProjectTeam.Model;
 
 namespace ProjectTeam
 {
@@ -16,11 +17,11 @@ namespace ProjectTeam
         public event EventHandler BackClicked;
         private readonly DatabaseHelper databaseHelper;
         private bool isHide = false;
-
+        private user_info user_Info;
         public DangKyControl()
         {
             InitializeComponent();
-            databaseHelper = new DatabaseHelper("ep-blue-pond-a5kovr60-pooler.us-east-2.aws.neon.tech", 5432, "neondb", "ThanhLoc", "4XGEjWJphk9R");
+            databaseHelper = new DatabaseHelper();
             Img_Avatar.Resize += pictureBox1_Resize;
         }
 
@@ -29,6 +30,7 @@ namespace ProjectTeam
             int radius = 45; // Bán kính của góc bo tròn
             Rectangle rect = new Rectangle(0 ,0, Img_Avatar.Width, Img_Avatar.Height);
             Img_Avatar.Region = new Region(GetRoundedPath(rect , radius)); 
+            user_Info = new user_info();    
 
         }
 
@@ -64,6 +66,7 @@ namespace ProjectTeam
         {
             string email = txtEmail.Text;
             string password = txtPassword.Text;
+            string HashPassword = HamMaHoa.HamBamSha256(password);
 
             if( string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
@@ -72,9 +75,28 @@ namespace ProjectTeam
                 return;
             }
 
-            if (databaseHelper.NguoiDungDangKi(email, password))
+            if (databaseHelper.NguoiDungDangKi(email, HashPassword))
             {
-                MessageBox.Show("Đăng kí thành công!", "Thông báo");
+                
+                // ghi nhận lên cơ sở dữ liệu
+                user_Info.email = email;
+                user_Info.id = databaseHelper.LayID(email);
+                if(user_Info.id == -1)
+                {
+                    MessageBox.Show("Lỗi lấy id đăng nhập");
+                    return;
+                }
+                string tentaikhoan = txtUsername.Text.Trim();
+                string sdt = txtSoDienThoai.Text.Trim();
+                string gioitinh = cmbOptions.Text.Trim();
+                string ngaysinh = txtNgaySinh.Text.Trim();
+
+                if (databaseHelper.DangKiThongTinNguoiDung(user_Info.id, tentaikhoan, sdt, gioitinh, ngaysinh))
+                {
+                    DialogResult result = MessageBox.Show("Đăng kí tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+
 
             }
             else
@@ -116,6 +138,16 @@ namespace ProjectTeam
         }
 
         private void Img_Avatar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUsername_Click(object sender, EventArgs e)
         {
 
         }

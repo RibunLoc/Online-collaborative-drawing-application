@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using Npgsql;
+using ProjectTeam.Model;
 
 
 namespace ProjectTeam
@@ -133,9 +134,10 @@ namespace ProjectTeam
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
             string email = txtUsername.Text;
-            string password = txtPassword.Text;
+            string password = txtPassword.Text.Trim();
+            string HashPassword = HamMaHoa.HamBamSha256(password);
 
-            if (databaseHelper.NguoiDungDangNhap(email, password))
+            if (databaseHelper.NguoiDungDangNhap(email, HashPassword))
             {
                 username = email;
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo");

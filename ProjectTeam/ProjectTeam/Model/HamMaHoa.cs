@@ -9,8 +9,7 @@ namespace ProjectTeam.Model
 {
     public class HamMaHoa
     {
-
-        public string HamBamSha256(string key)
+        public static string HamBamSha256(string key)
         {
             using (SHA256 sha256 = SHA256.Create())
             {

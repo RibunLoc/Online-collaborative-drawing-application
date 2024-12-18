@@ -689,3 +689,4 @@ D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-colla
 D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectT.A5D3C58F.Up2Date
 D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.exe
 D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.pdb
+D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.ThietLap.resources
