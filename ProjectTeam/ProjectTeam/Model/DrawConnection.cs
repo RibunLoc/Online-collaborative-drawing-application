@@ -16,9 +16,9 @@ namespace ProjectTeam.Model
         private int CongServer;
         public bool isConnected = false;
         public TcpClient tcpClient;
-        private string roomId = GlobalVariables.Maphong;
+        //private string roomId = GlobalVariables.Maphong;
 
-        public DrawConnection(string DiaChiServer, int CongServer)
+        public DrawConnection(string DiaChiServer, int CongServer, string roomId)
         {
             this.DiaChiServer = DiaChiServer;
             this.CongServer = CongServer;

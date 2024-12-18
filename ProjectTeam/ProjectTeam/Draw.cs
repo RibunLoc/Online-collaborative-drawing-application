@@ -79,7 +79,7 @@ namespace ProjectTeam
         {
 
             //Khởi tạo draConnection
-            drawConnection = new DrawConnection("localhost", 5000);
+            drawConnection = new DrawConnection("localhost", 5000, roomId);
 
             drawConnection.isConnected = true;
 
@@ -224,7 +224,7 @@ namespace ProjectTeam
         {
             if ((DateTime.Now - ThoiGianGuiLanCuoi).TotalMilliseconds >= senIntervalMs)
             {
-                string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height},{roomId}\n";
+                string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}\n";
                 await drawConnection.GuiDuLieuAsync(DulieuVe);
                 ThoiGianGuiLanCuoi = DateTime.Now;
             }
@@ -293,20 +293,23 @@ namespace ProjectTeam
             }
         }
 
-            private async Task ListenForMessagesAsync(TcpClient tcpClient)
+        private async Task ListenForMessagesAsync(TcpClient tcpClient)
+        {
+            NetworkStream stream = tcpClient.GetStream();
+
+            byte[] bodem = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length)) > 0)
             {
-                NetworkStream stream = tcpClient.GetStream();
-
-                byte[] bodem = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length)) > 0)
+                try
                 {
-                    try
-                    {
-                        string data = Encoding.ASCII.GetString(bodem, 0, bytesRead);
+                    string data = Encoding.ASCII.GetString(bodem, 0, bytesRead);
 
-                        //tách dữ liệu và xử lý
-                        string[] parts = data.Split(',');
+                    //tách dữ liệu và xử lý
+                    string[] lines = data.Split(new[] { '\n' } , StringSplitOptions.RemoveEmptyEntries);
+                    foreach (string line in lines)
+                    {
+                        string[] parts = line.Split(',');
                         Point start = new Point(
                             int.Parse(parts[0]) * panel_Draw.Width / int.Parse(parts[4]),
                             int.Parse(parts[1]) * panel_Draw.Height / int.Parse(parts[5])
@@ -316,6 +319,7 @@ namespace ProjectTeam
                             int.Parse(parts[3]) * panel_Draw.Height / int.Parse(parts[5])
                             );
 
+                       
                         panel_Draw.Invoke(new Action(() =>
                         {
                             DrawLineOnServer(start, end);
@@ -324,12 +328,13 @@ namespace ProjectTeam
                         {
                             drawQueue.Enqueue((start, end));
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }       
+                    }        
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }       
        
         }
 
@@ -346,20 +351,20 @@ namespace ProjectTeam
 
         private void btn_Thoat_Click(object sender, EventArgs e)
         {
-            
-            DialogResult result = MessageBox.Show("Bạn có chắc sẽ thoát khỏi phòng này!", "Thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            if(result == DialogResult.OK)
-            {
-                
-                // cần xử lý ngắt tới server bất đồng bộ
-                // here
 
-                // xóa người dùng trên cơ sở dữ liệu từ phòng vẽ đó
-                DatabaseHelper dbhp = new DatabaseHelper();
-                if (dbhp.XoaMotThanhVien(user.user_id))
-                    SomeConditionMet();
+            //DialogResult result = MessageBox.Show("Bạn có chắc sẽ thoát khỏi phòng này!", "Thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            //if(result == DialogResult.OK)
+            //{
 
-            }
+            // cần xử lý ngắt tới server bất đồng bộ
+            // here
+            SomeConditionMet();
+            // xóa người dùng trên cơ sở dữ liệu từ phòng vẽ đó
+            DatabaseHelper dbhp = new DatabaseHelper();
+            if (dbhp.XoaMotThanhVien(user.user_id)) ;
+                    
+
+            //}
            
            
         }
