@@ -35,16 +35,12 @@
             this.Eye = new System.Windows.Forms.ImageList(this.components);
             this.btn_back = new System.Windows.Forms.Button();
             this.image_List = new System.Windows.Forms.ImageList(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.btn_Register = new System.Windows.Forms.Button();
             this.cmbOptions = new System.Windows.Forms.ComboBox();
             this.Img_Avatar = new System.Windows.Forms.PictureBox();
             this.btn_avatar = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtNgaySinh = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPasswordAuth = new System.Windows.Forms.TextBox();
@@ -53,8 +49,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
+            this.txtSoDienThoai = new System.Windows.Forms.TextBox();
+            this.lbl_so_dien_thoai = new System.Windows.Forms.Label();
             this.Pnl_DangKy.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Img_Avatar)).BeginInit();
             this.SuspendLayout();
@@ -65,18 +62,16 @@
             this.Pnl_DangKy.AutoSize = true;
             this.Pnl_DangKy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(224)))));
             this.Pnl_DangKy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Pnl_DangKy.Controls.Add(this.txtSoDienThoai);
+            this.Pnl_DangKy.Controls.Add(this.lbl_so_dien_thoai);
             this.Pnl_DangKy.Controls.Add(this.btnShowHide);
             this.Pnl_DangKy.Controls.Add(this.btn_back);
-            this.Pnl_DangKy.Controls.Add(this.button1);
             this.Pnl_DangKy.Controls.Add(this.btn_Register);
             this.Pnl_DangKy.Controls.Add(this.cmbOptions);
             this.Pnl_DangKy.Controls.Add(this.Img_Avatar);
             this.Pnl_DangKy.Controls.Add(this.btn_avatar);
-            this.Pnl_DangKy.Controls.Add(this.textBox1);
-            this.Pnl_DangKy.Controls.Add(this.textBox6);
-            this.Pnl_DangKy.Controls.Add(this.textBox5);
+            this.Pnl_DangKy.Controls.Add(this.txtNgaySinh);
             this.Pnl_DangKy.Controls.Add(this.label6);
-            this.Pnl_DangKy.Controls.Add(this.label7);
             this.Pnl_DangKy.Controls.Add(this.txtEmail);
             this.Pnl_DangKy.Controls.Add(this.label5);
             this.Pnl_DangKy.Controls.Add(this.txtPasswordAuth);
@@ -85,7 +80,6 @@
             this.Pnl_DangKy.Controls.Add(this.label2);
             this.Pnl_DangKy.Controls.Add(this.txtUsername);
             this.Pnl_DangKy.Controls.Add(this.label3);
-            this.Pnl_DangKy.Controls.Add(this.label1);
             this.Pnl_DangKy.Controls.Add(this.lblUsername);
             this.Pnl_DangKy.Location = new System.Drawing.Point(148, 12);
             this.Pnl_DangKy.Name = "Pnl_DangKy";
@@ -105,7 +99,7 @@
             this.btnShowHide.Font = new System.Drawing.Font("Segoe UI", 14.14286F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnShowHide.ImageIndex = 0;
             this.btnShowHide.ImageList = this.Eye;
-            this.btnShowHide.Location = new System.Drawing.Point(443, 355);
+            this.btnShowHide.Location = new System.Drawing.Point(445, 353);
             this.btnShowHide.Name = "btnShowHide";
             this.btnShowHide.Size = new System.Drawing.Size(45, 35);
             this.btnShowHide.TabIndex = 15;
@@ -140,23 +134,13 @@
             this.image_List.TransparentColor = System.Drawing.Color.Transparent;
             this.image_List.Images.SetKeyName(0, "left-arrow_5722532.png");
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.Location = new System.Drawing.Point(374, 598);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(113, 36);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Lấy mã";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // btn_Register
             // 
             this.btn_Register.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btn_Register.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Register.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_Register.ForeColor = System.Drawing.Color.White;
-            this.btn_Register.Location = new System.Drawing.Point(201, 658);
+            this.btn_Register.Location = new System.Drawing.Point(176, 657);
             this.btn_Register.Name = "btn_Register";
             this.btn_Register.Size = new System.Drawing.Size(185, 64);
             this.btn_Register.TabIndex = 14;
@@ -172,7 +156,7 @@
             this.cmbOptions.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cmbOptions.Location = new System.Drawing.Point(213, 552);
+            this.cmbOptions.Location = new System.Drawing.Point(215, 550);
             this.cmbOptions.Name = "cmbOptions";
             this.cmbOptions.Size = new System.Drawing.Size(274, 32);
             this.cmbOptions.TabIndex = 13;
@@ -180,7 +164,7 @@
             // Img_Avatar
             // 
             this.Img_Avatar.Image = global::ProjectTeam.Properties.Resources.question_953840;
-            this.Img_Avatar.Location = new System.Drawing.Point(201, 20);
+            this.Img_Avatar.Location = new System.Drawing.Point(201, 41);
             this.Img_Avatar.Name = "Img_Avatar";
             this.Img_Avatar.Size = new System.Drawing.Size(150, 150);
             this.Img_Avatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -194,7 +178,7 @@
             this.btn_avatar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_avatar.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btn_avatar.ForeColor = System.Drawing.Color.LemonChiffon;
-            this.btn_avatar.Location = new System.Drawing.Point(176, 188);
+            this.btn_avatar.Location = new System.Drawing.Point(176, 211);
             this.btn_avatar.Name = "btn_avatar";
             this.btn_avatar.Size = new System.Drawing.Size(210, 41);
             this.btn_avatar.TabIndex = 11;
@@ -202,52 +186,27 @@
             this.btn_avatar.UseVisualStyleBackColor = false;
             this.btn_avatar.Click += new System.EventHandler(this.btn_Anh_Click);
             // 
-            // textBox1
+            // txtNgaySinh
             // 
-            this.textBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox1.Location = new System.Drawing.Point(215, 254);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(273, 32);
-            this.textBox1.TabIndex = 4;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox6.Location = new System.Drawing.Point(216, 600);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(132, 32);
-            this.textBox6.TabIndex = 4;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.textBox5.Location = new System.Drawing.Point(213, 500);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(274, 32);
-            this.textBox5.TabIndex = 4;
+            this.txtNgaySinh.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtNgaySinh.Location = new System.Drawing.Point(215, 498);
+            this.txtNgaySinh.Name = "txtNgaySinh";
+            this.txtNgaySinh.Size = new System.Drawing.Size(274, 32);
+            this.txtNgaySinh.TabIndex = 4;
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label6.Location = new System.Drawing.Point(65, 557);
+            this.label6.Location = new System.Drawing.Point(67, 555);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(116, 31);
             this.label6.TabIndex = 2;
             this.label6.Text = "Giới tính:";
             // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label7.Location = new System.Drawing.Point(66, 605);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(162, 31);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Mã xác thực";
-            // 
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtEmail.Location = new System.Drawing.Point(214, 452);
+            this.txtEmail.Location = new System.Drawing.Point(216, 450);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(273, 32);
             this.txtEmail.TabIndex = 4;
@@ -255,7 +214,7 @@
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label5.Location = new System.Drawing.Point(65, 505);
+            this.label5.Location = new System.Drawing.Point(67, 503);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(116, 31);
             this.label5.TabIndex = 2;
@@ -264,7 +223,7 @@
             // txtPasswordAuth
             // 
             this.txtPasswordAuth.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPasswordAuth.Location = new System.Drawing.Point(268, 405);
+            this.txtPasswordAuth.Location = new System.Drawing.Point(270, 403);
             this.txtPasswordAuth.Name = "txtPasswordAuth";
             this.txtPasswordAuth.Size = new System.Drawing.Size(219, 32);
             this.txtPasswordAuth.TabIndex = 4;
@@ -272,7 +231,7 @@
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label4.Location = new System.Drawing.Point(66, 457);
+            this.label4.Location = new System.Drawing.Point(68, 455);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(116, 31);
             this.label4.TabIndex = 2;
@@ -281,7 +240,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtPassword.Location = new System.Drawing.Point(215, 356);
+            this.txtPassword.Location = new System.Drawing.Point(217, 354);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(240, 32);
             this.txtPassword.TabIndex = 4;
@@ -289,7 +248,7 @@
             // label2
             // 
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.Location = new System.Drawing.Point(65, 410);
+            this.label2.Location = new System.Drawing.Point(67, 408);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(197, 31);
             this.label2.TabIndex = 2;
@@ -298,7 +257,7 @@
             // txtUsername
             // 
             this.txtUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.txtUsername.Location = new System.Drawing.Point(216, 304);
+            this.txtUsername.Location = new System.Drawing.Point(218, 302);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(272, 32);
             this.txtUsername.TabIndex = 4;
@@ -306,29 +265,38 @@
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label3.Location = new System.Drawing.Point(66, 359);
+            this.label3.Location = new System.Drawing.Point(68, 357);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 31);
             this.label3.TabIndex = 2;
             this.label3.Text = "Mật khẩu:";
             // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(66, 257);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 31);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "ID của bạn";
-            // 
             // lblUsername
             // 
             this.lblUsername.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblUsername.Location = new System.Drawing.Point(66, 307);
+            this.lblUsername.Location = new System.Drawing.Point(68, 305);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(117, 31);
+            this.lblUsername.Size = new System.Drawing.Size(144, 31);
             this.lblUsername.TabIndex = 2;
-            this.lblUsername.Text = "Tài khoản";
+            this.lblUsername.Text = "Tên tài khoản";
+            this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
+            // 
+            // txtSoDienThoai
+            // 
+            this.txtSoDienThoai.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.txtSoDienThoai.Location = new System.Drawing.Point(217, 602);
+            this.txtSoDienThoai.Name = "txtSoDienThoai";
+            this.txtSoDienThoai.Size = new System.Drawing.Size(274, 32);
+            this.txtSoDienThoai.TabIndex = 17;
+            // 
+            // lbl_so_dien_thoai
+            // 
+            this.lbl_so_dien_thoai.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbl_so_dien_thoai.Location = new System.Drawing.Point(69, 607);
+            this.lbl_so_dien_thoai.Name = "lbl_so_dien_thoai";
+            this.lbl_so_dien_thoai.Size = new System.Drawing.Size(142, 31);
+            this.lbl_so_dien_thoai.TabIndex = 16;
+            this.lbl_so_dien_thoai.Text = "Số điện thoại:";
             // 
             // DangKyControl
             // 
@@ -350,16 +318,12 @@
         #endregion
 
         private System.Windows.Forms.Panel Pnl_DangKy;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_Register;
         private System.Windows.Forms.ComboBox cmbOptions;
         private System.Windows.Forms.PictureBox Img_Avatar;
         private System.Windows.Forms.Button btn_avatar;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtNgaySinh;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPasswordAuth;
@@ -368,11 +332,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Button btn_back;
         private System.Windows.Forms.ImageList image_List;
         private System.Windows.Forms.Button btnShowHide;
         private System.Windows.Forms.ImageList Eye;
+        private System.Windows.Forms.TextBox txtSoDienThoai;
+        private System.Windows.Forms.Label lbl_so_dien_thoai;
     }
 }

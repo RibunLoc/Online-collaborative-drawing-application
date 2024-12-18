@@ -169,7 +169,7 @@ namespace ProjectTeam
                     // tạo truy vấn lưu vào csdl
                     if (check_RiengTu.Checked)
                     {
-                        string MaHoaMatKhau = mahoa.HamBamSha256(matkhau);
+                        string MaHoaMatKhau = HamMaHoa.HamBamSha256(matkhau);
                         check = databaseHelper.TaoDanhSachPhongCoMatKhau(maphong, tenphong, soluong, user.name, MaHoaMatKhau);
                     }     
                     else

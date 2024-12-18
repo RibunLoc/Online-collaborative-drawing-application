@@ -14,7 +14,7 @@ namespace ProjectTeam
     internal class DatabaseHelper
     {
         private readonly string connectionString;
-        private HamMaHoa mahoa = new HamMaHoa();
+        
         public DatabaseHelper(string host, int port, string database, string user,  string password)
         {
             connectionString = $"Host={host};Port={port};Database={database};Username={user};Password={password}";
@@ -249,7 +249,7 @@ namespace ProjectTeam
 
             if (storedHasedPassword == null) return false;
 
-            string hashedInputPassword = mahoa.HamBamSha256(MatKhau);
+            string hashedInputPassword = HamMaHoa.HamBamSha256(MatKhau);
 
             return storedHasedPassword == hashedInputPassword;
         }
@@ -257,7 +257,7 @@ namespace ProjectTeam
         public user_info LayThongTinNguoiDung(int id)
         {
             var nguoidung = new user_info();
-            string query = "SELECT tennguoidung, sdt, user_id FROM userinfo WHERE id = @id";
+            string query = "SELECT userinfo.id, tennguoidung, sdt, user_id, gioi_tinh, ngay_sinh, email FROM userinfo inner join users on userinfo.id = users.id  WHERE userinfo.id = @id";
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
@@ -270,9 +270,13 @@ namespace ProjectTeam
                         {
                             if (reader.Read())
                             {
-                                nguoidung.name = reader.GetString(0);
-                                nguoidung.sdt = reader.GetString(1);
-                                nguoidung.user_id = reader.GetInt32(2);
+                                nguoidung.id = reader.GetInt32(0);
+                                nguoidung.name = reader.GetString(1);
+                                nguoidung.sdt = reader.GetString(2);
+                                nguoidung.user_id = reader.GetInt32(3);
+                                nguoidung.gioitinh = reader.GetString(4);
+                                nguoidung.ngaysinh = reader.GetString(5);
+                                nguoidung.email = reader.GetString(6);
                             }
                             else
                             {
@@ -295,7 +299,7 @@ namespace ProjectTeam
         public user_info LayThongTinNguoiDung(string TenDangNhap)
         {
             var nguoidung = new user_info();
-            string query = "SELECT userinfo.tennguoidung, userinfo.sdt, userinfo.user_id, userinfo.id FROM userinfo INNER JOIN users ON userinfo.id = users.id WHERE users.email = @TenDangNhap";
+            string query = "SELECT userinfo.tennguoidung, userinfo.sdt, userinfo.user_id, userinfo.id, email, gioi_tinh, ngay_sinh  FROM userinfo INNER JOIN users ON userinfo.id = users.id WHERE users.email = @TenDangNhap";
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
@@ -312,6 +316,9 @@ namespace ProjectTeam
                                 nguoidung.sdt = reader.GetString(1);
                                 nguoidung.user_id = reader.GetInt32(2);
                                 nguoidung.id = reader.GetInt32(3);
+                                nguoidung.email = reader.GetString(4);
+                                nguoidung.gioitinh = reader.GetString(5);
+                                nguoidung.ngaysinh = reader.GetString(6);
                             }
                             else
                             {
@@ -346,6 +353,69 @@ namespace ProjectTeam
             }
             return false;
         }
+
+        public int LayID(string tendangnhap)
+        {
+            int id = -1; // -1 là lỗi
+            string query = "SELECT id FROM users WHERE email = @tendangnhap";
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("tendangnhap", tendangnhap);
+                    try
+                    {
+                        using (var reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                id = reader.GetInt32(0);
+                                return id;
+                            }
+                        }
+                    }
+                    catch (Exception ex) 
+                    {
+                        MessageBox.Show($"Lỗi : {ex.Message}");
+                        return -1;
+                    }
+                    
+                }
+            }
+            return id;
+        }
+
+        public bool DangKiThongTinNguoiDung(int id, string tennguoidung, string sdt, string gioi_tinh, string ngay_sinh)
+        {
+            string query = "INSERT INTO userinfo (id, tennguoidung, sdt, gioi_tinh, ngay_sinh) " +
+                "VALUES (@id, @tennguoidung, @sdt, @gioi_tinh, @ngay_sinh)";
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var command = new NpgsqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("id",id);
+                    command.Parameters.AddWithValue("tennguoidung", tennguoidung);
+                    command.Parameters.AddWithValue("sdt", sdt);
+                    command.Parameters.AddWithValue("gioi_tinh", gioi_tinh);
+                    command.Parameters.AddWithValue("ngay_sinh", ngay_sinh);
+
+                    try
+                    {
+                        command.ExecuteNonQuery();
+                        return true;
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                    
+                }    
+            }    
+
+        }
+
 
 
 

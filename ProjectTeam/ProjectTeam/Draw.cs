@@ -15,6 +15,7 @@ using ProjectTeam.Model;
 using System.Windows.Controls;
 using System.Net;
 using System.Net.Http;
+using System.Collections.Concurrent;
 
 namespace ProjectTeam
 {
@@ -35,11 +36,12 @@ namespace ProjectTeam
         private TcpListener server;
         private bool isRun = true;
         private List<(Point start, Point end)> lines = new List<(Point, Point)>(); // tạo danh sách lưu trữ đường vẽ
-        private Queue<(Point start, Point end)> drawQueue = new Queue<(Point, Point)>();
-        private bool isRunning = false;
+        private ConcurrentQueue<(Point start, Point end)> drawQueue = new ConcurrentQueue<(Point, Point)>();
+        private bool isRunning = true;
         private user_info user; // thông tin xác định đầy đủ của người dùng 
         private string previous_form;
         private string roomId = GlobalVariables.Maphong;
+        private SortedList<int, (Point start, Point end)> pendingLines = new SortedList<int, (Point, Point)>();
         public class DrawingPoint
         {
             public Point point;
@@ -97,7 +99,7 @@ namespace ProjectTeam
                 ProcessDrawQueue();
             });
 
-            panel_Draw.Paint += panel_draw_Paint;
+            panel_Draw.Paint += Panel_Draw_Paint;
 
             _ = Task.Run(() => ListenForMessagesAsync(drawConnection.tcpClient));
 
@@ -105,7 +107,7 @@ namespace ProjectTeam
 
         private void InitializeBufferedGraphics()
         {
-            if (!isBufferInitialized)
+            if (!isBufferInitialized || bufferedGraphics == null)
             {
                 BufferedGraphicsContext NoiDungHienTai = BufferedGraphicsManager.Current;
                 bufferedGraphics = NoiDungHienTai.Allocate(panel_Draw.CreateGraphics(), panel_Draw.ClientRectangle);
@@ -120,7 +122,13 @@ namespace ProjectTeam
 
             bufferedGraphics.Graphics.Clear(panel_Draw.BackColor);
 
-            DrawLines(bufferedGraphics.Graphics, points, Color.Black, 2);
+            foreach(var line in lines)
+            {
+                using (Pen pen = new Pen(Color.Black, 5))
+                {
+                    bufferedGraphics.Graphics.DrawLine(pen, line.start, line.end);  
+                }
+            }
 
             bufferedGraphics.Render(e.Graphics);
         }
@@ -162,10 +170,17 @@ namespace ProjectTeam
 
             bufferedGraphics.Graphics.Clear(panel_Draw.BackColor);
 
-            DrawLines(bufferedGraphics.Graphics, points, Color.Black, 2);
+            using (Pen pen = new Pen(Color.Black, 5))
+            {
+                foreach (var line in lines)
+                {
+                    bufferedGraphics.Graphics.DrawLine(pen, line.start, line.end);
+                }
+            }
 
             bufferedGraphics.Render(e.Graphics);
         }
+
 
         private void Panel_Draw_MouseMove(object sender, MouseEventArgs e)
         {
@@ -187,7 +202,7 @@ namespace ProjectTeam
                 bufferedGraphics.Graphics.Clear(panel_Draw.BackColor);
 
                 // Vẽ lại tất cả các điểm trong danh sách
-                DrawLines(bufferedGraphics.Graphics, points, Color.Black, 2);
+                DrawLines(bufferedGraphics.Graphics, points, Color.Black, 5);
 
                 // Hiển thị buffer lên panel
                 bufferedGraphics.Render(panel_Draw.CreateGraphics()); // Render trên Panel
@@ -224,51 +239,13 @@ namespace ProjectTeam
         {
             if ((DateTime.Now - ThoiGianGuiLanCuoi).TotalMilliseconds >= senIntervalMs)
             {
+                 
                 string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}\n";
                 await drawConnection.GuiDuLieuAsync(DulieuVe);
                 ThoiGianGuiLanCuoi = DateTime.Now;
+                
+               
             }
-        }
-
-        private async void ProcessDrawQueue()
-        {
-            while (isRunning)
-            {
-                (Point start, Point end)? line = null;
-
-                lock (drawQueue)
-                {
-                    if (drawQueue.Count > 0)
-                    {
-                        line = drawQueue.Dequeue();
-                    }
-                }
-
-                if (line.HasValue)
-                {
-                    DrawLineOnServer(line.Value.start, line.Value.end);
-
-                }
-
-                await Task.Delay(5);
-            }
-        }
-
-
-        private void panel_draw_Paint(object sender, PaintEventArgs e)
-        {
-            //lines.Add((start, end));
-
-            using (Pen pen = new Pen(Color.Black, 2))
-            {
-                foreach (var line in lines)
-                {
-                    bufferedGraphics.Graphics.DrawLine(pen, line.start, line.end);
-                }
-
-            }
-
-            bufferedGraphics.Render(e.Graphics);
         }
 
         private void DrawLineOnServer(Point start, Point end)
@@ -291,52 +268,89 @@ namespace ProjectTeam
 
                 panel_Draw.Invalidate(invalidRect);
             }
+
+        }
+
+        private async Task ProcessDrawQueue()
+        {
+            while (isRunning)
+            {
+                if (drawQueue.TryDequeue(out var line))
+                {
+                    panel_Draw.Invoke(new Action(() =>
+                    {
+                        DrawLineOnServer(line.start, line.end);
+                    }));
+                }
+                else
+                {
+                    await Task.Delay(5);
+
+                }
+            }
+        }
+
+        private void ProcessLine(string line)
+        {
+            try
+            {
+                string[] parts = line.Split(',');
+                int x1, x2;
+                int y1, y2;
+                x1 = int.Parse(parts[0]); y1 = int.Parse(parts[1]);
+
+                x2 = int.Parse(parts[2]); y2 = int.Parse(parts[3]);
+
+                Point start = new Point(x1, y1);
+                Point end = new Point(x2, y2);
+
+                drawQueue.Enqueue((start, end));
+
+            }catch (Exception ex) 
+            {
+            }
         }
 
         private async Task ListenForMessagesAsync(TcpClient tcpClient)
         {
             NetworkStream stream = tcpClient.GetStream();
+            StringBuilder incompleteData = new StringBuilder();
 
-            byte[] bodem = new byte[1024];
+            byte[] bodem = new byte[8192];
             int bytesRead;
+
             while ((bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length)) > 0)
             {
                 try
                 {
-                    string data = Encoding.ASCII.GetString(bodem, 0, bytesRead);
+                    string incomingdata = Encoding.ASCII.GetString(bodem, 0, bytesRead);
+                    incompleteData.Append(incomingdata);
+
+                    string data = incompleteData.ToString();
+                    int NewlineIndex;
 
                     //tách dữ liệu và xử lý
-                    string[] lines = data.Split(new[] { '\n' } , StringSplitOptions.RemoveEmptyEntries);
-                    foreach (string line in lines)
-                    {
-                        string[] parts = line.Split(',');
-                        Point start = new Point(
-                            int.Parse(parts[0]) * panel_Draw.Width / int.Parse(parts[4]),
-                            int.Parse(parts[1]) * panel_Draw.Height / int.Parse(parts[5])
-                            );
-                        Point end = new Point(
-                            int.Parse(parts[2]) * panel_Draw.Width / int.Parse(parts[4]),
-                            int.Parse(parts[3]) * panel_Draw.Height / int.Parse(parts[5])
-                            );
 
-                       
-                        panel_Draw.Invoke(new Action(() =>
-                        {
-                            DrawLineOnServer(start, end);
-                        }));
-                        lock (drawQueue)
-                        {
-                            drawQueue.Enqueue((start, end));
-                        }
-                    }        
+                    while ((NewlineIndex = data.IndexOf('\n')) > 0)
+                    {
+                        string incompleteLine = data.Substring(0, NewlineIndex);
+                        data = data.Substring(NewlineIndex + 1);
+
+                        ProcessLine(incompleteLine);
+                    }
+                    incompleteData.Clear();
+                    incompleteData.Append(data);
+                    
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }       
-       
+            }
+
         }
+
+
 
         private void panel_Draw_Paint(object sender, EventArgs e)
         {

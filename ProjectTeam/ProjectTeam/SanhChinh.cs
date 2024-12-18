@@ -377,7 +377,7 @@ namespace ProjectTeam
 
         private void iconButton6_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new QuenMatKhau());
+            OpenChildForm(new ThietLap(UserInfo));
             //Heading.Text = taskbarMenu.Tag.ToString();
         }
 
