@@ -19,7 +19,7 @@ namespace ProjectTeam
 {
     public partial class ThamGiaPhongVe : Form
     {
-        private int ChonMaPhong;
+        private string ChonMaPhong;
         private bool CoMatKhauPhong = false;
         private SanhChinh sanhChinh;
         private user_info user;
@@ -122,8 +122,8 @@ namespace ProjectTeam
         {
            if(e.IsSelected)
             {
-                ChonMaPhong = int.Parse(e.Item.Text);
-                TbNhapMaPhong.Texts = ChonMaPhong.ToString();
+                ChonMaPhong = e.Item.Text.Trim() ;
+                TbNhapMaPhong.Texts = ChonMaPhong;
 
                 string MatKhau = e.Item.SubItems[4].Text;
                 if(MatKhau != "riêng tư")
