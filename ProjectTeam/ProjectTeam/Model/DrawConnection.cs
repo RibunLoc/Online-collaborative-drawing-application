@@ -18,7 +18,7 @@ namespace ProjectTeam.Model
         public TcpClient tcpClient;
         //private string roomId = GlobalVariables.Maphong;
 
-        public DrawConnection(string DiaChiServer, int CongServer, string roomId)
+        public DrawConnection(string DiaChiServer, int CongServer, string roomId, string name)
         {
             this.DiaChiServer = DiaChiServer;
             this.CongServer = CongServer;
@@ -28,7 +28,9 @@ namespace ProjectTeam.Model
                 this.tcpClient = new TcpClient(DiaChiServer, CongServer);
                 isConnected = true;
                 // Send roomId immediately after connecting
-                GuiDuLieuVe("roomid:" + roomId + "\n", this.tcpClient);
+                GuiDuLieuVe("roomid:" + roomId + ":" + name, this.tcpClient);
+                
+
             }
             catch (Exception ex)
             {
@@ -52,7 +54,7 @@ namespace ProjectTeam.Model
 
                 NetworkStream stream = tcpclient.GetStream();
                 
-                    byte[] bodem = Encoding.ASCII.GetBytes(data);
+                    byte[] bodem = Encoding.UTF8.GetBytes(data);
                     stream.Write(bodem, 0 , bodem.Length);
                 
             }
@@ -79,7 +81,7 @@ namespace ProjectTeam.Model
         
                     if (stream.CanWrite)
                     {
-                        byte[] bodem = Encoding.ASCII.GetBytes(data);
+                        byte[] bodem = Encoding.UTF8.GetBytes(data);
                         await stream.WriteAsync(bodem, 0, bodem.Length);
                         await stream.FlushAsync();
                     }
@@ -105,6 +107,12 @@ namespace ProjectTeam.Model
         public void GuiTinHieuBatDau()
         {
             //GuiDuLieuVe("START");
+        }
+
+        public void GuiTinHieuThoat(string TenNguoiThoat)
+        {
+            GuiDuLieuVe($"EXIT:{TenNguoiThoat}", this.tcpClient);
+            tcpClient.Close();
         }
         
         /// <summary>
