@@ -29,8 +29,6 @@ namespace ProjectTeam
         private Pen pen;                       // Bút để vẽ
         private List<DrawingPoint> points;
         private BufferedGraphics bufferedGraphics; //Tránh hiệu ứng nhấp nháy
-        private DateTime ThoiGianGuiLanCuoi = DateTime.MinValue;
-        private readonly int senIntervalMs = 1;
         private bool isBufferInitialized = false;
         public event Action<string> YeuCauMoForm;
         private TcpListener server;
@@ -42,6 +40,8 @@ namespace ProjectTeam
         private string previous_form;
         private string roomId = GlobalVariables.Maphong;
         private SortedList<int, (Point start, Point end)> pendingLines = new SortedList<int, (Point, Point)>();
+
+
         public class DrawingPoint
         {
             public Point point;
@@ -59,7 +59,6 @@ namespace ProjectTeam
 
             user = new user_info(); 
             user = TruyenUser; // truyền vào từ lớp cha
-            richTextBox1.Text = roomId;
             previous_form = form_truoc_do;
         }
 
@@ -79,9 +78,9 @@ namespace ProjectTeam
 
         private void Draw_Load(object sender, EventArgs e)
         {
-
+            lblCodeRoom.Text = "mã phòng: " + roomId;
             //Khởi tạo draConnection
-            drawConnection = new DrawConnection("localhost", 5000, roomId);
+            drawConnection = new DrawConnection("127.0.0.1", 5000, roomId, user.name);
 
             drawConnection.isConnected = true;
 
@@ -90,6 +89,8 @@ namespace ProjectTeam
             panel_Draw.MouseMove += Panel_Draw_MouseMove;
             panel_Draw.Paint += Panel_Draw_Paint_On_Canvas;
             panel_Draw.Resize += Panel_Draw_Resize;
+
+            this.Resize += new EventHandler(Form_Resize);
 
             points = new List<DrawingPoint>();
             previousPoint = null;
@@ -103,6 +104,13 @@ namespace ProjectTeam
 
             _ = Task.Run(() => ListenForMessagesAsync(drawConnection.tcpClient));
 
+        }
+
+
+
+        private void SanhChinh_Resize(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void InitializeBufferedGraphics()
@@ -210,6 +218,7 @@ namespace ProjectTeam
                 // Gửi dữ liệu tới server
                 if (previousPoint != null && !previousPoint.isLastStroke)
                 {
+
                     SendDrawDataToServer(previousPoint, currentPoint);
                 }
 
@@ -236,16 +245,10 @@ namespace ProjectTeam
         }
 
         private async void SendDrawDataToServer(DrawingPoint start, DrawingPoint end)
-        {
-            if ((DateTime.Now - ThoiGianGuiLanCuoi).TotalMilliseconds >= senIntervalMs)
-            {
-                 
-                string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}\n";
-                await drawConnection.GuiDuLieuAsync(DulieuVe);
-                ThoiGianGuiLanCuoi = DateTime.Now;
-                
-               
-            }
+        {        
+            string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}\n";
+            await drawConnection.GuiDuLieuAsync(DulieuVe);
+
         }
 
         private void DrawLineOnServer(Point start, Point end)
@@ -256,17 +259,15 @@ namespace ProjectTeam
             {
                 bufferedGraphics.Graphics.DrawLine(Pens.Black, start, end);
 
-                Rectangle invalidRect = new Rectangle(
-                Math.Min(start.X, end.X),
-                Math.Min(start.Y, end.Y),
-                Math.Abs(start.X - end.X),
-                Math.Abs(start.Y - end.Y));
+                //Rectangle invalidRect = new Rectangle(
+                //Math.Min(start.X, end.X),
+                //Math.Min(start.Y, end.Y),
+                //Math.Abs(start.X - end.X),
+                //Math.Abs(start.Y - end.Y));
 
-                const int margin = 5; // You can adjust this margin size if needed
-                invalidRect.Inflate(margin, margin); // Increase the invalidation area by a small amount
+                //const int margin = 5; // You can adjust this margin size if needed
 
-
-                panel_Draw.Invalidate(invalidRect);
+                panel_Draw.Invalidate();
             }
 
         }
@@ -290,24 +291,43 @@ namespace ProjectTeam
             }
         }
 
+        private void HienThiTinNhanChat(string messeage)
+        {
+            if (rtb_content.InvokeRequired)
+            {
+                rtb_content.Invoke(new Action(() => { HienThiTinNhanChat(messeage); }));
+            }else
+            {
+                rtb_content.AppendText(messeage + "\n");
+            }
+        }
+
         private void ProcessLine(string line)
         {
             try
             {
-                string[] parts = line.Split(',');
-                int x1, x2;
-                int y1, y2;
-                x1 = int.Parse(parts[0]); y1 = int.Parse(parts[1]);
+                if (line.StartsWith("chat:"))
+                {
+                    string messeage = line.Substring(5);
+                    HienThiTinNhanChat(messeage);
+                }else
+                {
+                    string[] parts = line.Split(',');
+                    int x1, x2;
+                    int y1, y2;
+                    x1 = int.Parse(parts[0]); y1 = int.Parse(parts[1]);
 
-                x2 = int.Parse(parts[2]); y2 = int.Parse(parts[3]);
+                    x2 = int.Parse(parts[2]); y2 = int.Parse(parts[3]);
 
-                Point start = new Point(x1, y1);
-                Point end = new Point(x2, y2);
+                    Point start = new Point(x1, y1);
+                    Point end = new Point(x2, y2);
 
-                drawQueue.Enqueue((start, end));
-
+                    drawQueue.Enqueue((start, end));
+                }
+                 
             }catch (Exception ex) 
             {
+
             }
         }
 
@@ -319,35 +339,35 @@ namespace ProjectTeam
             byte[] bodem = new byte[8192];
             int bytesRead;
 
-            while ((bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length)) > 0)
-            {
-                try
+                while ((bytesRead = await stream.ReadAsync(bodem, 0, bodem.Length)) > 0)
                 {
-                    string incomingdata = Encoding.ASCII.GetString(bodem, 0, bytesRead);
-                    incompleteData.Append(incomingdata);
-
-                    string data = incompleteData.ToString();
-                    int NewlineIndex;
-
-                    //tách dữ liệu và xử lý
-
-                    while ((NewlineIndex = data.IndexOf('\n')) > 0)
+                    try
                     {
-                        string incompleteLine = data.Substring(0, NewlineIndex);
-                        data = data.Substring(NewlineIndex + 1);
+                        string incomingdata = Encoding.UTF8.GetString(bodem, 0, bytesRead);
+                        
+                        incompleteData.Append(incomingdata);
 
-                        ProcessLine(incompleteLine);
+                        string data = incompleteData.ToString();
+                        int NewlineIndex;
+
+                        //tách dữ liệu và xử lý
+
+                        while ((NewlineIndex = data.IndexOf('\n')) > 0)
+                        {
+                            string incompleteLine = data.Substring(0, NewlineIndex);
+                            data = data.Substring(NewlineIndex + 1);
+
+                            ProcessLine(incompleteLine);
+                        }
+                        incompleteData.Clear();
+                        incompleteData.Append(data);
+
                     }
-                    incompleteData.Clear();
-                    incompleteData.Append(data);
-                    
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-
         }
 
 
@@ -366,24 +386,89 @@ namespace ProjectTeam
         private void btn_Thoat_Click(object sender, EventArgs e)
         {
 
-            //DialogResult result = MessageBox.Show("Bạn có chắc sẽ thoát khỏi phòng này!", "Thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-            //if(result == DialogResult.OK)
-            //{
+            DialogResult result = MessageBox.Show("Bạn có chắc sẽ thoát khỏi phòng này!", "Thông tin", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            if (result == DialogResult.OK)
+            {
 
-            // cần xử lý ngắt tới server bất đồng bộ
-            // here
-            SomeConditionMet();
-            // xóa người dùng trên cơ sở dữ liệu từ phòng vẽ đó
-            DatabaseHelper dbhp = new DatabaseHelper();
-            if (dbhp.XoaMotThanhVien(user.user_id)) ;
-                    
+                // xóa người dùng trên cơ sở dữ liệu từ phòng vẽ đó
+                DatabaseHelper dbhp = new DatabaseHelper();
+                if (dbhp.XoaMotThanhVien(user.user_id)) ;
+                    SomeConditionMet();
 
-            //}
-           
-           
+                // Gửi tín hiệu ngắt kết nối
+                drawConnection.GuiTinHieuThoat(user.name);
+
+            }
+
+
+
         }
 
+        private bool BienCoThuGon = true; // Biến cờ thu gọn
+        
+        private void Form_Resize(object sender, EventArgs e)
+        {
+            if (!BienCoThuGon)// chua thu gon
+            {
+                int x = this.ClientSize.Width - panel_KhungChat.Width;
+                panel_KhungChat.Location = new Point(x, panel_KhungChat.Location.Y);
+            }
+        }
 
+        
+        private void btn_AnIcon_Click(object sender, EventArgs e)
+        {
+
+            int x = this.ClientSize.Width - panel_KhungChat.Width;
+            if (BienCoThuGon)// thu nhỏ lại
+            {
+                BienCoThuGon = false;
+
+                rtb_content.Visible = false;
+                tb_chat.Visible = false;
+                btn_Send.Visible = false;
+                panel_ControlChat.Visible = false;
+                panel_ControlContent.Visible = false;
+                panel_KhungChat.Dock = DockStyle.None;
+                panel_KhungChat.Height = 47;
+                panel_KhungChat.Location = new Point(x, panel_KhungChat.Location.Y);
+                
+                
+            }
+            else // 
+            {
+                BienCoThuGon = true;
+                panel_ControlChat.Visible = true;
+                panel_ControlContent.Visible = true;
+                panel_KhungChat.Dock = DockStyle.Right;
+                rtb_content.Visible = true;
+                tb_chat.Visible = true;
+                btn_Send.Visible = true;
+            
+            }
+        }
+
+        private async void SendChatToServer(string messeage)
+        {
+            string DulieuVe = $"chat:{messeage}\n";
+            await drawConnection.GuiDuLieuAsync(DulieuVe);
+
+        }
+
+        // client gửi tin nhắn tới server
+        private void tb_chat__TextChanged(object sender, EventArgs e)
+        {
+ 
+        }
+
+        private void btn_Send_Click(object sender, EventArgs e)
+        {
+
+            string messeage = $"{user.name}: {tb_chat.Texts}";
+            SendChatToServer(messeage);
+            HienThiTinNhanChat(messeage);
+         
+        }
     }
 }
 
