@@ -78,11 +78,24 @@ namespace ProjectTeam
 
         private void Draw_Load(object sender, EventArgs e)
         {
+            // Bật DoubleBuffered cho panel_Draw
+            typeof(System.Windows.Forms.Panel).InvokeMember(
+                "DoubleBuffered",
+                System.Reflection.BindingFlags.SetProperty | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic,
+                null,
+                panel_Draw,
+                new object[] { true }
+            );
+
+
+
             lblCodeRoom.Text = "mã phòng: " + roomId;
             //Khởi tạo draConnection
             drawConnection = new DrawConnection("127.0.0.1", 5000, roomId, user.name);
 
             drawConnection.isConnected = true;
+            
+
 
             panel_Draw.MouseDown += Panel_Draw_MouseDown;
             panel_Draw.MouseUp += Panel_Draw_MouseUp;
@@ -100,7 +113,7 @@ namespace ProjectTeam
                 ProcessDrawQueue();
             });
 
-            panel_Draw.Paint += Panel_Draw_Paint;
+            panel_Draw.Paint += Panel_Draw_Paint_On_Screen;
 
             _ = Task.Run(() => ListenForMessagesAsync(drawConnection.tcpClient));
 
@@ -110,36 +123,28 @@ namespace ProjectTeam
 
         private void SanhChinh_Resize(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         private void InitializeBufferedGraphics()
         {
             if (!isBufferInitialized || bufferedGraphics == null)
             {
+
                 BufferedGraphicsContext NoiDungHienTai = BufferedGraphicsManager.Current;
-                bufferedGraphics = NoiDungHienTai.Allocate(panel_Draw.CreateGraphics(), panel_Draw.ClientRectangle);
-                isBufferInitialized = true;
-            }
-        }
+                bufferedGraphics?.Dispose();
 
-        private void Panel_Draw_Paint_On_Canvas(object sender, PaintEventArgs e)
-        {
-            InitializeBufferedGraphics();
-            if (bufferedGraphics == null) return;
-
-            bufferedGraphics.Graphics.Clear(panel_Draw.BackColor);
-
-            foreach(var line in lines)
-            {
-                using (Pen pen = new Pen(Color.Black, 5))
+                if(!panel_Draw.ClientRectangle.IsEmpty)
                 {
-                    bufferedGraphics.Graphics.DrawLine(pen, line.start, line.end);  
+                    bufferedGraphics = NoiDungHienTai.Allocate(panel_Draw.CreateGraphics(), panel_Draw.ClientRectangle);
+                    isBufferInitialized = true;
                 }
-            }
 
-            bufferedGraphics.Render(e.Graphics);
+               
+            }
         }
+
+
 
         private void Panel_Draw_Resize(object sender, EventArgs e)
         {
@@ -152,41 +157,43 @@ namespace ProjectTeam
             panel_Draw.Invalidate(); // Yêu cầu vẽ lại
         }
 
-        private void DrawLines(Graphics graphics, List<DrawingPoint> points, Color color, float pensize)
-        {
-            if (points.Count > 1)
-            {
-                using (Pen pen = new Pen(color, pensize))
-                {
-                    for (int i = 0; i < points.Count - 1; i++)
-                    {
-                        if (points[i].isLastStroke || points[i + 1].isLastStroke)
-                        {
-                            continue;
-                        }
 
-                        graphics.DrawLine(pen, points[i].point, points[i + 1].point);
-                    }
-                }
-            }
-        }
-
-        private void Panel_Draw_Paint(object sender, PaintEventArgs e)
+        private void Panel_Draw_Paint_On_Canvas(object sender, PaintEventArgs e)
         {
             InitializeBufferedGraphics();
             if (bufferedGraphics == null) return;
 
-            bufferedGraphics.Graphics.Clear(panel_Draw.BackColor);
+            var g = bufferedGraphics.Graphics;
 
-            using (Pen pen = new Pen(Color.Black, 5))
+            if (!isBufferInitialized)
             {
-                foreach (var line in lines)
-                {
-                    bufferedGraphics.Graphics.DrawLine(pen, line.start, line.end);
-                }
+                g.Clear(panel_Draw.BackColor);
+                isBufferInitialized = true;
             }
 
+
+            // Gọi DrawLinesFromList để vẽ tất cả các đường trong danh sách lines
+            DrawLinesFromList(g);
+
+
+         
             bufferedGraphics.Render(e.Graphics);
+        }
+
+        private void Panel_Draw_Paint_On_Screen(object sender, PaintEventArgs e)
+        {
+            InitializeBufferedGraphics();
+            if (bufferedGraphics == null) return;
+
+            var g = bufferedGraphics.Graphics;
+            g.Clear(panel_Draw.BackColor);
+
+            DrawLinesFromList(g);
+
+            
+            if(bufferedGraphics != null)
+                bufferedGraphics.Render(e.Graphics);
+
         }
 
 
@@ -194,36 +201,28 @@ namespace ProjectTeam
         {
             if (isDrawing && e.Button == MouseButtons.Left)
             {
-                InitializeBufferedGraphics();
-                if (bufferedGraphics == null)
-                {
-                    Console.WriteLine("BufferedGraphics chưa được khởi tạo.");
-                    return; // Dừng nếu buffer chưa khởi tạo
-                }
+                
 
                 DrawingPoint currentPoint = new DrawingPoint();
                 currentPoint.point = e.Location;
                 currentPoint.isLastStroke = false;
                 points.Add(currentPoint);
 
-                // Làm sạch buffer trước khi vẽ
-                bufferedGraphics.Graphics.Clear(panel_Draw.BackColor);
-
-                // Vẽ lại tất cả các điểm trong danh sách
-                DrawLines(bufferedGraphics.Graphics, points, Color.Black, 5);
-
-                // Hiển thị buffer lên panel
-                bufferedGraphics.Render(panel_Draw.CreateGraphics()); // Render trên Panel
-
-                // Gửi dữ liệu tới server
                 if (previousPoint != null && !previousPoint.isLastStroke)
                 {
+                   lock (lines)
+                    {
+                        lines.Add((previousPoint.point, currentPoint.point));  
+                    }
 
                     SendDrawDataToServer(previousPoint, currentPoint);
                 }
 
+                panel_Draw.Invalidate();
                 // Cập nhật điểm trước đó
                 previousPoint = currentPoint;
+                
+                points.Add(currentPoint);
             }
         }
 
@@ -251,25 +250,19 @@ namespace ProjectTeam
 
         }
 
-        private void DrawLineOnServer(Point start, Point end)
+
+        private void DrawLinesFromList(Graphics g)
         {
-            lines.Add((start, end));
-
-            using (Graphics g = this.panel_Draw.CreateGraphics())
+            lock (lines)
             {
-                bufferedGraphics.Graphics.DrawLine(Pens.Black, start, end);
-
-                //Rectangle invalidRect = new Rectangle(
-                //Math.Min(start.X, end.X),
-                //Math.Min(start.Y, end.Y),
-                //Math.Abs(start.X - end.X),
-                //Math.Abs(start.Y - end.Y));
-
-                //const int margin = 5; // You can adjust this margin size if needed
-
-                panel_Draw.Invalidate();
+                foreach (var line in lines)
+                {
+                    using (Pen pen = new Pen(Color.Black, 5))
+                    {
+                        g.DrawLine(pen, line.start, line.end);
+                    }
+                }
             }
-
         }
 
         private async Task ProcessDrawQueue()
@@ -278,9 +271,14 @@ namespace ProjectTeam
             {
                 if (drawQueue.TryDequeue(out var line))
                 {
+                    lock (lines)
+                    {
+                        lines.Add(line);
+                    }
+
                     panel_Draw.Invoke(new Action(() =>
                     {
-                        DrawLineOnServer(line.start, line.end);
+                        panel_Draw.Invalidate();
                     }));
                 }
                 else
@@ -322,6 +320,7 @@ namespace ProjectTeam
                     Point start = new Point(x1, y1);
                     Point end = new Point(x2, y2);
 
+                  
                     drawQueue.Enqueue((start, end));
                 }
                  
@@ -369,9 +368,6 @@ namespace ProjectTeam
                     }
                 }
         }
-
-
-
         private void panel_Draw_Paint(object sender, EventArgs e)
         {
 
