@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HotChocolate.Language</name>
+    </assembly>
+    <members>
+        <member name="T:HotChocolate.Language.ListExtensions">
+            <summary>
+            Provides Stack and Queue extensions for <see cref="T:System.Collections.Generic.List`1"/> to
+            the visitor APIs.
+            </summary>
+        </member>
+    </members>
+</doc>

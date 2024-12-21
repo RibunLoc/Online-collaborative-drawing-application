@@ -1,0 +1,2373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GreenDonut</name>
+    </assembly>
+    <members>
+        <member name="T:GreenDonut.DataLoaderAccessModifier">
+            <summary>
+            Specifies the access modifiers for generated DataLoader.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.DataLoaderAccessModifier.Default">
+            <summary>
+            Uses the default access modifier settings.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.DataLoaderAccessModifier.Public">
+            <summary>
+            Generates a public DataLoader class and a public DataLoader interface.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.DataLoaderAccessModifier.PublicInterface">
+            <summary>
+            Generates an internal DataLoader class and a public DataLoader interface.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.DataLoaderAccessModifier.Internal">
+            <summary>
+            Generates an internal DataLoader class and an internal DataLoader interface.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DataLoaderAttribute">
+            <summary>
+            Marks a method as a DataLoader which will trigger the Hot Chocolate
+            types source generator to generate necessary code around this method.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DataLoaderAttribute.#ctor(System.String)">
+            <summary>
+            Marks a method as a DataLoader which will trigger the Hot Chocolate
+            types source generator to generate necessary code around this method.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderAttribute.Name">
+            <summary>
+            Gets the name override for the DataLoader or <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderAttribute.Lookups">
+            <summary>
+            Gets or sets additional lookup methods that are used
+            to create additional cache lookups for entities.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderAttribute.ServiceScope">
+            <summary>
+            Specifies how services by default are handled.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderAttribute.AccessModifier">
+            <summary>
+            Specifies if the DataLoader is generated as public or private class.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DataLoaderDefaultsAttribute">
+            <summary>
+            Specified the DataLoader source generator defaults.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderDefaultsAttribute.ServiceScope">
+            <summary>
+            Specifies how services by default are handled.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderDefaultsAttribute.AccessModifier">
+            <summary>
+            Specifies if DataLoader by default are generated as public or private class.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderDefaultsAttribute.GenerateRegistrationCode">
+            <summary>
+            Specifies if module registration code for DataLoaders shall be generated.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderDefaultsAttribute.GenerateInterfaces">
+            <summary>
+            Specifies if interfaces for DataLoaders shall be generated.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DataLoaderGroupAttribute">
+            <summary>
+            Allows to group multiple DataLoaders together into a context class
+            that can be used to inject multiple DataLoader at once into classes.
+            </summary>
+            <param name="groupNames">
+            The group names that are used to group multiple DataLoaders together.
+            </param>
+        </member>
+        <member name="M:GreenDonut.DataLoaderGroupAttribute.#ctor(System.String[])">
+            <summary>
+            Allows to group multiple DataLoaders together into a context class
+            that can be used to inject multiple DataLoader at once into classes.
+            </summary>
+            <param name="groupNames">
+            The group names that are used to group multiple DataLoaders together.
+            </param>
+        </member>
+        <member name="P:GreenDonut.DataLoaderGroupAttribute.GroupNames">
+            <summary>
+            Gets the group names that are used to group multiple DataLoaders together.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DataLoaderModuleAttribute">
+            <summary>
+            Specifies the assembly module name that is being used in combination
+            with the HotChocolate.Types.Analyzers source generators.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DataLoaderModuleAttribute.#ctor(System.String)">
+            <summary>
+            Initializes new instance of <see cref="T:GreenDonut.DataLoaderModuleAttribute"/>.
+            </summary>
+            <param name="name">
+            The module name.
+            </param>
+        </member>
+        <member name="P:GreenDonut.DataLoaderModuleAttribute.Name">
+            <summary>
+            Gets the module name.
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:GreenDonut.DataLoaderServiceScope">
+            <summary>
+            Specifies the service scope for a DataLoader.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.DataLoaderServiceScope.Default">
+            <summary>
+            Takes the default scope setting.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.DataLoaderServiceScope.DataLoaderScope">
+            <summary>
+            Defines that the DataLoader should have a specific service scope.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.DataLoaderServiceScope.OriginalScope">
+            <summary>
+            Defines that the DataLoader should resolve services
+            from the passed in <see cref="T:System.IServiceProvider"/>.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DataLoaderStateAttribute">
+            <summary>
+            Marks parameters that shall be mapped from the DataLoader state when using source generated DataLoader.
+            </summary>
+            <param name="key">
+            The key that shall be used to map the parameter from the DataLoader state.
+            </param>
+        </member>
+        <member name="M:GreenDonut.DataLoaderStateAttribute.#ctor(System.String)">
+            <summary>
+            Marks parameters that shall be mapped from the DataLoader state when using source generated DataLoader.
+            </summary>
+            <param name="key">
+            The key that shall be used to map the parameter from the DataLoader state.
+            </param>
+        </member>
+        <member name="P:GreenDonut.DataLoaderStateAttribute.Key">
+            <summary>
+            Gets the key that shall be used to map the parameter from the DataLoader state.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.AutoBatchScheduler">
+            <summary>
+            Defines a batch dispatcher that immediately dispatches batch jobs.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.AutoBatchScheduler.Schedule(System.Func{System.Threading.Tasks.ValueTask})">
+            <summary>
+            Schedules a new job to the dispatcher that is immediately executed.
+            </summary>
+            <param name="dispatch">
+            The job that is being scheduled.
+            </param>
+        </member>
+        <member name="P:GreenDonut.AutoBatchScheduler.Default">
+            <summary>
+            Gets the default instance if the <see cref="T:GreenDonut.AutoBatchScheduler"/>.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.BatchDataLoader`2">
+            <summary>
+            The BatchDataLoader is the most commonly used variant of DataLoader and is optimized to
+            fetch multiple items in a single batch from the database.
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.BatchDataLoader`2.#ctor(GreenDonut.IBatchScheduler,GreenDonut.DataLoaderOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.BatchDataLoader`2"/> class.
+            </summary>
+            <param name="batchScheduler">
+            A scheduler to tell the <c>DataLoader</c> when to dispatch buffered batches.
+            </param>
+            <param name="options">
+            An options object to configure the behavior of this particular
+            <see cref="T:GreenDonut.BatchDataLoader`2"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="options"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.BatchDataLoader`2.FetchAsync(System.Collections.Generic.IReadOnlyList{`0},System.Memory{GreenDonut.Result{`1}},GreenDonut.DataLoaderFetchContext{`1},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.BatchDataLoader`2.LoadBatchAsync(System.Collections.Generic.IReadOnlyList{`0},System.Threading.CancellationToken)">
+            <summary>
+            Loads the data for a batch from the data source.
+            </summary>
+            <param name="keys">The keys that shall be fetched in a batch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns a dictionary holding the fetched data.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.StatefulBatchDataLoader`2">
+            <summary>
+            The BatchDataLoader is the most commonly used variant of DataLoader and is optimized to
+            fetch multiple items in a single batch from the database.
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.StatefulBatchDataLoader`2.#ctor(GreenDonut.IBatchScheduler,GreenDonut.DataLoaderOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.BatchDataLoader`2"/> class.
+            </summary>
+            <param name="batchScheduler">
+            A scheduler to tell the <c>DataLoader</c> when to dispatch buffered batches.
+            </param>
+            <param name="options">
+            An options object to configure the behavior of this particular
+            <see cref="T:GreenDonut.BatchDataLoader`2"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="options"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.StatefulBatchDataLoader`2.FetchAsync(System.Collections.Generic.IReadOnlyList{`0},System.Memory{GreenDonut.Result{`1}},GreenDonut.DataLoaderFetchContext{`1},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.StatefulBatchDataLoader`2.LoadBatchAsync(System.Collections.Generic.IReadOnlyList{`0},GreenDonut.DataLoaderFetchContext{`1},System.Threading.CancellationToken)">
+            <summary>
+            Loads the data for a batch from the data source.
+            </summary>
+            <param name="context">Represents the immutable fetch context.</param>
+            <param name="keys">The keys that shall be fetched in a batch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns a dictionary holding the fetched data.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.CreateDataLoaderBranch`3">
+            <summary>
+            Creates a branched DataLoader with a specific branch key.
+            </summary>
+            <typeparam name="TKey">
+            The type of the DataLoader key.
+            </typeparam>
+            <typeparam name="TValue">
+            The type of the DataLoader value.
+            </typeparam>
+            <typeparam name="TState">
+            The custom state that is passed into the factory.
+            </typeparam>
+        </member>
+        <member name="T:GreenDonut.DataLoaderBase`2">
+            <summary>
+            <para>
+            A <c>DataLoader</c> creates a public API for loading data from a
+            particular data back-end with unique keys such as the `id` column of a
+            SQL table or document name in a MongoDB database, given a batch loading
+            function. -- facebook
+            </para>
+            <para>
+            Each <c>DataLoader</c> instance contains a unique memoized cache. Use
+            caution when used in long-lived applications or those which serve many
+            users with different access permissions and consider creating a new
+            instance per web request. -- facebook
+            </para>
+            <para>This is an abstraction for all kind of <c>DataLoaders</c>.</para>
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.#ctor(GreenDonut.IBatchScheduler,GreenDonut.DataLoaderOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.DataLoaderBase`2"/> class.
+            </summary>
+            <param name="batchScheduler">
+            A scheduler to tell the <c>DataLoader</c> when to dispatch buffered batches.
+            </param>
+            <param name="options">
+            An options object to configure the behavior of this particular
+            <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="options"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="P:GreenDonut.DataLoaderBase`2.Cache">
+            <summary>
+            Gets access to the cache of this DataLoader.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderBase`2.CacheKeyType">
+            <summary>
+            Gets the cache key type for this DataLoader.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderBase`2.ContextData">
+            <summary>
+            Gets or sets the context data which can be used to store
+            transient state on the DataLoader.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderBase`2.AllowCachePropagation">
+            <summary>
+            Specifies if the values fetched by this DataLoader
+            are propagated through the cache.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderBase`2.AllowBranching">
+            <summary>
+            Specifies if this DataLoader allows branching.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderBase`2.BatchScheduler">
+            <summary>
+            Gets the batch scheduler of this DataLoader.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderBase`2.Options">
+            <summary>
+            Gets the options of this DataLoader.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.LoadAsync(`0,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.LoadAsync(System.Collections.Generic.IReadOnlyCollection{`0},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.Remove(`0)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.Set(`0,System.Threading.Tasks.Task{`1})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.Branch``1(System.String,GreenDonut.CreateDataLoaderBranch{`0,`1,``0},``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.TryAddToCache``3(System.String,System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <summary>
+            A helper to add additional cache lookups to a resolved entity.
+            </summary>
+            <param name="cacheKeyType">
+            The cache key type that shall be used to refer to the entity.
+            </param>
+            <param name="items">
+            The items that shall be associated with other cache keys.
+            </param>
+            <param name="key">A delegate to create the key part.</param>
+            <param name="value">A delegate to create the value that shall be associated.</param>
+            <typeparam name="TItem">The item type.</typeparam>
+            <typeparam name="TK">The key type.</typeparam>
+            <typeparam name="TV">The value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.TryAddToCache``2(System.String,``0,``1)">
+            <summary>
+            A helper to adds another cache lookup to a resolved entity.
+            </summary>
+            <param name="cacheKeyType">
+            The cache key type that shall be used to refer to the entity.
+            </param>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <typeparam name="TK">The key type.</typeparam>
+            <typeparam name="TV">The value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.GetCacheKeyType``1">
+            <summary>
+            A helper to create a cache key type for a DataLoader.
+            </summary>
+            <typeparam name="TDataLoader">The DataLoader type.</typeparam>
+            <returns>
+            Returns the DataLoader cache key.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.GetCacheKeyType(System.Type)">
+            <summary>
+            A helper to create a cache key type for a DataLoader.
+            </summary>
+            <param name="type">
+            The DataLoader type.
+            </param>
+            <returns>
+            Returns the DataLoader cache key.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.FetchAsync(System.Collections.Generic.IReadOnlyList{`0},System.Memory{GreenDonut.Result{`1}},GreenDonut.DataLoaderFetchContext{`1},System.Threading.CancellationToken)">
+            <summary>
+            A batch loading function which has to be implemented for each
+            individual <c>DataLoader</c>. For every provided key must be a
+            result returned. Also to be mentioned is, the results must be
+            returned in the exact same order the keys were provided.
+            </summary>
+            <param name="keys">A list of keys.</param>
+            <param name="results">
+            The resolved values which need to be in the exact same
+            order as the keys were provided.
+            </param>
+            <param name="context">Represents the immutable fetch context.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>
+            A list of results which are in the exact same order as the provided
+            keys.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.GreenDonut#IDataLoader#LoadAsync(System.Object,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.GreenDonut#IDataLoader#LoadAsync(System.Collections.Generic.IReadOnlyCollection{System.Object},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.GreenDonut#IDataLoader#Remove(System.Object)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.GreenDonut#IDataLoader#Set(System.Object,System.Threading.Tasks.Task{System.Object})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderBase`2.Clear">
+            <inheritdoc />
+        </member>
+        <member name="T:GreenDonut.DataLoaderExtensions">
+            <summary>
+            A bunch of convenient <c>DataLoader</c> extension methods.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.LoadRequiredAsync``2(GreenDonut.IDataLoader{``0,``1},``0,System.Threading.CancellationToken)">
+            <summary>
+            Loads a single value by key. This call may return a cached value
+            or enqueues this single request for batching if enabled.
+            </summary>
+            <param name="dataLoader">
+            A data loader instance.
+            </param>
+            <param name="key">A unique key.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A single result which may contain a value or information about the
+            error which may occurred during the call.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.LoadRequiredAsync``2(GreenDonut.IDataLoader{``0,``1},System.Collections.Generic.IReadOnlyCollection{``0},System.Threading.CancellationToken)">
+            <summary>
+            Loads multiple values by keys. This call may return cached values
+            and enqueues requests which were not cached for batching if
+            enabled.
+            </summary>
+            <param name="dataLoader">
+            A data loader instance.
+            </param>
+            <param name="keys">A list of unique keys.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="keys"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A list of values in the same order as the provided keys.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.Set``2(GreenDonut.IDataLoader{``0,``1},``0,``1)">
+            <summary>
+            Adds a new entry to the cache if not already exists.
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+            <param name="dataLoader">A data loader instance.</param>
+            <param name="key">A cache entry key.</param>
+            <param name="value">A cache entry value.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.Set(GreenDonut.IDataLoader,System.Object,System.Object)">
+            <summary>
+            Adds a new entry to the cache if not already exists.
+            </summary>
+            <param name="dataLoader">A data loader instance.</param>
+            <param name="key">A cache entry key.</param>
+            <param name="value">A cache entry value.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.SetState``3(GreenDonut.IDataLoader{``0,``1},``2)">
+            <summary>
+            Sets a state value on the data loader.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="value">
+            The state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the data loader instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.SetState``3(GreenDonut.IDataLoader{``0,``1},System.String,``2)">
+            <summary>
+            Sets a state value on the data loader.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="key">
+            The state key.
+            </param>
+            <param name="value">
+            The state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the data loader instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws if <paramref name="key"/> is <c>null</c> or empty.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.TrySetState``3(GreenDonut.IDataLoader{``0,``1},``2)">
+            <summary>
+            Tries to set state value on the data loader if it not already exists.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="value">
+            The state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the data loader instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.TrySetState``3(GreenDonut.IDataLoader{``0,``1},System.String,``2)">
+            <summary>
+            Tries to set state value on the data loader if it not already exists.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="key">
+            The state key.
+            </param>
+            <param name="value">
+            The state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the data loader instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws if <paramref name="key"/> is <c>null</c> or empty.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.GetOrSetState``3(GreenDonut.IDataLoader{``0,``1},System.Func{System.String,``2})">
+            <summary>
+            Gets a state value from the <paramref name="dataLoader"/> or
+            creates a new one and stores it as state on the <paramref name="dataLoader"/>.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="createValue">
+            A factory that creates the new state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the state value.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.GetOrSetState``3(GreenDonut.IDataLoader{``0,``1},System.String,System.Func{System.String,``2})">
+            <summary>
+            Gets a state value from the <paramref name="dataLoader"/> or
+            creates a new one and stores it as state on the <paramref name="dataLoader"/>.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="key">
+            The state key.
+            </param>
+            <param name="createValue">
+            A factory that creates the new state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the state value.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws if <paramref name="key"/> is <c>null</c> or empty.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.AddStateEnumerable``3(GreenDonut.IDataLoader{``0,``1},``2)">
+            <summary>
+            Adds the value to a collection that is stored on the DataLoader state.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="value">
+            The state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the data loader instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderExtensions.AddStateEnumerable``3(GreenDonut.IDataLoader{``0,``1},System.String,``2)">
+            <summary>
+            Adds the value to a collection that is stored on the DataLoader state.
+            </summary>
+            <param name="dataLoader">
+            The data loader instance.
+            </param>
+            <param name="key">
+            The state key.
+            </param>
+            <param name="value">
+            The state value.
+            </param>
+            <typeparam name="TKey">
+            The key type of the DataLoader.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+            <typeparam name="TState">
+            The state type.
+            </typeparam>
+            <returns>
+            Returns the data loader instance.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws if <paramref name="key"/> is <c>null</c> or empty.
+            </exception>
+        </member>
+        <member name="T:GreenDonut.DataLoaderFetchContext`1">
+            <summary>
+            The fetch context is used to pass a snapshot of the transient DataLoader state into a fetch call.
+            This allows the fetch to interact with a save version of the state.
+            </summary>
+            <param name="contextData">
+            The context data that is passed into the fetch call.
+            </param>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.#ctor(System.Collections.Immutable.IImmutableDictionary{System.String,System.Object})">
+            <summary>
+            The fetch context is used to pass a snapshot of the transient DataLoader state into a fetch call.
+            This allows the fetch to interact with a save version of the state.
+            </summary>
+            <param name="contextData">
+            The context data that is passed into the fetch call.
+            </param>
+            <typeparam name="TValue">
+            The value type of the DataLoader.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetState``1">
+            <summary>
+            Gets a value from the DataLoader state snapshot.
+            </summary>
+            <typeparam name="TState">
+            The type of the state value.
+            </typeparam>
+            <returns>
+            Returns the state value if it exists.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetState``1(System.String)">
+            <summary>
+            Gets a value from the DataLoader state snapshot.
+            </summary>
+            <param name="key">
+            The key to look up the value.
+            </param>
+            <typeparam name="TState">
+            The type of the state value.
+            </typeparam>
+            <returns>
+            Returns the state value if it exists.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetRequiredState``1">
+            <summary>
+            Gets a required value from the DataLoader state snapshot.
+            </summary>
+            <typeparam name="TState">
+            The type of the state value.
+            </typeparam>
+            <returns>
+            Returns the state value if it exists.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws an exception if the state value does not exist.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetRequiredState``1(System.String)">
+            <summary>
+            Gets a required value from the DataLoader state snapshot.
+            </summary>
+            <param name="key">
+            The key to look up the value.
+            </param>
+            <typeparam name="TState">
+            The type of the state value.
+            </typeparam>
+            <returns>
+            Returns the state value if it exists.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws an exception if the state value does not exist.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetStateOrDefault``1(``0)">
+            <summary>
+            Gets a value from the DataLoader state snapshot or returns a default value.
+            </summary>
+            <param name="defaultValue">
+            The default value to return if the state value does not exist.
+            </param>
+            <typeparam name="TState">
+            The type of the state value.
+            </typeparam>
+            <returns>
+            Returns the state value if it exists.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetStateOrDefault``1(System.String,``0)">
+            <summary>
+            Gets a value from the DataLoader state snapshot or returns a default value.
+            </summary>
+            <param name="key">
+            The key to look up the value.
+            </param>
+            <param name="defaultValue">
+            The default value to return if the state value does not exist.
+            </param>
+            <typeparam name="TState">
+            The type of the state value.
+            </typeparam>
+            <returns>
+            Returns the state value if it exists.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetSelector">
+            <summary>
+            Gets the selector builder from the DataLoader state snapshot.
+            The state builder can be user to create a selector expression.
+            </summary>
+            <returns>
+            Returns the selector builder if it exists.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DataLoaderFetchContext`1.GetPredicate">
+            <summary>
+            Gets the predicate builder from the DataLoader state snapshot.
+            The state builder can be used to create a predicate expression.
+            </summary>
+            <returns>
+            Returns the predicate builder if it exists.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.DataLoaderOptions">
+            <summary>
+            An options object to configure the behavior for <c>DataLoader</c>.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderOptions.MaxBatchSize">
+            <summary>
+            Gets or sets the maximum batch size per request. If set to
+            <c>0</c>, the request will not be cut into smaller batches. The
+            default value is set to <c>1024</c>.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderOptions.Cache">
+            <summary>
+            Gets or sets a cache instance to either share a cache instance
+            across several DataLoader or to provide a custom cache
+            implementation. In case no cache instance is provided, the
+            DataLoader will use the default cache implementation.
+            The default value is set to <c>null</c>.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderOptions.DiagnosticEvents">
+            <summary>
+            Gets the <see cref="T:GreenDonut.IDataLoaderDiagnosticEvents"/> to intercept DataLoader events.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DataLoaderOptions.Copy">
+            <summary>
+            Creates a new options object that contains all the property values of this instance.
+            </summary>
+            <returns>
+            The new options object that contains all the property values of this instance.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.DependencyInjection.DataLoaderFactory">
+            <summary>
+            Represents a factory that creates a DataLoader instance.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DependencyInjection.DataLoaderFactory`1">
+            <summary>
+            Represents a factory that creates a DataLoader instance.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DependencyInjection.DataLoaderRegistrar">
+            <summary>
+            Provides access to the DataLoader registrations.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DependencyInjection.DataLoaderRegistrar.#ctor(System.Collections.Generic.IEnumerable{GreenDonut.DependencyInjection.DataLoaderRegistration})">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.DependencyInjection.DataLoaderRegistrar"/> class.
+            </summary>
+            <param name="registrations">
+            The DataLoader registrations.
+            </param>
+        </member>
+        <member name="P:GreenDonut.DependencyInjection.DataLoaderRegistrar.Registrations">
+            <summary>
+            Gets the DataLoader registrations.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.DependencyInjection.DataLoaderRegistration">
+            <summary>
+            Represents a registration for a DataLoader.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DependencyInjection.DataLoaderRegistration.ServiceType">
+            <summary>
+            Gets the service type.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DependencyInjection.DataLoaderRegistration.InstanceType">
+            <summary>
+            Gets the instance type.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DependencyInjection.DataLoaderRegistration.CreateDataLoader(System.IServiceProvider)">
+            <summary>
+            Creates a new DataLoader instance.
+            </summary>
+            <param name="services">
+            The available services.
+            </param>
+            <returns>
+            Returns the new DataLoader instance.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.DependencyInjection.IDataLoaderScope">
+            <summary>
+            The DataLoader scope provides access to the DataLoader bound to the current execution.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DependencyInjection.IDataLoaderScope.GetDataLoader``1(GreenDonut.DependencyInjection.DataLoaderFactory{``0},System.String)">
+            <summary>
+            Gets a <see cref="T:GreenDonut.IDataLoader"/> from the current execution scope; or, creates a new instance for this scope.
+            </summary>
+            <param name="createDataLoader">
+            The factory to create the new <see cref="T:GreenDonut.IDataLoader"/> instance.
+            </param>
+            <param name="name">
+            The name of the <see cref="T:GreenDonut.IDataLoader"/>. If no name is specified the name will be inferred from the type.
+            </param>
+            <typeparam name="T">
+            The DataLoader type.
+            </typeparam>
+            <returns>
+            Returns a <see cref="T:GreenDonut.IDataLoader"/> instance from the current execution scope.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.DependencyInjection.IDataLoaderScope.GetDataLoader``1">
+            <summary>
+            Gets a <see cref="T:GreenDonut.IDataLoader"/> from the current execution scope; or, creates a new instance for this scope.
+            </summary>
+            <typeparam name="T">
+            The DataLoader type.
+            </typeparam>
+            <returns>
+            Returns a <see cref="T:GreenDonut.IDataLoader"/> instance from the current execution scope.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.FetchDataDelegate`2">
+            <summary>
+            A data fetching delegate for <c>DataLoader</c>. For every provided key
+            must be a result returned. Also to be mentioned is, the results must be
+            returned in the exact same order the keys were provided.
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+            <param name="keys">A list of keys.</param>
+            <param name="results">
+            The resolved values which need to be in the exact same
+            order as the keys were provided.
+            </param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>
+            A list of results which are in the exact same order as the provided
+            keys.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.FetchOnceDataLoader`1">
+            <summary>
+            The <see cref="T:GreenDonut.FetchOnceDataLoader`1"/> fetches a single object and caches it.
+            </summary>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.FetchOnceDataLoader`1.LoadAsync(System.Threading.CancellationToken)">
+            <summary>
+            Loads a single value. This call may return a cached value
+            or enqueues this single request for batching if enabled.
+            </summary>
+            <param name="cancellationToken">A cancellation token.</param>
+            <returns>
+            A single result which may contain a value or information about the
+            error which may occurred during the call.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.GroupedDataLoader`2">
+            <summary>
+            The GroupedDataLoader is used to fetch a collection of items for
+            a single provided key in a batch.
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.GroupedDataLoader`2.#ctor(GreenDonut.IBatchScheduler,GreenDonut.DataLoaderOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.GroupedDataLoader`2"/> class.
+            </summary>
+            <param name="batchScheduler">
+            A scheduler to tell the <c>DataLoader</c> when to dispatch buffered batches.
+            </param>
+            <param name="options">
+            An options object to configure the behavior of this particular
+            <see cref="T:GreenDonut.GroupedDataLoader`2"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="options"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.GroupedDataLoader`2.FetchAsync(System.Collections.Generic.IReadOnlyList{`0},System.Memory{GreenDonut.Result{`1[]}},GreenDonut.DataLoaderFetchContext{`1[]},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.GroupedDataLoader`2.LoadGroupedBatchAsync(System.Collections.Generic.IReadOnlyList{`0},System.Threading.CancellationToken)">
+            <summary>
+            Loads the data for a grouped batch from the data source.
+            </summary>
+            <param name="keys">The keys that shall be fetched in a batch.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns a lookup holding the fetched data.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.StatefulGroupedDataLoader`2">
+            <summary>
+            The GroupedDataLoader is used to fetch a collection of items for
+            a single provided key in a batch.
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.StatefulGroupedDataLoader`2.#ctor(GreenDonut.IBatchScheduler,GreenDonut.DataLoaderOptions)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.GroupedDataLoader`2"/> class.
+            </summary>
+            <param name="batchScheduler">
+            A scheduler to tell the <c>DataLoader</c> when to dispatch buffered batches.
+            </param>
+            <param name="options">
+            An options object to configure the behavior of this particular
+            <see cref="T:GreenDonut.GroupedDataLoader`2"/>.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="options"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.StatefulGroupedDataLoader`2.FetchAsync(System.Collections.Generic.IReadOnlyList{`0},System.Memory{GreenDonut.Result{`1[]}},GreenDonut.DataLoaderFetchContext{`1[]},System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.StatefulGroupedDataLoader`2.LoadGroupedBatchAsync(System.Collections.Generic.IReadOnlyList{`0},GreenDonut.DataLoaderFetchContext{`1[]},System.Threading.CancellationToken)">
+            <summary>
+            Loads the data for a grouped batch from the data source.
+            </summary>
+            <param name="keys">The keys that shall be fetched in a batch.</param>
+            <param name="context">Represents the immutable fetch context.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>
+            Returns a lookup holding the fetched data.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.IBatchScheduler">
+            <summary>
+            The batch scheduler is used by the DataLoader to defer the data fetching
+            work to a batch dispatcher that will execute the batches.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.IBatchScheduler.Schedule(System.Func{System.Threading.Tasks.ValueTask})">
+            <summary>
+            Schedules work.
+            </summary>
+            <param name="dispatch">
+            A delegate that represents the work.
+            </param>
+        </member>
+        <member name="T:GreenDonut.IDataLoader">
+            <summary>
+            <para>
+            A <c>DataLoader</c> creates a public API for loading data from a
+            particular data back-end with unique keys such as the `id` column of a
+            SQL table or document name in a MongoDB database, given a batch loading
+            function. -- facebook
+            </para>
+            <para>
+            Each <c>DataLoader</c> instance contains a unique memoized cache. Use
+            caution when used in long-lived applications or those which serve many
+            users with different access permissions and consider creating a new
+            instance per web request. -- facebook
+            </para>
+            </summary>
+        </member>
+        <member name="P:GreenDonut.IDataLoader.ContextData">
+            <summary>
+            Gets or sets the context data which can be used to store
+            transient state on the DataLoader.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.IDataLoader.LoadAsync(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Loads a single value by key. This call may return a cached value
+            or enqueues this single request for batching if enabled.
+            </summary>
+            <param name="key">A unique key.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A single result which may contain a value or information about the
+            error which may occurred during the call.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IDataLoader.LoadAsync(System.Collections.Generic.IReadOnlyCollection{System.Object},System.Threading.CancellationToken)">
+            <summary>
+            Loads multiple values by keys. This call may return cached values
+            and enqueues requests which were not cached for batching if
+            enabled.
+            </summary>
+            <param name="keys">A list of unique keys.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="keys"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A list of values in the same order as the provided keys.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IDataLoader.Remove(System.Object)">
+            <summary>
+            Removes a single entry from the cache.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.IDataLoader.Set(System.Object,System.Threading.Tasks.Task{System.Object})">
+            <summary>
+            Adds a new entry to the cache if not already exists.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <param name="value">A cache entry value.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="value"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.IDataLoader.Clear">
+            <summary>
+            Empties the complete cache.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.IDataLoader`2">
+            <summary>
+            <para>
+            A <c>DataLoader</c> creates a public API for loading data from a
+            particular data back-end with unique keys such as the `id` column of a
+            SQL table or document name in a MongoDB database, given a batch loading
+            function. -- facebook
+            </para>
+            <para>
+            Each <c>DataLoader</c> instance contains a unique memoized cache. Use
+            caution when used in long-lived applications or those which serve many
+            users with different access permissions and consider creating a new
+            instance per web request. -- facebook
+            </para>
+            </summary>
+            <typeparam name="TKey">A key type.</typeparam>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.IDataLoader`2.LoadAsync(`0,System.Threading.CancellationToken)">
+            <summary>
+            Loads a single value by key. This call may return a cached value
+            or enqueues this single request for batching if enabled.
+            </summary>
+            <param name="key">A unique key.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A single result which may contain a value or information about the
+            error which may occurred during the call.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IDataLoader`2.LoadAsync(System.Collections.Generic.IReadOnlyCollection{`0},System.Threading.CancellationToken)">
+            <summary>
+            Loads multiple values by keys. This call may return cached values
+            and enqueues requests which were not cached for batching if
+            enabled.
+            </summary>
+            <param name="keys">A list of unique keys.</param>
+            <param name="cancellationToken">A cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="keys"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A list of values in the same order as the provided keys.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IDataLoader`2.Remove(`0)">
+            <summary>
+            Removes a single entry from the cache.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.IDataLoader`2.Set(`0,System.Threading.Tasks.Task{`1})">
+            <summary>
+            Adds a new entry to the cache if not already exists.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <param name="value">A cache entry value.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="value"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.IDataLoader`2.Branch``1(System.String,GreenDonut.CreateDataLoaderBranch{`0,`1,``0},``0)">
+            <summary>
+            Branches the current <c>DataLoader</c>.
+            </summary>
+            <param name="key">
+            A unique key to identify the branch.
+            </param>
+            <param name="createBranch">
+            Creates the branch of the current <c>DataLoader</c>.
+            </param>
+            <param name="state">
+            A custom state object that is passed to the branch factory.
+            </param>
+            <returns>
+            A new <c>DataLoader</c> instance.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.DataLoaderDiagnosticEventListener">
+            <summary>
+            A base class to create a DataLoader diagnostic event listener.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.DataLoaderDiagnosticEventListener.EmptyScope">
+            <summary>
+            A no-op <see cref="T:System.IDisposable"/> that can be returned from
+            event methods that are not interested in when the scope is disposed.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.DataLoaderDiagnosticEventListener.ResolvedTaskFromCache(GreenDonut.IDataLoader,GreenDonut.PromiseCacheKey,System.Threading.Tasks.Task)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderDiagnosticEventListener.ExecuteBatch``1(GreenDonut.IDataLoader,System.Collections.Generic.IReadOnlyList{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderDiagnosticEventListener.BatchResults``2(System.Collections.Generic.IReadOnlyList{``0},System.ReadOnlySpan{GreenDonut.Result{``1}})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderDiagnosticEventListener.BatchError``1(System.Collections.Generic.IReadOnlyList{``0},System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.DataLoaderDiagnosticEventListener.BatchItemError``1(``0,System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="T:GreenDonut.IDataLoaderDiagnosticEventListener">
+            <summary>
+            Register an implementation of this interface in the DI container to
+            listen to diagnostic events. Multiple implementations can be registered
+            and they will all be notified in the registration order.
+            </summary>
+            <seealso cref="T:GreenDonut.DataLoaderDiagnosticEventListener"/>
+        </member>
+        <member name="T:GreenDonut.IDataLoaderDiagnosticEvents">
+            <summary>
+            This interfaces specifies the DataLoader diagnostics events.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.IDataLoaderDiagnosticEvents.ResolvedTaskFromCache(GreenDonut.IDataLoader,GreenDonut.PromiseCacheKey,System.Threading.Tasks.Task)">
+            <summary>
+            This event is raised whenever a DataLoader can resolve a request from the cache.
+            </summary>
+            <param name="dataLoader">The DataLoader that resolved the item.</param>
+            <param name="cacheKey">The cache key.</param>
+            <param name="task">The task that has been resolved.</param>
+        </member>
+        <member name="M:GreenDonut.IDataLoaderDiagnosticEvents.ExecuteBatch``1(GreenDonut.IDataLoader,System.Collections.Generic.IReadOnlyList{``0})">
+            <summary>
+            This event is raised whenever a DataLoader batch is started to being executed.
+            </summary>
+            <param name="dataLoader">The DataLoader the batch belongs to.</param>
+            <param name="keys">The keys that are being resolved.</param>
+            <typeparam name="TKey">The type of the keys.</typeparam>
+            <returns>
+            Returns the scope that represents the execution of the batch.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IDataLoaderDiagnosticEvents.BatchResults``2(System.Collections.Generic.IReadOnlyList{``0},System.ReadOnlySpan{GreenDonut.Result{``1}})">
+            <summary>
+            This event is raised whenever the executed batch yielded a result.
+            </summary>
+            <param name="keys">The keys that are being resolved.</param>
+            <param name="values">The values that have been resolved.</param>
+            <typeparam name="TKey">The type of the keys.</typeparam>
+            <typeparam name="TValue">The type of the values.</typeparam>
+        </member>
+        <member name="M:GreenDonut.IDataLoaderDiagnosticEvents.BatchError``1(System.Collections.Generic.IReadOnlyList{``0},System.Exception)">
+            <summary>
+            This event is raised whenever the executed batch had an error resolving the batch.
+            </summary>
+            <param name="keys">The keys that are being resolved.</param>
+            <param name="error">The error that was thrown.</param>
+            <typeparam name="TKey">The type of the keys.</typeparam>
+        </member>
+        <member name="M:GreenDonut.IDataLoaderDiagnosticEvents.BatchItemError``1(``0,System.Exception)">
+            <summary>
+            This event is raised whenever there is an error for a specific key
+            while resolving the batch.
+            </summary>
+            <param name="key">The key that is being resolved.</param>
+            <param name="error">The error that was thrown.</param>
+            <typeparam name="TKey">The type of the key.</typeparam>
+        </member>
+        <member name="T:GreenDonut.Internals.DataLoaderHelper">
+            <summary>
+            This helper allows to access internal members of the
+            <see cref="T:GreenDonut.DataLoaderBase`2"/>
+            for branching purposes.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Internals.DataLoaderHelper.GetOptions``2(GreenDonut.DataLoaderBase{``0,``1})">
+            <summary>
+            Gets the options of the <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </summary>
+            <param name="dataLoader">
+            The <see cref="T:GreenDonut.DataLoaderBase`2"/> instance.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <returns>
+            Returns the options of the <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.Internals.DataLoaderHelper.GetBatchScheduler``2(GreenDonut.DataLoaderBase{``0,``1})">
+            <summary>
+            Gets the batch scheduler of the <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </summary>
+            <param name="dataLoader">
+            The <see cref="T:GreenDonut.DataLoaderBase`2"/> instance.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <returns>
+            Returns the batch scheduler of the <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.Internals.DataLoaderHelper.GetCacheKeyType``2(GreenDonut.DataLoaderBase{``0,``1})">
+            <summary>
+            Gets the cache key type of the <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </summary>
+            <param name="dataLoader">
+            The <see cref="T:GreenDonut.DataLoaderBase`2"/> instance.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <returns>
+            Returns the cache key type of the <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.Internals.DataLoaderHelper.FetchAsync``2(GreenDonut.DataLoaderBase{``0,``1},System.Collections.Generic.IReadOnlyList{``0},System.Memory{GreenDonut.Result{``1}},GreenDonut.DataLoaderFetchContext{``1},System.Threading.CancellationToken)">
+            <summary>
+            Fetches the data for the provided keys by using the fetch method of
+            the provided <see cref="T:GreenDonut.DataLoaderBase`2"/>.
+            </summary>
+            <param name="dataLoader">
+            The <see cref="T:GreenDonut.DataLoaderBase`2"/> instance.
+            </param>
+            <param name="keys">
+            The keys for which the data shall be fetched.
+            </param>
+            <param name="results">
+            The results that shall be filled with the fetched data.
+            </param>
+            <param name="context">
+            The fetch context that shall be used for the fetch operation.
+            </param>
+            <param name="cancellationToken">
+            The cancellation token that shall be used for the fetch operation.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <returns>
+            Returns the task representing the fetch operation.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.IPromise">
+            <summary>
+            Represents a promise that can be canceled.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.IPromise.Type">
+            <summary>
+            Gets the type of the value this promise will produce.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.IPromise.Task">
+            <summary>
+            Gets the task that represents the async work for this promise.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.IPromise.IsClone">
+            <summary>
+            Gets a value indicating whether this promise is a clone.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.IPromise.TrySetResult(System.Object)">
+            <summary>
+            Tries to set the result of the async work for this promise.
+            </summary>
+            <param name="result"></param>
+        </member>
+        <member name="M:GreenDonut.IPromise.TrySetError(System.Exception)">
+            <summary>
+            Tries to set an exception for the async work for this promise.
+            </summary>
+            <param name="exception"></param>
+        </member>
+        <member name="M:GreenDonut.IPromise.TryCancel">
+            <summary>
+            Tries to cancel the async work for this promise.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.IPromise.Clone">
+            <summary>
+            Clones this promise.
+            </summary>
+            <returns>
+            Returns a new instance of <see cref="T:GreenDonut.IPromise"/>.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.IPromiseCache">
+            <summary>
+            A memorization cache for <c>DataLoader</c>.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.IPromiseCache.Size">
+            <summary>
+            Gets the maximum size of the cache.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.IPromiseCache.Usage">
+            <summary>
+            Gets the count of the entries inside the cache.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.GetOrAddTask``1(GreenDonut.PromiseCacheKey,System.Func{GreenDonut.PromiseCacheKey,GreenDonut.Promise{``0}})">
+            <summary>
+            Gets a task from the cache if a task with the specified <paramref name="key"/> already
+            exists; otherwise, the <paramref name="createPromise"/> factory is used to create a new
+            task and add it to the cache.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <param name="createPromise">A factory to create the new task.</param>
+            <typeparam name="T">The task type.</typeparam>
+            <returns>
+            Returns either the retrieved or new task from the cache.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="createPromise"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.TryAdd``1(GreenDonut.PromiseCacheKey,GreenDonut.Promise{``0})">
+            <summary>
+            Tries to add a single task to the cache. It does nothing if the
+            task exists already.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <param name="promise">A task.</param>
+            <typeparam name="T">The task type.</typeparam>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="promise"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A value indicating whether the add was successful.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.TryAdd``1(GreenDonut.PromiseCacheKey,System.Func{GreenDonut.Promise{``0}})">
+            <summary>
+            Tries to add a single task to the cache. It does nothing if the
+            task exists already.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <param name="createPromise">A factory to create the new task.</param>
+            <typeparam name="T">The task type.</typeparam>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="createPromise"/> is <c>null</c>.
+            </exception>
+            <returns>
+            A value indicating whether the add was successful.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.TryRemove(GreenDonut.PromiseCacheKey)">
+            <summary>
+            Removes a specific task from the cache.
+            </summary>
+            <param name="key">A cache entry key.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="key"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.Publish``1(``0)">
+            <summary>
+            Publishes a value to the cache subscribers without adding it to the cache  iself.
+            This allows the subscribers to decide if they want to cache the value.
+            </summary>
+            <param name="value">
+            The value that is published to the subscribers.
+            </param>
+            <typeparam name="T">
+            The value type.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.PublishMany``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Publishes the values to the cache subscribers without adding it to the cache iself.
+            This allows the subscribers to decide if they want to cache the values.
+            </summary>
+            <param name="values">
+            The values that are published to the subscribers.
+            </param>
+            <typeparam name="T">
+            The value type.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.Subscribe``1(System.Action{GreenDonut.IPromiseCache,GreenDonut.Promise{``0}},System.String)">
+            <summary>
+            Subscribes to the cache and gets notified when a new task is added.
+            </summary>
+            <param name="next">
+            The action that is called when a new task is added.
+            </param>
+            <param name="skipCacheKeyType">
+            The cache key type that should be skipped.
+            </param>
+            <typeparam name="T">
+            The task type.
+            </typeparam>
+            <returns>
+            Returns a disposable that can be used to unsubscribe.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.IPromiseCache.Clear">
+            <summary>
+            Clears the complete cache.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.IPromiseCacheObserver">
+            <summary>
+            The promise cache observer allows to subscribe to a
+            promise cache and create additional lookups for
+            already cached promises.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.IPromiseCacheObserver.Accept(GreenDonut.IPromiseCache,System.String)">
+            <summary>
+            Accepts the cache and subscribes to the cache.
+            </summary>
+            <param name="cache">
+            The cache to subscribe to.
+            </param>
+            <param name="skipCacheKeyType">
+            The cache key type of the owning <see cref="T:GreenDonut.IDataLoader"/>.
+            Items with this cache key type will be ignored when subscribing.
+            </param>
+        </member>
+        <member name="T:GreenDonut.Predicates.DefaultPredicateBuilder">
+            <summary>
+            A default implementation of the <see cref="T:GreenDonut.Predicates.IPredicateBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Predicates.DefaultPredicateBuilder.Add``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.Predicates.DefaultPredicateBuilder.TryCompile``1">
+            <inheritdoc />
+        </member>
+        <member name="T:GreenDonut.Predicates.IPredicateBuilder">
+            <summary>
+            The predicate builder helps you create a combined predicate expression
+            by adding multiple expressions together.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Predicates.IPredicateBuilder.Add``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Adds a predicate expression to the builder.
+            </summary>
+            <param name="selector">
+            An expression that defines how to select data from the data source.
+            </param>
+            <typeparam name="T">
+            The type of the data source.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.Predicates.IPredicateBuilder.TryCompile``1">
+            <summary>
+            Combines all the added predicate expressions into one.
+            Returns null if no expressions were added.
+            </summary>
+            <typeparam name="T">
+            The type of the data source.
+            </typeparam>
+            <returns>
+            A combined predicate expression, or null if none were added.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.Predicates.IPredicateDataLoader`2">
+            <summary>
+            A predicate DataLoader is a specialized version of a DataLoader that
+            selects a subset of data based on a given predicate from the original DataLoader.
+            The data retrieved by this DataLoader is not shared with other DataLoaders and
+            remains isolated within this instance.
+            </summary>
+            <typeparam name="TKey">
+            The type of the key.
+            </typeparam>
+            <typeparam name="TValue">
+            The type of the value.
+            </typeparam>
+        </member>
+        <member name="P:GreenDonut.Predicates.IPredicateDataLoader`2.Root">
+            <summary>
+            Gets the root DataLoader instance from which this instance was derived.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.Predicates.PredicateDataLoaderExtensions">
+            <summary>
+            Data loader extensions for predicates.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Predicates.PredicateDataLoaderExtensions.Where``2(GreenDonut.IDataLoader{``0,``1},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
+            <summary>
+            Branches a DataLoader and applies a predicate to filter the data.
+            </summary>
+            <param name="dataLoader">
+            The DataLoader to branch.
+            </param>
+            <param name="predicate">
+            The data predicate.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <returns>
+            Returns a branched DataLoader with the predicate applied.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.Predicates.PredicateDataLoaderExtensions.Where``1(System.Linq.IQueryable{``0},GreenDonut.Predicates.IPredicateBuilder)">
+            <summary>
+            Applies the predicate from the DataLoader state to a queryable.
+            </summary>
+            <param name="query">
+            The queryable to apply the predicate to.
+            </param>
+            <param name="builder">
+            The predicate builder.
+            </param>
+            <typeparam name="T">
+            The queryable type.
+            </typeparam>
+            <returns>
+            Returns a query with the predicate applied, ready to fetch data with the key.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="query"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="T:GreenDonut.Promise`1">
+            <summary>
+            Represents a promise to fetch data within the DataLoader.
+            A promise can be based on the actual value,
+            a <see cref="T:System.Threading.Tasks.Task`1"/>,
+            or a <see cref="T:System.Threading.Tasks.TaskCompletionSource`1"/>.
+            </summary>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:GreenDonut.Promise`1.#ctor(`0)">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.Promise`1"/> class
+            </summary>
+            <param name="value">
+            The actual value of the promise.
+            </param>
+        </member>
+        <member name="M:GreenDonut.Promise`1.#ctor(System.Threading.Tasks.Task{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:GreenDonut.Promise`1"/> class
+            </summary>
+            <param name="task">
+            The task that represents the promise.
+            </param>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="task"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="P:GreenDonut.Promise`1.Task">
+            <summary>
+            Gets the task that represents the promise.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.Promise`1.IsClone">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.Promise`1.TrySetResult(`0)">
+            <summary>
+            Tries to set the result of the async work for this promise.
+            </summary>
+            <param name="result">
+            The result of the async work.
+            </param>
+        </member>
+        <member name="M:GreenDonut.Promise`1.TrySetError(System.Exception)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.Promise`1.TryCancel">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.Promise`1.OnComplete``1(System.Action{GreenDonut.Promise{`0},``0},``0)">
+            <summary>
+            Registers a callback that will be called when the promise is completed.
+            </summary>
+            <param name="callback">
+            The callback that will be called when the promise is completed.
+            </param>
+            <param name="state">
+            The state that will be passed to the callback.
+            </param>
+            <typeparam name="TState">
+            The type of the state.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.Promise`1.Clone">
+            <summary>
+            Clones this promise.
+            </summary>
+            <returns>
+            Returns a new instance of <see cref="T:GreenDonut.Promise`1"/>.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.Promise`1.Create(System.Boolean)">
+            <summary>
+            Creates a new promise for the specified value type.
+            </summary>
+            <param name="cloned">
+            Marks the promise as a clone.
+            </param>
+            <returns>
+            Returns a new instance of <see cref="T:GreenDonut.Promise`1"/>.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.Promise`1.Create(`0,System.Boolean)">
+            <summary>
+            Creates a new completed promise for the specified value.
+            </summary>
+            <param name="value">
+            The value of the promise.
+            </param>
+            <param name="cloned">
+            Marks the promise as a clone.
+            </param>
+            <returns>
+            Returns a new instance of <see cref="T:GreenDonut.Promise`1"/>.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.Promise`1.op_Implicit(System.Threading.Tasks.TaskCompletionSource{`0})~GreenDonut.Promise{`0}">
+            <summary>
+            Implicitly converts a <see cref="T:System.Threading.Tasks.TaskCompletionSource`1"/> to a promise.
+            </summary>
+            <param name="promise">
+            The <see cref="T:System.Threading.Tasks.TaskCompletionSource`1"/> to convert.
+            </param>
+            <returns>
+            The promise that represents the task completion source.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.PromiseCache">
+            <summary>
+            A memorization cache for <c>DataLoader</c>.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCache.#ctor(System.Int32)">
+            <summary>
+            Creates a new instance of <see cref="T:GreenDonut.PromiseCache"/>.
+            </summary>
+            <param name="size">
+            The size of the cache. The minimum cache size is 10.
+            </param>
+        </member>
+        <member name="P:GreenDonut.PromiseCache.Size">
+            <inheritdoc />
+        </member>
+        <member name="P:GreenDonut.PromiseCache.Usage">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.GetOrAddTask``1(GreenDonut.PromiseCacheKey,System.Func{GreenDonut.PromiseCacheKey,GreenDonut.Promise{``0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.TryAdd``1(GreenDonut.PromiseCacheKey,GreenDonut.Promise{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.TryAdd``1(GreenDonut.PromiseCacheKey,System.Func{GreenDonut.Promise{``0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.TryRemove(GreenDonut.PromiseCacheKey)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.Publish``1(``0)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.PublishMany``1(System.ReadOnlySpan{``0})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.Subscribe``1(System.Action{GreenDonut.IPromiseCache,GreenDonut.Promise{``0}},System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.PromiseCache.Clear">
+            <inheritdoc />
+        </member>
+        <member name="T:GreenDonut.PromiseCacheKey">
+            <summary>
+            The key of a cached task.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheKey.#ctor(System.String,System.Object)">
+            <summary>
+            The key of a cached task.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.PromiseCacheObserver">
+            <summary>
+            Provides factory methods to create <see cref="T:GreenDonut.IPromiseCacheObserver"/>s.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheObserver.Create``2(System.Func{``1,``0},GreenDonut.DataLoaderBase{``0,``1})">
+            <summary>
+            Creates a <see cref="T:GreenDonut.IPromiseCacheObserver"/> that creates lookups.
+            </summary>
+            <param name="createLookup">
+            A delegate to create a lookup key from the cached value.
+            </param>
+            <param name="dataLoader">
+            The data loader that observes the cache.
+            </param>
+            <typeparam name="TKey">
+            The type of the lookup key.
+            </typeparam>
+            <typeparam name="TValue">
+            The type of the cached value.
+            </typeparam>
+            <returns>
+            Returns a new instance of <see cref="T:GreenDonut.IPromiseCacheObserver"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="createLookup"/> is <c>null</c> or
+            if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheObserver.Create``3(System.Func{``2,System.Nullable{System.Collections.Generic.KeyValuePair{``0,``1}}},GreenDonut.DataLoaderBase{``0,``1})">
+            <summary>
+            Creates a <see cref="T:GreenDonut.IPromiseCacheObserver"/> that creates new cache entries from existing cache entries.
+            </summary>
+            <param name="createLookup">
+            A delegate to create a lookup key from the cached value.
+            </param>
+            <param name="dataLoader">
+            The data loader that observes the cache.
+            </param>
+            <typeparam name="TKey">
+            The type of the lookup key.
+            </typeparam>
+            <typeparam name="TValue">
+            The type of the cached value.
+            </typeparam>
+            <typeparam name="TObservedValue">
+            The type of the observed value.
+            </typeparam>
+            <returns>
+            Returns a new instance of <see cref="T:GreenDonut.IPromiseCacheObserver"/>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="createLookup"/> is <c>null</c> or
+            if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="T:GreenDonut.PromiseCacheObserver`1">
+            <summary>
+            The task cache observer allows to subscribe to a task cache
+            and create additional lookups for already cached tasks.
+            </summary>
+            <typeparam name="TValue">
+            The type of the cached value.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheObserver`1.OnNext(GreenDonut.IPromiseCache,GreenDonut.Promise{`0})">
+            <summary>
+            The method is called when a new task is added to the cache.
+            </summary>
+            <param name="cache"></param>
+            <param name="promise"></param>
+        </member>
+        <member name="T:GreenDonut.PromiseCacheObserverExtensions">
+            <summary>
+            Provides extension methods for <see cref="T:GreenDonut.IPromiseCacheObserver"/>.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheObserverExtensions.Accept``2(GreenDonut.IPromiseCacheObserver,GreenDonut.DataLoaderBase{``0,``1})">
+            <summary>
+            Accepts the cache of the <paramref name="dataLoader"/>
+            </summary>
+            <param name="observer">
+            The <see cref="T:GreenDonut.IPromiseCacheObserver"/> to accept the cache.
+            </param>
+            <param name="dataLoader">
+            The <see cref="T:GreenDonut.DataLoaderBase`2"/> to accept the cache from.
+            </param>
+            <typeparam name="TKey">
+            The type of the cache key.
+            </typeparam>
+            <typeparam name="TValue">
+            The type of the cache value.
+            </typeparam>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="observer"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="T:GreenDonut.PromiseCacheOwner">
+            <summary>
+            Owner of <see cref="T:GreenDonut.PromiseCache"/> that is responsible for returning the rented
+            <see cref="T:GreenDonut.PromiseCache"/> appropriately to the <see cref="T:Microsoft.Extensions.ObjectPool.ObjectPool`1"/>.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheOwner.#ctor">
+            <summary>
+            Rents a new cache from <see cref="P:GreenDonut.PromiseCachePool.Shared"/>.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheOwner.#ctor(Microsoft.Extensions.ObjectPool.ObjectPool{GreenDonut.PromiseCache})">
+            <summary>
+            Rents a new cache from the given <paramref name="pool"/>.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.PromiseCacheOwner.Cache">
+            <summary>
+            Gets the rented cache.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCacheOwner.Dispose">
+            <summary>
+            Returns the rented cache back to the <see cref="T:Microsoft.Extensions.ObjectPool.ObjectPool`1"/>.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.PromiseCachePool">
+            <summary>
+            This helper class gives easy access to cache pool factories and the shared cache pool.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.PromiseCachePool.Shared">
+            <summary>
+            The shared cache pool that is used when no cache was provided through the options.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.PromiseCachePool.Create(System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Extensions.ObjectPool.DefaultObjectPool`1"/>.
+            </summary>
+            <param name="cacheSize">
+            The size of pooled caches.
+            </param>
+            <param name="maximumRetained">
+            The maximum number of objects to retain in the pool.
+            </param>
+            <returns>
+            Returns the newly created instance of <see cref="T:Microsoft.Extensions.ObjectPool.DefaultObjectPool`1"/>.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.PromiseCachePool.Create(Microsoft.Extensions.ObjectPool.ObjectPoolProvider,System.Int32)">
+            <summary>
+            Creates an instance of <see cref="T:Microsoft.Extensions.ObjectPool.DefaultObjectPool`1"/>.
+            </summary>
+            <param name="provider">
+            The Provider to create the <see cref="T:Microsoft.Extensions.ObjectPool.DefaultObjectPool`1"/> instance.
+            </param>
+            <param name="cacheSize">
+            The size of pooled caches.
+            </param>
+            <returns>
+            Returns the newly created instance of <see cref="T:Microsoft.Extensions.ObjectPool.DefaultObjectPool`1"/>.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.Result`1">
+            <summary>
+            A wrapper for a single value which could contain a valid value or any
+            error.
+            </summary>
+            <typeparam name="TValue">A value type.</typeparam>
+        </member>
+        <member name="M:GreenDonut.Result`1.#ctor(`0)">
+            <summary>
+            Creates a new value result.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:GreenDonut.Result`1.#ctor(System.Exception)">
+            <summary>
+            Creates a new error result.
+            </summary>
+            <param name="error">
+            The error.
+            </param>
+        </member>
+        <member name="P:GreenDonut.Result`1.Kind">
+            <summary>
+            Gets a value indicating whether the result is an error, a value or undefined.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.Result`1.Value">
+            <summary>
+            Gets the value. If <see cref="P:GreenDonut.Result`1.Kind"/> is <see cref="F:GreenDonut.ResultKind.Error"/>, returns
+            <c>null</c> or <c>default</c> depending on its type.
+            </summary>
+        </member>
+        <member name="P:GreenDonut.Result`1.Error">
+            <summary>
+            Gets an error If <see cref="P:GreenDonut.Result`1.Kind"/> is <see cref="F:GreenDonut.ResultKind.Error"/>;
+            otherwise <c>null</c>.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Result`1.Reject(System.Exception)">
+            <summary>
+            Creates a new error result.
+            </summary>
+            <param name="error">An arbitrary error.</param>
+            <returns>An error result.</returns>
+        </member>
+        <member name="M:GreenDonut.Result`1.Reject``1(``0)">
+            <summary>
+            Creates a new error result.
+            </summary>
+            <param name="key">
+            The ket that could not be resolved.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <returns>
+            An error result.
+            </returns>
+        </member>
+        <member name="M:GreenDonut.Result`1.Resolve(`0)">
+            <summary>
+            Creates a new value result.
+            </summary>
+            <param name="value">An arbitrary value.</param>
+            <returns>A value result.</returns>
+        </member>
+        <member name="M:GreenDonut.Result`1.op_Implicit(System.Exception)~GreenDonut.Result{`0}">
+            <summary>
+            Creates a new error result or a null result.
+            </summary>
+            <param name="error">An arbitrary error.</param>
+        </member>
+        <member name="M:GreenDonut.Result`1.op_Implicit(`0)~GreenDonut.Result{`0}">
+            <summary>
+            Creates a new value result.
+            </summary>
+            <param name="value">An arbitrary value.</param>
+        </member>
+        <member name="M:GreenDonut.Result`1.op_Implicit(GreenDonut.Result{`0})~System.Exception">
+            <summary>
+            Extracts the error from a result.
+            </summary>
+            <param name="result">An arbitrary result.</param>
+        </member>
+        <member name="M:GreenDonut.Result`1.op_Implicit(GreenDonut.Result{`0})~`0">
+            <summary>
+            Extracts the value from a result.
+            </summary>
+            <param name="result">An arbitrary result.</param>
+        </member>
+        <member name="T:GreenDonut.ResultKind">
+            <summary>
+            Defines the type of result.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.ResultKind.Undefined">
+            <summary>
+            The result is undefined and is neither <see cref="F:GreenDonut.ResultKind.Value"/> or <see cref="F:GreenDonut.ResultKind.Error"/>.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.ResultKind.Value">
+            <summary>
+            The result is a value.
+            </summary>
+        </member>
+        <member name="F:GreenDonut.ResultKind.Error">
+            <summary>
+            The result is an error.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.Selectors.DefaultSelectorBuilder">
+            <summary>
+            A default implementation of the <see cref="T:GreenDonut.Selectors.ISelectorBuilder"/>.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Selectors.DefaultSelectorBuilder.Add``1(System.Linq.Expressions.Expression{System.Func{``0,``0}})">
+            <inheritdoc />
+        </member>
+        <member name="M:GreenDonut.Selectors.DefaultSelectorBuilder.TryCompile``1">
+            <inheritdoc />
+        </member>
+        <member name="T:GreenDonut.Selectors.ISelectionDataLoader`2">
+            <summary>
+            A selection DataLoader is a version of a DataLoader that
+            selects a different shape of data of the original DataLoader.
+            The data that is fetched with this DataLoader version is
+            not propagated to other DataLoader and is isolated within the
+            DataLoader instance. This allows to fetch the data in an optimized
+            way for specific uses cases.
+            </summary>
+            <typeparam name="TKey">
+            The type of the key.
+            </typeparam>
+            <typeparam name="TValue">
+            The type of the value.
+            </typeparam>
+        </member>
+        <member name="P:GreenDonut.Selectors.ISelectionDataLoader`2.Root">
+            <summary>
+            Gets the root DataLoader instance from which this instance was branched off.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.Selectors.ISelectorBuilder">
+            <summary>
+            The selector builder allows to build up a selector expression
+            by adding expressions that will be merged into a
+            single selector expression.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Selectors.ISelectorBuilder.Add``1(System.Linq.Expressions.Expression{System.Func{``0,``0}})">
+            <summary>
+            Adds a selector expression to the builder.
+            </summary>
+            <param name="selector">
+            A selector expression that specifies
+            what data shall be fetched from
+            the data source.
+            </param>
+            <typeparam name="T">
+            The type of the data source.
+            </typeparam>
+        </member>
+        <member name="M:GreenDonut.Selectors.ISelectorBuilder.TryCompile``1">
+            <summary>
+            Merges all added selector expressions into a single
+            selector expression that is applied to a query.
+            If null is returned that no selector was ever added.
+            </summary>
+            <typeparam name="T">
+            The type of the data source.
+            </typeparam>
+            <returns>
+            Returns a compiled selector expression or null if no
+            selector was added.
+            </returns>
+        </member>
+        <member name="T:GreenDonut.Selectors.KeyValueResult`2">
+            <summary>
+            This class is a helper that is used to project a key value pair.
+            </summary>
+        </member>
+        <member name="T:GreenDonut.Selectors.SelectionDataLoaderExtensions">
+            <summary>
+            Data loader extensions for projections.
+            </summary>
+        </member>
+        <member name="M:GreenDonut.Selectors.SelectionDataLoaderExtensions.Select``3(GreenDonut.IDataLoader{``0,``1},System.Linq.Expressions.Expression{System.Func{``2,``2}})">
+            <summary>
+            Branches a DataLoader and applies a selector to load the data.
+            </summary>
+            <param name="dataLoader">
+            The DataLoader to branch.
+            </param>
+            <param name="selector">
+            The data selector.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <typeparam name="TElement">
+            The element type.
+            </typeparam>
+            <returns>
+            Returns a branched DataLoader with the selector applied.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.Selectors.SelectionDataLoaderExtensions.Include``2(GreenDonut.IDataLoader{``0,``1},System.Linq.Expressions.Expression{System.Func{``1,System.Object}})">
+            <summary>
+            Includes a property in the query.
+            </summary>
+            <param name="dataLoader">
+            The DataLoader to include the property in.
+            </param>
+            <param name="includeSelector">
+            The property selector.
+            </param>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <returns>
+            Returns the DataLoader with the property included.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="dataLoader"/> is <c>null</c>.
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            Throws if the include selector is not a property selector.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.Selectors.SelectionDataLoaderExtensions.Select``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}},GreenDonut.Selectors.ISelectorBuilder)">
+            <summary>
+            Applies the selector from the DataLoader state to a queryable.
+            </summary>
+            <param name="query">
+             The queryable to apply the selector to.
+            </param>
+            <param name="key">
+            The DataLoader key.
+            </param>
+            <param name="builder">
+             The selector builder.
+            </param>
+            <typeparam name="T">
+            The queryable type.
+            </typeparam>
+            <returns>
+            Returns a selector query on which a key must be applied to fetch the data.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws if <paramref name="query"/> is <c>null</c>.
+            </exception>
+        </member>
+        <member name="M:GreenDonut.Selectors.SelectionDataLoaderExtensions.Select``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``2}}},GreenDonut.Selectors.ISelectorBuilder)">
+            <summary>
+            Applies the selector from the DataLoader state to a queryable.
+            </summary>
+            <param name="query">
+            The queryable to apply the selector to.
+            </param>
+            <param name="key">
+            The DataLoader key.
+            </param>
+            <param name="list">
+            The list selector.
+            </param>
+            <param name="elementSelector">
+            The element selector.
+            </param>
+            <typeparam name="T">
+            The queryable type.
+            </typeparam>
+            <typeparam name="TKey">
+            The key type.
+            </typeparam>
+            <typeparam name="TValue">
+            The value type.
+            </typeparam>
+            <returns>
+            Returns a selector query on which a key must be applied to fetch the data.
+            </returns>
+        </member>
+    </members>
+</doc>

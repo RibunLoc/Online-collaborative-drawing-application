@@ -152,6 +152,7 @@
             this.iconButton2.Text = "Xóa";
             this.iconButton2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.iconButton2.UseVisualStyleBackColor = true;
+            this.iconButton2.Click += new System.EventHandler(this.iconButton2_Click);
             // 
             // Bar_btn_2
             // 
@@ -231,7 +232,9 @@
             // rtb_content
             // 
             this.rtb_content.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.rtb_content.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.rtb_content.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtb_content.Enabled = false;
             this.rtb_content.Location = new System.Drawing.Point(0, 0);
             this.rtb_content.Margin = new System.Windows.Forms.Padding(4);
             this.rtb_content.Name = "rtb_content";
@@ -253,8 +256,8 @@
             // tb_chat
             // 
             this.tb_chat.BackColor = System.Drawing.SystemColors.Window;
-            this.tb_chat.BorderColor = System.Drawing.SystemColors.ActiveCaption;
-            this.tb_chat.BorderFocusColor = System.Drawing.SystemColors.Info;
+            this.tb_chat.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(168)))), ((int)(((byte)(178)))));
+            this.tb_chat.BorderFocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(230)))), ((int)(((byte)(240)))));
             this.tb_chat.BorderRadius = 0;
             this.tb_chat.BorderSize = 2;
             this.tb_chat.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -273,6 +276,7 @@
             this.tb_chat.Texts = "";
             this.tb_chat.UnderlinedStyle = false;
             this.tb_chat._TextChanged += new System.EventHandler(this.tb_chat__TextChanged);
+            this.tb_chat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_chat_KeyPress);
             // 
             // btn_Send
             // 
@@ -331,6 +335,7 @@
             // btn_AnIcon
             // 
             this.btn_AnIcon.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.btn_AnIcon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_AnIcon.Dock = System.Windows.Forms.DockStyle.Left;
             this.btn_AnIcon.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_AnIcon.Font = new System.Drawing.Font("Segoe UI", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
@@ -397,6 +402,7 @@
             this.Name = "Draw";
             this.Text = "Draw";
             this.Load += new System.EventHandler(this.Draw_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Draw_KeyPress);
             this.panel1.ResumeLayout(false);
             this.panelCodeRoom.ResumeLayout(false);
             this.panelCodeRoom.PerformLayout();

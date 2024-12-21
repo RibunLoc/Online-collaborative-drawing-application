@@ -67,7 +67,7 @@ namespace ProjectTeam
                 //chạy tải dữ liệu không đồng bộ
 
                 var danhsachphong = new List<Room>();
-                var dbHelper = new DatabaseHelper("ep-blue-pond-a5kovr60-pooler.us-east-2.aws.neon.tech", 5432, "neondb", "ThanhLoc", "4XGEjWJphk9R");
+                var dbHelper = new DatabaseHelper();
 
                 await Task.Run(() =>
                 {
@@ -86,7 +86,7 @@ namespace ProjectTeam
                             Progressbar.Value = progress;
 
                         }));
-                        Task.Delay(100).Wait();
+                        //Task.Delay(100).Wait();
                     }
                 });
                 

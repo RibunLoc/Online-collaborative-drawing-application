@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
@@ -16,6 +17,9 @@ using System.Windows.Controls;
 using System.Net;
 using System.Net.Http;
 using System.Collections.Concurrent;
+using System.Windows.Shapes;
+using Path = System.IO.Path;
+using System.Web.WebSockets;
 
 namespace ProjectTeam
 {
@@ -40,8 +44,10 @@ namespace ProjectTeam
         private string previous_form;
         private string roomId = GlobalVariables.Maphong;
         private SortedList<int, (Point start, Point end)> pendingLines = new SortedList<int, (Point, Point)>();
-
-
+        private bool EarseMode = false;
+        private bool PenMode = false;
+        private Cursor CursorCustom;
+        private Cursor CursorEraser;
         public class DrawingPoint
         {
             public Point point;
@@ -86,6 +92,19 @@ namespace ProjectTeam
                 panel_Draw,
                 new object[] { true }
             );
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string projectDirectory = Directory.GetParent(basePath).Parent.Parent.FullName;
+
+            string cursorPath = Path.Combine(projectDirectory, "Cursor", "pencil.cur");
+            CursorCustom = new Cursor(cursorPath);
+
+            string EraserPath = Path.Combine(projectDirectory, "Cursor", "eraser.cur");
+            CursorEraser = new Cursor(EraserPath);
+
+
+
+
+
 
 
 
@@ -94,8 +113,8 @@ namespace ProjectTeam
             drawConnection = new DrawConnection("127.0.0.1", 5000, roomId, user.name);
 
             drawConnection.isConnected = true;
-            
 
+            tb_chat.PlaceholderText = user.name + " Trò chuyện.....";
 
             panel_Draw.MouseDown += Panel_Draw_MouseDown;
             panel_Draw.MouseUp += Panel_Draw_MouseUp;
@@ -196,13 +215,59 @@ namespace ProjectTeam
 
         }
 
+        // Phương thức tính khoảng cách từ điểm p đến đoạn thẳng ab
+        private double DistancePointToLine(Point p, Point a, Point b)
+        {
+            double A = p.X - a.X;
+            double B = p.Y - a.Y;
+            double C = b.X - a.X;
+            double D = b.Y - a.Y;
+
+            double dot = A * C + B * D;
+            double len_sq = C * C + D * D;
+            double param = -1;
+            if (len_sq != 0) // tránh chia cho 0
+                param = dot / len_sq;
+
+            double xx, yy;
+
+            if (param < 0)
+            {
+                xx = a.X;
+                yy = a.Y;
+            }
+            else if (param > 1)
+            {
+                xx = b.X;
+                yy = b.Y;
+            }
+            else
+            {
+                xx = a.X + param * C;
+                yy = a.Y + param * D;
+            }
+
+            double dx = p.X - xx;
+            double dy = p.Y - yy;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
 
         private void Panel_Draw_MouseMove(object sender, MouseEventArgs e)
         {
+
+            if (EarseMode)
+            {
+                this.Cursor = CursorEraser;
+            }else if (PenMode)
+            {
+                this.Cursor = CursorCustom;
+            }else
+            {
+                this.Cursor = Cursors.Default;
+            }
+
             if (isDrawing && e.Button == MouseButtons.Left)
             {
-                
-
                 DrawingPoint currentPoint = new DrawingPoint();
                 currentPoint.point = e.Location;
                 currentPoint.isLastStroke = false;
@@ -210,27 +275,64 @@ namespace ProjectTeam
 
                 if (previousPoint != null && !previousPoint.isLastStroke)
                 {
-                   lock (lines)
+                    lock (lines)
                     {
-                        lines.Add((previousPoint.point, currentPoint.point));  
+                        if (EarseMode)
+                        {
+                            //Tìm xóa điểm Lines
+                            double threhold = 5.0;
+
+                            var linesToRemove = lines.Where(line => DistancePointToLine(currentPoint.point, line.start, line.end) <= threhold).ToList() ;
+
+
+                            foreach(var line in linesToRemove)
+                            {
+                                lines.Remove(line);
+                                DrawingPoint start = new DrawingPoint();
+                                DrawingPoint end = new DrawingPoint();
+
+                                start.point = line.start ;
+                                start.isLastStroke = false;
+
+                                end.point = line.end;
+                                end.isLastStroke = true;
+                               
+                                SendDrawDataToServer(start, end);
+                            }
+
+                            if (linesToRemove.Count > 0)
+                            {
+                                panel_Draw.Invalidate();
+                            }
+
+                        } else if (PenMode)
+                        {
+                            lines.Add((previousPoint.point, currentPoint.point));
+                            SendDrawDataToServer(previousPoint, currentPoint);
+
+                        } else
+                        {
+                            // Chức năng khác 
+                        }
                     }
 
-                    SendDrawDataToServer(previousPoint, currentPoint);
+                    
                 }
 
                 panel_Draw.Invalidate();
                 // Cập nhật điểm trước đó
                 previousPoint = currentPoint;
                 
-                points.Add(currentPoint);
+                
             }
         }
 
         private void Panel_Draw_MouseDown(object sender, MouseEventArgs e)
         {
+              
             isDrawing = true;
             previousPoint = new DrawingPoint { point = e.Location, isLastStroke = false };
-            points.Add(previousPoint); // Lưu điểm bắt đầu
+            
         }
 
         private void Panel_Draw_MouseUp(object sender, MouseEventArgs e)
@@ -243,12 +345,7 @@ namespace ProjectTeam
             previousPoint = null; // Reset điểm trước đó để tránh nối lại điểm khi bắt đầu vẽ mới
         }
 
-        private async void SendDrawDataToServer(DrawingPoint start, DrawingPoint end)
-        {        
-            string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}\n";
-            await drawConnection.GuiDuLieuAsync(DulieuVe);
 
-        }
 
 
         private void DrawLinesFromList(Graphics g)
@@ -300,6 +397,19 @@ namespace ProjectTeam
             }
         }
 
+        private async void SendDrawDataToServer(DrawingPoint start, DrawingPoint end)
+        {
+            string mode = " ";
+            if (EarseMode)
+                mode = "erase";
+            else
+                mode = "draw";
+
+            string DulieuVe = $"{mode}:{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}\n";
+            await drawConnection.GuiDuLieuAsync(DulieuVe);
+
+        }
+
         private void ProcessLine(string line)
         {
             try
@@ -308,21 +418,39 @@ namespace ProjectTeam
                 {
                     string messeage = line.Substring(5);
                     HienThiTinNhanChat(messeage);
-                }else
+                }else if (line.StartsWith("draw") ||line.StartsWith("erase"))
                 {
-                    string[] parts = line.Split(',');
+                   
+                    string[] parts = line.Split(':');
+
+                    string mode = parts[0]; // draw hoac erase
+                    string[] ToaDoDiem = parts[1].Split(',');
+
                     int x1, x2;
                     int y1, y2;
-                    x1 = int.Parse(parts[0]); y1 = int.Parse(parts[1]);
+                    x1 = int.Parse(ToaDoDiem[0]); y1 = int.Parse(ToaDoDiem[1]);
 
-                    x2 = int.Parse(parts[2]); y2 = int.Parse(parts[3]);
+                    x2 = int.Parse(ToaDoDiem[2]); y2 = int.Parse(ToaDoDiem[3]);
 
                     Point start = new Point(x1, y1);
                     Point end = new Point(x2, y2);
 
-                  
-                    drawQueue.Enqueue((start, end));
+                    if (mode == "erase")
+                    {
+                        // xoa net ve
+                        lock (lines)
+                        {
+                            lines.Remove((start, end));
+                        }    
+                       
+                    }
+                    else
+                    {
+                        drawQueue.Enqueue((start, end));
+                    }
                 }
+
+                panel_Draw.Invoke(new Action(() => { panel_Draw.Invalidate(); }));
                  
             }catch (Exception ex) 
             {
@@ -373,12 +501,6 @@ namespace ProjectTeam
 
         }
 
-        private void Bar_btn_2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void btn_Thoat_Click(object sender, EventArgs e)
         {
 
@@ -428,8 +550,8 @@ namespace ProjectTeam
                 panel_KhungChat.Dock = DockStyle.None;
                 panel_KhungChat.Height = 47;
                 panel_KhungChat.Location = new Point(x, panel_KhungChat.Location.Y);
-                
-                
+                btn_AnIcon.IconChar = FontAwesome.Sharp.IconChar.Unsorted;
+                btn_AnIcon.Text = "Mở rộng";
             }
             else // 
             {
@@ -440,7 +562,9 @@ namespace ProjectTeam
                 rtb_content.Visible = true;
                 tb_chat.Visible = true;
                 btn_Send.Visible = true;
-            
+
+                btn_AnIcon.Text = "Thu gọn";
+                btn_AnIcon.IconChar = FontAwesome.Sharp.IconChar.SquareMinus;
             }
         }
 
@@ -459,14 +583,91 @@ namespace ProjectTeam
 
         private void btn_Send_Click(object sender, EventArgs e)
         {
+           string userinput = tb_chat.Texts.Trim();
 
-            string messeage = $"{user.name}: {tb_chat.Texts}";
-            SendChatToServer(messeage);
-            HienThiTinNhanChat(messeage);
-         
+            if (!(userinput == ""))
+            {
+                string messeage = $"{user.name}: {tb_chat.Texts}";
+                SendChatToServer(messeage);
+                HienThiTinNhanChat(messeage);
+                tb_chat.Texts = "";
+                tb_chat.PlaceholderText = user.name + " Trò chuyện.....";
+            }
+           
+        }
+
+
+        private void Bar_btn_2_Click(object sender, EventArgs e)
+        {
+            PenMode = !PenMode;
+            if (EarseMode)
+            {
+                iconButton2.BackColor = Color.FromArgb(60, 61, 55);
+                EarseMode = false;
+            }
+
+            if (PenMode)
+            {
+                Bar_btn_2.BackColor = Color.Gray;
+            }
+            else
+            {
+                Bar_btn_2.BackColor = Color.FromArgb(60, 61, 55);
+            }
+            
+
+        }
+        private void iconButton2_Click(object sender, EventArgs e) // ấn nút xóa
+        {
+            EarseMode = !EarseMode;
+
+            if (PenMode)
+            {
+                Bar_btn_2.BackColor = Color.FromArgb(60, 61, 55);
+                PenMode = false;
+            }
+
+            if (EarseMode)
+            {
+                iconButton2.BackColor = Color.Gray;
+            }
+            else
+            {
+              
+                iconButton2.BackColor = Color.FromArgb(60, 61, 55);
+            }
+        }
+
+        private void Draw_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+            
+        }
+
+        private void tb_chat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                if (BienCoThuGon)
+                {
+                    btn_Send.Focus();
+                    btn_Send.PerformClick();
+                    e.Handled = true;
+                   
+                }
+
+
+
+
+            } 
+              
+            
         }
     }
+
+
 }
+
 
 
 
