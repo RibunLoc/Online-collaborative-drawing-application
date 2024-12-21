@@ -37,6 +37,39 @@
     <Reference Include="FontAwesome.Sharp, Version=6.6.0.0, Culture=neutral, PublicKeyToken=d16d1e4e568ec10f, processorArchitecture=MSIL">
       <HintPath>..\packages\FontAwesome.Sharp.6.6.0\lib\net48\FontAwesome.Sharp.dll</HintPath>
     </Reference>
+    <Reference Include="GreenDonut, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GreenDonut.14.3.0\lib\netstandard2.0\GreenDonut.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Abstractions, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Abstractions.14.3.0\lib\netstandard2.0\HotChocolate.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Features, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Features.14.3.0\lib\netstandard2.0\HotChocolate.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Language, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Language.14.3.0\lib\netstandard2.0\HotChocolate.Language.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Language.SyntaxTree, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Language.SyntaxTree.14.3.0\lib\netstandard2.0\HotChocolate.Language.SyntaxTree.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Language.Utf8, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Language.Utf8.14.3.0\lib\netstandard2.0\HotChocolate.Language.Utf8.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Language.Visitors, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Language.Visitors.14.3.0\lib\netstandard2.0\HotChocolate.Language.Visitors.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Language.Web, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Language.Web.14.3.0\lib\netstandard2.0\HotChocolate.Language.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Primitives, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Primitives.14.3.0\lib\netstandard2.0\HotChocolate.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Types.Shared, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Types.Shared.14.3.0\lib\netstandard2.0\HotChocolate.Types.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="HotChocolate.Utilities, Version=14.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HotChocolate.Utilities.14.3.0\lib\netstandard2.0\HotChocolate.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.2.2.3.1\lib\net48\MaterialSkin.dll</HintPath>
     </Reference>
@@ -88,6 +121,9 @@
     <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.8.0.2\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.ObjectPool, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.6.0.0\lib\net461\Microsoft.Extensions.ObjectPool.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Options, Version=8.0.0.2, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Options.8.0.2\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
     </Reference>
@@ -117,6 +153,9 @@
     </Reference>
     <Reference Include="System.Collections.Immutable, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.8.0.0\lib\net462\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -300,6 +339,7 @@
     <Compile Include="ThamGiaPhongVe.Designer.cs">
       <DependentUpon>ThamGiaPhongVe.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\Pencil.bmp" />
     <EmbeddedResource Include="Draw.resx">
       <DependentUpon>Draw.cs</DependentUpon>
     </EmbeddedResource>
@@ -331,6 +371,8 @@
     <EmbeddedResource Include="SanhChinh.resx">
       <DependentUpon>SanhChinh.cs</DependentUpon>
     </EmbeddedResource>
+    <Content Include="Cursor\eraser.cur" />
+    <Content Include="Cursor\pencilColor.cur" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -373,6 +415,7 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="Cursor\pencil.cur" />
     <Content Include="Resources\logout.png" />
   </ItemGroup>
   <ItemGroup>
