@@ -393,5 +393,10 @@ namespace ProjectTeam
         {
 
         }
+
+        private void iconButton4_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new LuuBanVe(UserInfo));
+        }
     }
 }
