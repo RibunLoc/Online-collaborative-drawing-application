@@ -29,6 +29,13 @@ namespace ProjectTeam
 
         private void SignUp_Load(object sender, EventArgs e)
         {
+            KhoiTaoHopNhap();
+           
+            
+        }
+
+        private void KhoiTaoHopNhap()
+        {
             //txtUsername
             txtUsername.Text = "Nhập email đăng nhập...";
             txtUsername.ForeColor = Color.Gray;
@@ -42,9 +49,12 @@ namespace ProjectTeam
 
             txtPassword.Enter += txtPassword_Enter;
             txtPassword.Leave += txtPassword_Leave;
+            txtPassword.PasswordChar = '*'; // ẩn văn bản
 
-            
+
+
         }
+
 
         private void txtUsername_TextChanged_1(object sender, EventArgs e)
         {
@@ -58,6 +68,7 @@ namespace ProjectTeam
             {
                 txtUsername.Text = "Nhập email đăng nhập...";
                 txtUsername.ForeColor = Color.Gray;
+                
             }
         }
 
@@ -67,6 +78,7 @@ namespace ProjectTeam
             {
                 txtUsername.Text = "";
                 txtUsername.ForeColor = Color.Black;
+                
             }
         }
         //
@@ -78,6 +90,7 @@ namespace ProjectTeam
             {
                 txtPassword.Text = "";
                 txtPassword.ForeColor = Color.Black;
+                
             }    
         }
 
@@ -87,11 +100,13 @@ namespace ProjectTeam
             {
                 txtPassword.Text = "Nhập mật khẩu...";
                 txtPassword.ForeColor = Color.Gray; // Hiển thị màu chữ mặc định
+               
             }
         }
 
         private void btnShowHide_Click(object sender, EventArgs e) // ẩn hay hiện mật khẩu
         {
+            isClicked = !isClicked;
             if (!isClicked)
             {
                 txtPassword.PasswordChar = '*'; // ẩn văn bản
@@ -103,10 +118,7 @@ namespace ProjectTeam
                 txtPassword.PasswordChar = '\0'; // hiển thị văn bản gốc
                 btnShowHide.ImageIndex = 0; // Đặt mắt mở
             }
-            isClicked = !isClicked;
         }
-        ///
-
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -129,30 +141,66 @@ namespace ProjectTeam
         {
             this.Controls.Clear();
             InitializeComponent();
+            KhoiTaoHopNhap();
         }
 
         private void btnLogin_Click_1(object sender, EventArgs e)
         {
-            string email = txtUsername.Text;
+            string email = txtUsername.Text.Trim();
             string password = txtPassword.Text.Trim();
+            string checkUsername = "Nhập email đăng nhập...";
+            string checkPassword = "Nhập mật khẩu...";
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || email.Equals(checkUsername) || password.Equals(checkPassword))
+            {
+                MessageBox.Show("Xin vui lòng điền đầy đủ thông tin đăng nhập!", "Thông báo");
+                return;
+            }
+
             string HashPassword = HamMaHoa.HamBamSha256(password);
-
-            if (databaseHelper.NguoiDungDangNhap(email, HashPassword))
+            try
             {
-                username = email;
-                MessageBox.Show("Đăng nhập thành công!", "Thông báo");
-                this.DialogResult = DialogResult.OK;
+                Cursor = Cursors.WaitCursor;
+                if (databaseHelper.NguoiDungDangNhap(email, HashPassword))
+                {
+                    username = email;
+                    MessageBox.Show("Đăng nhập thành công!", "Thông báo");
+                    this.DialogResult = DialogResult.OK;
+                    Cursor = Cursors.Default;
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thất bại. Kiểm tra lại thông tin.", "Lõi");
+                    Cursor = Cursors.Default;
+                }
+            }
+            catch (Exception ex)
+            {
 
             }
-            else
+            finally 
             {
-                MessageBox.Show("Đăng nhập thất bại. Kiểm tra lại thông tin.", "Lõi");
+                Cursor.Current = Cursors.Default;
             }
+           
         }
 
         private void PanelPassword_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void PanelUsername_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void EnterKeyLogin(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnLogin.PerformClick();
+            }
         }
     }
 }

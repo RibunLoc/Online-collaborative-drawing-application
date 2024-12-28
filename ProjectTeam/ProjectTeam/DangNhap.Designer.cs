@@ -32,7 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangNhap));
             this.lblTitle = new System.Windows.Forms.Label();
             this.Panel_login = new System.Windows.Forms.Panel();
-            this.btnLogin = new ProjectTeam.Controls.RJButton();
             this.PanelPassword = new System.Windows.Forms.Panel();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnShowHide = new System.Windows.Forms.Button();
@@ -43,6 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.img_title = new System.Windows.Forms.PictureBox();
+            this.btnLogin = new ProjectTeam.Controls.RJButton();
             this.Panel_login.SuspendLayout();
             this.PanelPassword.SuspendLayout();
             this.PanelUsername.SuspendLayout();
@@ -81,29 +81,6 @@
             this.Panel_login.Size = new System.Drawing.Size(765, 775);
             this.Panel_login.TabIndex = 1;
             // 
-            // btnLogin
-            // 
-            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogin.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnLogin.BackgroundColor = System.Drawing.Color.SteelBlue;
-            this.btnLogin.BorderColor = System.Drawing.Color.Black;
-            this.btnLogin.BorderRadius = 40;
-            this.btnLogin.BorderSize = 0;
-            this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(200, 613);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(217, 62);
-            this.btnLogin.TabIndex = 9;
-            this.btnLogin.Text = "Đăng nhập";
-            this.btnLogin.TextColor = System.Drawing.Color.White;
-            this.btnLogin.UseVisualStyleBackColor = false;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
-            // 
             // PanelPassword
             // 
             this.PanelPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -130,6 +107,7 @@
             this.txtPassword.Size = new System.Drawing.Size(407, 30);
             this.txtPassword.TabIndex = 5;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtUsername_TextChanged_1);
+            this.txtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterKeyLogin);
             // 
             // btnShowHide
             // 
@@ -181,6 +159,7 @@
             this.PanelUsername.Padding = new System.Windows.Forms.Padding(16);
             this.PanelUsername.Size = new System.Drawing.Size(491, 60);
             this.PanelUsername.TabIndex = 6;
+            this.PanelUsername.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelUsername_Paint);
             // 
             // txtUsername
             // 
@@ -195,6 +174,7 @@
             this.txtUsername.Size = new System.Drawing.Size(470, 30);
             this.txtUsername.TabIndex = 5;
             this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged_1);
+            this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterKeyLogin);
             // 
             // label2
             // 
@@ -228,6 +208,29 @@
             this.img_title.TabIndex = 1;
             this.img_title.TabStop = false;
             // 
+            // btnLogin
+            // 
+            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogin.BackColor = System.Drawing.Color.SteelBlue;
+            this.btnLogin.BackgroundColor = System.Drawing.Color.SteelBlue;
+            this.btnLogin.BorderColor = System.Drawing.Color.Black;
+            this.btnLogin.BorderRadius = 40;
+            this.btnLogin.BorderSize = 0;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnLogin.ForeColor = System.Drawing.Color.White;
+            this.btnLogin.Location = new System.Drawing.Point(200, 613);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(217, 62);
+            this.btnLogin.TabIndex = 9;
+            this.btnLogin.Text = "Đăng nhập";
+            this.btnLogin.TextColor = System.Drawing.Color.White;
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
+            // 
             // DangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(168F, 168F);
@@ -242,6 +245,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Draw - Đăng nhập";
             this.Load += new System.EventHandler(this.SignUp_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterKeyLogin);
             this.Panel_login.ResumeLayout(false);
             this.Panel_login.PerformLayout();
             this.PanelPassword.ResumeLayout(false);

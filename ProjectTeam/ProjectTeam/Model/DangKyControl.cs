@@ -30,7 +30,9 @@ namespace ProjectTeam
             int radius = 45; // Bán kính của góc bo tròn
             Rectangle rect = new Rectangle(0 ,0, Img_Avatar.Width, Img_Avatar.Height);
             Img_Avatar.Region = new Region(GetRoundedPath(rect , radius)); 
-            user_Info = new user_info();    
+            user_Info = new user_info();
+            txtPassword.PasswordChar = '*';
+            txtPasswordAuth.PasswordChar = '*';
 
         }
 
@@ -71,9 +73,14 @@ namespace ProjectTeam
             if( string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show("Xin vui lòng nhập đúng thông tin");
-
                 return;
-            }
+            }else if (!password.Equals(txtPasswordAuth.Text.Trim()))
+            {
+                MessageBox.Show("Xác nhận mật khẩu không trùng với mật khẩu!", "Thông báo");
+                return;
+            }    
+
+            
 
             if (databaseHelper.NguoiDungDangKi(email, HashPassword))
             {
@@ -94,6 +101,10 @@ namespace ProjectTeam
                 if (databaseHelper.DangKiThongTinNguoiDung(user_Info.id, tentaikhoan, sdt, gioitinh, ngaysinh))
                 {
                     DialogResult result = MessageBox.Show("Đăng kí tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (result == DialogResult.OK)
+                    {
+                        BackClicked?.Invoke(this, EventArgs.Empty);
+                    }
                 }
 
 
@@ -107,15 +118,20 @@ namespace ProjectTeam
 
         private void btnShowHide_Click(object sender, EventArgs e)
         {
+            isHide = !isHide;
             if (isHide)
             {
                 btnShowHide.ImageIndex = 0; // hiện mắt
+                txtPasswordAuth.PasswordChar = default;
+                txtPassword.PasswordChar = default;
             }
             else
             {
                 btnShowHide.ImageIndex = 1; // đóng mắt
+                txtPassword.PasswordChar = '*';
+                txtPasswordAuth.PasswordChar = '*';
             }
-            isHide = !isHide;
+            
         }
 
         private void btn_Anh_Click(object sender, EventArgs e)
