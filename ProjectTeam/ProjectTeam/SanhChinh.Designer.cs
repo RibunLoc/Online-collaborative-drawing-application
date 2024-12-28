@@ -74,6 +74,8 @@
             this.slogan.AutoSize = true;
             this.slogan.Dock = System.Windows.Forms.DockStyle.Top;
             this.slogan.Location = new System.Drawing.Point(0, 0);
+
+
             this.slogan.Name = "slogan";
             this.slogan.Size = new System.Drawing.Size(318, 0);
             this.slogan.TabIndex = 0;
@@ -100,6 +102,8 @@
             this.taskbarMenu.Controls.Add(this.slogan);
             this.taskbarMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.taskbarMenu.Location = new System.Drawing.Point(0, 0);
+
+
             this.taskbarMenu.Name = "taskbarMenu";
             this.taskbarMenu.Padding = new System.Windows.Forms.Padding(0, 0, 0, 50);
             this.taskbarMenu.Size = new System.Drawing.Size(320, 1056);
@@ -117,7 +121,9 @@
             this.iconButton7.IconColor = System.Drawing.Color.Black;
             this.iconButton7.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
             this.iconButton7.Location = new System.Drawing.Point(0, 933);
+
             this.iconButton7.Name = "iconButton7";
             this.iconButton7.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.iconButton7.Size = new System.Drawing.Size(318, 71);
@@ -129,6 +135,7 @@
             this.iconButton7.UseVisualStyleBackColor = true;
             this.iconButton7.Click += new System.EventHandler(this.iconButton7_Click);
             // 
+
             // iconBtnCaiDat
             // 
             this.iconBtnCaiDat.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -163,7 +170,9 @@
             this.iconButton5.IconColor = System.Drawing.Color.Black;
             this.iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
             this.iconButton5.Location = new System.Drawing.Point(0, 491);
+
             this.iconButton5.Name = "iconButton5";
             this.iconButton5.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.iconButton5.Size = new System.Drawing.Size(318, 71);
@@ -185,7 +194,9 @@
             this.iconButton4.IconColor = System.Drawing.Color.Black;
             this.iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconButton4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
             this.iconButton4.Location = new System.Drawing.Point(0, 420);
+
             this.iconButton4.Name = "iconButton4";
             this.iconButton4.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.iconButton4.Size = new System.Drawing.Size(318, 71);
@@ -195,6 +206,7 @@
             this.iconButton4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.iconButton4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.iconButton4.UseVisualStyleBackColor = true;
+            this.iconButton4.Click += new System.EventHandler(this.iconButton4_Click);
             // 
             // IconEnjoy
             // 
@@ -207,7 +219,9 @@
             this.IconEnjoy.IconColor = System.Drawing.Color.Black;
             this.IconEnjoy.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.IconEnjoy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
             this.IconEnjoy.Location = new System.Drawing.Point(0, 349);
+
             this.IconEnjoy.Name = "IconEnjoy";
             this.IconEnjoy.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.IconEnjoy.Size = new System.Drawing.Size(318, 71);
@@ -230,7 +244,9 @@
             this.CreateDraw.IconColor = System.Drawing.Color.Black;
             this.CreateDraw.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.CreateDraw.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
             this.CreateDraw.Location = new System.Drawing.Point(0, 278);
+
             this.CreateDraw.Name = "CreateDraw";
             this.CreateDraw.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.CreateDraw.Size = new System.Drawing.Size(318, 71);
@@ -253,7 +269,9 @@
             this.IconHome.IconColor = System.Drawing.Color.Black;
             this.IconHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.IconHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
             this.IconHome.Location = new System.Drawing.Point(0, 207);
+
             this.IconHome.Name = "IconHome";
             this.IconHome.Padding = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.IconHome.Size = new System.Drawing.Size(318, 71);
@@ -272,6 +290,8 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+
+
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(318, 207);
             this.panel1.TabIndex = 5;
@@ -280,7 +300,9 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+
             this.pictureBox1.Location = new System.Drawing.Point(0, 11);
+
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(253, 179);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -296,7 +318,9 @@
             this.btnMenu.IconColor = System.Drawing.Color.Black;
             this.btnMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnMenu.IconSize = 40;
+
             this.btnMenu.Location = new System.Drawing.Point(255, 130);
+
             this.btnMenu.Name = "btnMenu";
             this.btnMenu.Size = new System.Drawing.Size(60, 60);
             this.btnMenu.TabIndex = 3;
@@ -333,7 +357,9 @@
             this.PanelTitleBar.Controls.Add(this.iconBtnCloseDesktop);
             this.PanelTitleBar.Controls.Add(this.Heading);
             this.PanelTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
+
             this.PanelTitleBar.Location = new System.Drawing.Point(320, 0);
+
             this.PanelTitleBar.Name = "PanelTitleBar";
             this.PanelTitleBar.Size = new System.Drawing.Size(1349, 126);
             this.PanelTitleBar.TabIndex = 4;
@@ -417,7 +443,9 @@
             this.PanelDesktop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.PanelDesktop.Controls.Add(this.pictureBox2);
             this.PanelDesktop.Dock = System.Windows.Forms.DockStyle.Fill;
+
             this.PanelDesktop.Location = new System.Drawing.Point(320, 126);
+
             this.PanelDesktop.Name = "PanelDesktop";
             this.PanelDesktop.Size = new System.Drawing.Size(1349, 930);
             this.PanelDesktop.TabIndex = 5;
@@ -429,6 +457,8 @@
             this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+
+
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(1349, 930);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -446,7 +476,9 @@
             this.Controls.Add(this.taskbarMenu);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+
             this.MinimumSize = new System.Drawing.Size(1277, 714);
+
             this.Name = "SanhChinh";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Draw - Home";

@@ -20,6 +20,7 @@ using System.Collections.Concurrent;
 using System.Windows.Shapes;
 using Path = System.IO.Path;
 using System.Web.WebSockets;
+using System.Drawing.Imaging;
 
 namespace ProjectTeam
 {
@@ -662,6 +663,61 @@ namespace ProjectTeam
             } 
               
             
+        }
+
+        public async Task CapturePanel(string filePath)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    // Create a bitmap with the size of the panel
+                    using (Bitmap bitmap = new Bitmap(panel_Draw.Width, panel_Draw.Height))
+                    {
+                        // Draw the panel's content into the bitmap
+                        panel_Draw.DrawToBitmap(bitmap, new System.Drawing.Rectangle(0, 0, panel_Draw.Width, panel_Draw.Height));
+
+                        // Save the bitmap to the specified file path
+                        bitmap.Save(filePath, ImageFormat.Png);
+                    }
+                });
+
+                MessageBox.Show("Capture successfully saved to " + filePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error during capture: " + ex.Message);
+            }
+        }
+
+        public void UploadToFTP(string filePath, string ftpUrl, string username, string password)
+        {
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    // Set FTP credentials
+                    client.Credentials = new NetworkCredential(username, password);
+
+                    // Upload the file
+                    client.UploadFile(ftpUrl, WebRequestMethods.Ftp.UploadFile, filePath);
+                }
+                MessageBox.Show("Upload file successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error during upload: " + ex.Message);
+            }
+        }
+
+        private async void iconButton1_Click(object sender, EventArgs e)
+        {
+            string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string path = "C:\\Users\\ASUS\\Documents\\screenshot.png";
+            string ftpUrl = $"ftp://eu-central-1.sftpcloud.io/uploads/screenshot_{user.user_id}_{timestamp}.png";
+            await CapturePanel(path);
+
+            UploadToFTP(path, ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
         }
     }
 
