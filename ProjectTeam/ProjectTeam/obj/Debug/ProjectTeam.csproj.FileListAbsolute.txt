@@ -689,3 +689,8 @@ D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-colla
 D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectT.A5D3C58F.Up2Date
 D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.exe
 D:\Document\Winform\Server_Online_collaborative_drawing_application\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.pdb
+C:\Users\ASUS\Documents\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\MaterialSkin.dll
+C:\Users\ASUS\Documents\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\bin\Debug\MetroFramework.dll
+C:\Users\ASUS\Documents\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.TaoBanVe.resources
+C:\Users\ASUS\Documents\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.ThamGiaPhongVe.resources
+C:\Users\ASUS\Documents\Online-collaborative-drawing-application\ProjectTeam\ProjectTeam\obj\Debug\ProjectTeam.LuuBanVe.resources

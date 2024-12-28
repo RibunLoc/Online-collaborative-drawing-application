@@ -15,6 +15,9 @@ using ProjectTeam.Model;
 using System.Windows.Controls;
 using System.Net;
 using System.Net.Http;
+using System.Drawing.Imaging;
+using System.Web.UI.WebControls;
+using System.IO;
 
 namespace ProjectTeam
 {
@@ -338,6 +341,30 @@ namespace ProjectTeam
        
         }
 
+        public async Task CapturePanel(string filePath)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    // Create a bitmap with the size of the panel
+                    using (Bitmap bitmap = new Bitmap(panel_Draw.Width, panel_Draw.Height))
+                    {
+                        // Draw the panel's content into the bitmap
+                        panel_Draw.DrawToBitmap(bitmap, new Rectangle(0, 0, panel_Draw.Width, panel_Draw.Height));
+
+                        // Save the bitmap to the specified file path
+                        bitmap.Save(filePath, ImageFormat.Png);
+                    }
+                });
+
+                MessageBox.Show("Capture successfully saved to " + filePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error during capture: " + ex.Message);
+            }
+        }
         private void panel_Draw_Paint(object sender, EventArgs e)
         {
 
@@ -370,6 +397,52 @@ namespace ProjectTeam
         }
 
 
+        public void UploadToFTP(string filePath, string ftpUrl, string username, string password)
+        {
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    // Set FTP credentials
+                    client.Credentials = new NetworkCredential(username, password);
+
+                    // Upload the file
+                    client.UploadFile(ftpUrl, WebRequestMethods.Ftp.UploadFile, filePath);
+                }
+                MessageBox.Show("Upload file successfully");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error during upload: " + ex.Message);
+            }
+        }
+
+        
+
+        public void DisplayImage(string filePath, PictureBox pictureBox)
+        {
+            // Load the image into the PictureBox
+            pictureBox.Image = System.Drawing.Image.FromFile(filePath);
+        }
+        private async void Save_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private async void Save_Click_1(object sender, EventArgs e)
+        {
+            string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
+            string path = "C:\\Users\\ASUS\\Documents\\screenshot.png";
+            string ftpUrl = $"ftp://eu-central-1.sftpcloud.io/uploads/screenshot_{user.user_id}_{timestamp}.png";
+            await CapturePanel(path);
+
+            UploadToFTP(path, ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
+        }
     }
 }
 

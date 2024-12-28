@@ -122,5 +122,10 @@ namespace ProjectTeam
         {
 
         }
+
+        private void lbl_id_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -249,6 +249,12 @@
     <Compile Include="Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="LuuBanVe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LuuBanVe.Designer.cs">
+      <DependentUpon>LuuBanVe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\DangKyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -299,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LuuBanVe.resx">
+      <DependentUpon>LuuBanVe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Model\DangKyControl.resx">
       <DependentUpon>DangKyControl.cs</DependentUpon>
