@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ThietLap));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbOptions = new System.Windows.Forms.ComboBox();
             this.btn_ThayAvatar = new RJCodeAdvance.RJControls.RJButton();
             this.button3 = new System.Windows.Forms.Button();
             this.Avatar_Image = new System.Windows.Forms.PictureBox();
@@ -40,16 +41,15 @@
             this.lbl_NhapLaiMatKhau = new System.Windows.Forms.Label();
             this.lblb_MatKhauCu = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.tb_SoDienThoai = new System.Windows.Forms.TextBox();
+            this.tb_NgaySinh = new System.Windows.Forms.TextBox();
             this.tbEmail = new System.Windows.Forms.TextBox();
+            this.lbl_SoDienThoai = new System.Windows.Forms.Label();
             this.lbl_GioiTinh = new System.Windows.Forms.Label();
+            this.lbl_NgaySinh = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
-            this.cmbOptions = new System.Windows.Forms.ComboBox();
-            this.lbl_NgaySinh = new System.Windows.Forms.Label();
-            this.tb_NgaySinh = new System.Windows.Forms.TextBox();
-            this.lbl_SoDienThoai = new System.Windows.Forms.Label();
-            this.tb_SoDienThoai = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Avatar_Image)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +85,19 @@
             this.panel1.Size = new System.Drawing.Size(617, 718);
             this.panel1.TabIndex = 2;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // cmbOptions
+            // 
+            this.cmbOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOptions.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.cmbOptions.FormattingEnabled = true;
+            this.cmbOptions.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
+            this.cmbOptions.Location = new System.Drawing.Point(216, 360);
+            this.cmbOptions.Name = "cmbOptions";
+            this.cmbOptions.Size = new System.Drawing.Size(252, 32);
+            this.cmbOptions.TabIndex = 18;
             // 
             // btn_ThayAvatar
             // 
@@ -125,6 +138,7 @@
             this.Avatar_Image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Avatar_Image.TabIndex = 13;
             this.Avatar_Image.TabStop = false;
+            this.Avatar_Image.Click += new System.EventHandler(this.Avatar_Image_Click);
             // 
             // btnLogin
             // 
@@ -194,12 +208,36 @@
             this.label3.Text = "Mật khẩu mới";
             this.label3.Click += new System.EventHandler(this.label2_Click);
             // 
+            // tb_SoDienThoai
+            // 
+            this.tb_SoDienThoai.Location = new System.Drawing.Point(216, 457);
+            this.tb_SoDienThoai.Name = "tb_SoDienThoai";
+            this.tb_SoDienThoai.Size = new System.Drawing.Size(252, 32);
+            this.tb_SoDienThoai.TabIndex = 5;
+            // 
+            // tb_NgaySinh
+            // 
+            this.tb_NgaySinh.Location = new System.Drawing.Point(216, 410);
+            this.tb_NgaySinh.Name = "tb_NgaySinh";
+            this.tb_NgaySinh.Size = new System.Drawing.Size(252, 32);
+            this.tb_NgaySinh.TabIndex = 5;
+            // 
             // tbEmail
             // 
             this.tbEmail.Location = new System.Drawing.Point(216, 301);
             this.tbEmail.Name = "tbEmail";
             this.tbEmail.Size = new System.Drawing.Size(252, 32);
             this.tbEmail.TabIndex = 5;
+            // 
+            // lbl_SoDienThoai
+            // 
+            this.lbl_SoDienThoai.AutoSize = true;
+            this.lbl_SoDienThoai.Location = new System.Drawing.Point(35, 463);
+            this.lbl_SoDienThoai.Name = "lbl_SoDienThoai";
+            this.lbl_SoDienThoai.Size = new System.Drawing.Size(140, 24);
+            this.lbl_SoDienThoai.TabIndex = 3;
+            this.lbl_SoDienThoai.Text = "Số điện thoại:";
+            this.lbl_SoDienThoai.Click += new System.EventHandler(this.label2_Click);
             // 
             // lbl_GioiTinh
             // 
@@ -210,6 +248,16 @@
             this.lbl_GioiTinh.TabIndex = 3;
             this.lbl_GioiTinh.Text = "Giới tính: ";
             this.lbl_GioiTinh.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // lbl_NgaySinh
+            // 
+            this.lbl_NgaySinh.AutoSize = true;
+            this.lbl_NgaySinh.Location = new System.Drawing.Point(35, 416);
+            this.lbl_NgaySinh.Name = "lbl_NgaySinh";
+            this.lbl_NgaySinh.Size = new System.Drawing.Size(114, 24);
+            this.lbl_NgaySinh.TabIndex = 3;
+            this.lbl_NgaySinh.Text = "Ngày sinh: ";
+            this.lbl_NgaySinh.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtUsername
             // 
@@ -237,53 +285,6 @@
             this.lblUsername.TabIndex = 2;
             this.lblUsername.Text = "Tên tài khoản";
             this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
-            // 
-            // cmbOptions
-            // 
-            this.cmbOptions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbOptions.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.cmbOptions.FormattingEnabled = true;
-            this.cmbOptions.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this.cmbOptions.Location = new System.Drawing.Point(216, 360);
-            this.cmbOptions.Name = "cmbOptions";
-            this.cmbOptions.Size = new System.Drawing.Size(252, 32);
-            this.cmbOptions.TabIndex = 18;
-            // 
-            // lbl_NgaySinh
-            // 
-            this.lbl_NgaySinh.AutoSize = true;
-            this.lbl_NgaySinh.Location = new System.Drawing.Point(35, 416);
-            this.lbl_NgaySinh.Name = "lbl_NgaySinh";
-            this.lbl_NgaySinh.Size = new System.Drawing.Size(114, 24);
-            this.lbl_NgaySinh.TabIndex = 3;
-            this.lbl_NgaySinh.Text = "Ngày sinh: ";
-            this.lbl_NgaySinh.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // tb_NgaySinh
-            // 
-            this.tb_NgaySinh.Location = new System.Drawing.Point(216, 410);
-            this.tb_NgaySinh.Name = "tb_NgaySinh";
-            this.tb_NgaySinh.Size = new System.Drawing.Size(252, 32);
-            this.tb_NgaySinh.TabIndex = 5;
-            // 
-            // lbl_SoDienThoai
-            // 
-            this.lbl_SoDienThoai.AutoSize = true;
-            this.lbl_SoDienThoai.Location = new System.Drawing.Point(35, 463);
-            this.lbl_SoDienThoai.Name = "lbl_SoDienThoai";
-            this.lbl_SoDienThoai.Size = new System.Drawing.Size(140, 24);
-            this.lbl_SoDienThoai.TabIndex = 3;
-            this.lbl_SoDienThoai.Text = "Số điện thoại:";
-            this.lbl_SoDienThoai.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // tb_SoDienThoai
-            // 
-            this.tb_SoDienThoai.Location = new System.Drawing.Point(216, 457);
-            this.tb_SoDienThoai.Name = "tb_SoDienThoai";
-            this.tb_SoDienThoai.Size = new System.Drawing.Size(252, 32);
-            this.tb_SoDienThoai.TabIndex = 5;
             // 
             // ThietLap
             // 

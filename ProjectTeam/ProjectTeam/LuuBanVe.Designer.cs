@@ -34,9 +34,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(39, 501);
+            this.button1.Location = new System.Drawing.Point(29, 812);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 53);
+            this.button1.Size = new System.Drawing.Size(198, 80);
             this.button1.TabIndex = 3;
             this.button1.Text = "Show";
             this.button1.UseVisualStyleBackColor = true;
@@ -45,20 +46,24 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(-60, 12);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(920, 459);
+            this.panel1.Size = new System.Drawing.Size(1341, 782);
             this.panel1.TabIndex = 2;
             // 
             // LuuBanVe
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(975, 636);
+            this.ClientSize = new System.Drawing.Size(1341, 954);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "LuuBanVe";
             this.Text = "LuuBanVe";
+            this.Load += new System.EventHandler(this.LuuBanVe_Load);
             this.ResumeLayout(false);
 
         }

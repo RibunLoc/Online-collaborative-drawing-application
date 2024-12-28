@@ -49,6 +49,7 @@ namespace ProjectTeam
         private bool PenMode = false;
         private Cursor CursorCustom;
         private Cursor CursorEraser;
+        private string path;
         public class DrawingPoint
         {
             public Point point;
@@ -93,8 +94,10 @@ namespace ProjectTeam
                 panel_Draw,
                 new object[] { true }
             );
+
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             string projectDirectory = Directory.GetParent(basePath).Parent.Parent.FullName;
+            path = Path.Combine(projectDirectory, "Download");
 
             string cursorPath = Path.Combine(projectDirectory, "Cursor", "pencil.cur");
             CursorCustom = new Cursor(cursorPath);
@@ -111,7 +114,7 @@ namespace ProjectTeam
 
             lblCodeRoom.Text = "mã phòng: " + roomId;
             //Khởi tạo draConnection
-            drawConnection = new DrawConnection("127.0.0.1", 5000, roomId, user.name);
+            drawConnection = new DrawConnection("103.216.118.185", 5000, roomId, user.name);
 
             drawConnection.isConnected = true;
 
@@ -713,11 +716,15 @@ namespace ProjectTeam
         private async void iconButton1_Click(object sender, EventArgs e)
         {
             string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
-            string path = "C:\\Users\\ASUS\\Documents\\screenshot.png";
+            //string path = "C:\\Users\\LOC\\Documents\\screenshot.png";
+            string pathScreen = Path.Combine(path, "screenshot.png");
             string ftpUrl = $"ftp://eu-central-1.sftpcloud.io/uploads/screenshot_{user.user_id}_{timestamp}.png";
-            await CapturePanel(path);
+            //await CapturePanel(path);
+            await CapturePanel(pathScreen);
 
-            UploadToFTP(path, ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
+           // UploadToFTP(path, ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
+            UploadToFTP(pathScreen, ftpUrl, "fc283a366b014819b79cc287326667ed", "6nKfz5RfXMdFbq5gSItjfnIz3n8NDIRz");
+
         }
     }
 

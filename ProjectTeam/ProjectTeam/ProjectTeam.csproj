@@ -428,6 +428,7 @@
     <Content Include="Resources\logout.png" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Download\" />
     <Folder Include="Services\" />
     <Folder Include="View\" />
   </ItemGroup>

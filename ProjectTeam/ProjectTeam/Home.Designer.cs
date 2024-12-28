@@ -143,7 +143,7 @@
             this.btnThongBao.ForeColor = System.Drawing.Color.White;
             this.btnThongBao.ImageIndex = 0;
             this.btnThongBao.ImageList = this.ThongBao;
-            this.btnThongBao.Location = new System.Drawing.Point(113, 3);
+            this.btnThongBao.Location = new System.Drawing.Point(113, -3);
             this.btnThongBao.Name = "btnThongBao";
             this.btnThongBao.Size = new System.Drawing.Size(36, 38);
             this.btnThongBao.TabIndex = 24;

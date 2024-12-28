@@ -167,5 +167,10 @@ namespace ProjectTeam
         {
 
         }
+
+        private void Avatar_Image_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

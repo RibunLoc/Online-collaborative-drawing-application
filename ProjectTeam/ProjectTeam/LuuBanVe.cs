@@ -16,6 +16,8 @@ namespace ProjectTeam
     public partial class LuuBanVe : Form
     {
         private user_info user;
+        private string path;
+        
         public LuuBanVe(user_info truyenUser)
         {
             InitializeComponent();
@@ -42,7 +44,9 @@ namespace ProjectTeam
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string path = @"C:\\Users\\ASUS\\Documents\\downloaded_screenshot.png";
+           
+
+            //string path = @"C:\\Users\\ASUS\\Documents\\downloaded_screenshot.png";
 
             //DisplayImage(path, pictureBox1);
             DisplayUserImages(user.user_id, panel1);
@@ -66,11 +70,11 @@ namespace ProjectTeam
                 {
                     continue;
                 }
-                string localPath = Path.Combine("C:\\Users\\ASUS\\Documents\\", Path.GetFileName(fileUrl));
+                string localPath = Path.Combine(path, Path.GetFileName(fileUrl)); //
                 string ftpUrl = $"ftp://eu-central-1.sftpcloud.io/uploads/{fileUrl}";
 
                 // Download each image
-                DownloadFromFTP(localPath, ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
+                DownloadFromFTP(localPath, ftpUrl, "fc283a366b014819b79cc287326667ed", "6nKfz5RfXMdFbq5gSItjfnIz3n8NDIRz");
 
                 // Create a PictureBox to display the image
                 PictureBox pictureBox = new PictureBox
@@ -121,7 +125,7 @@ namespace ProjectTeam
 
             string ftpUrl = "ftp://eu-central-1.sftpcloud.io/uploads/";
 
-            List<string> imageUrls = ListFilesOnFtp(ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
+            List<string> imageUrls = ListFilesOnFtp(ftpUrl, "fc283a366b014819b79cc287326667ed", "6nKfz5RfXMdFbq5gSItjfnIz3n8NDIRz");
             string list_file = "";
 
             foreach (string fileUrl in imageUrls)
@@ -154,5 +158,13 @@ namespace ProjectTeam
             return fileList;
         }
 
+        private void LuuBanVe_Load(object sender, EventArgs e)
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+            string projectDirectory = Directory.GetParent(basePath).Parent.Parent.FullName;
+            path = Path.Combine(projectDirectory, "Download");
+            
+            
+        }
     }
 }
