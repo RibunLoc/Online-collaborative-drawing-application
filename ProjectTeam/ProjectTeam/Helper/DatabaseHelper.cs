@@ -8,6 +8,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Diagnostics.Eventing.Reader;
 using ProjectTeam.Model;
+using System.Collections;
 
 namespace ProjectTeam
 {
@@ -414,6 +415,128 @@ namespace ProjectTeam
                 }    
             }    
 
+        }
+
+        public bool DangKiThongTinNguoiDung(string email, string password, string tennguoidung, string sdt, string gioi_tinh, string ngay_sinh)
+        {
+            string Checkquery = "SELECT COUNT(*) FROM users WHERE email = @Email";
+            string queryChenBangUserInfo = "INSERT INTO users (email, password) " + "VALUES (@Email, @Password)";
+            string queryLayIdMoi = "SELECT id FROM users WHERE email = @Email";
+            string queryChenBangUsers = "INSERT INTO userinfo (id, tennguoidung, sdt, gioi_tinh, ngay_sinh) " + "VALUES (@id, @tennguoidung, @sdt, @gioi_tinh, @ngay_sinh)";
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                //kiem tra xem email ton tai khong
+                using (var checkcomand = new NpgsqlCommand(Checkquery, connection))
+                {
+                    checkcomand.Parameters.AddWithValue("Email", email);
+
+                    int count = (int)checkcomand.ExecuteScalar();
+                    if (count > 0)
+                    {
+                        return false;
+                    }
+                }
+
+                //Không tồn tại ta thêm vào dâtbase
+                using (var command = new NpgsqlCommand(queryChenBangUserInfo, connection))
+                {
+                    command.Parameters.AddWithValue("Email", email);
+                    command.Parameters.AddWithValue("Password", password);
+
+                    command.ExecuteNonQuery();
+
+                }
+
+                //truy van lay id nguoi dung
+                int id = LayID(email);
+
+                //Tao them thong tin tai bang thong tin nguoi dung
+                using (var command = new NpgsqlCommand(queryChenBangUsers, connection))
+                {
+                    command.Parameters.AddWithValue("id", id);
+                    command.Parameters.AddWithValue("tennguoidung", tennguoidung);
+                    command.Parameters.AddWithValue("sdt", sdt);
+                    command.Parameters.AddWithValue("gioi_tinh", gioi_tinh);
+                    command.Parameters.AddWithValue("ngay_sinh", ngay_sinh);
+
+                    command.ExecuteNonQuery();
+                }
+
+
+            }
+
+                return true;
+        }
+
+
+        public bool CapNhatThongTinNguoiDung(int id, string tenNguoiDung, string email, bool CoEmail, string passsword, string sdt, string gioiTinh, string ngaySinh)
+        {
+            string queryBangUsers = "UPDATE users SET email = @email, password = @password WHERE id = @ID";
+            string queryBangUserInfo = "UPDATE userinfo SET tennguoidung = @tenNguoiDung, sdt = @SDT, gioi_tinh = @GioiTinh, ngay_sinh = @NgaySinh WHERE id = @ID";
+            string Checkquery = "SELECT COUNT(*) FROM users WHERE email = @Email";
+
+
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                
+                if (CoEmail)
+                {
+                    //kiem tra xem email ton tai khong
+                    using (var checkcomand = new NpgsqlCommand(Checkquery, connection))
+                    {
+                        checkcomand.Parameters.AddWithValue("Email", email);
+
+                        var count = (long)checkcomand.ExecuteScalar();
+                        if (count > 0)
+                        {
+                            return false;
+                        }
+                    }
+                }
+              
+
+                using (var command = new NpgsqlCommand(queryBangUserInfo, connection))
+                {
+                    // Gán giá trị cho các tham số
+                    command.Parameters.AddWithValue("ID", id);
+                    command.Parameters.AddWithValue("tenNguoiDung", tenNguoiDung);
+                    command.Parameters.AddWithValue("SDT", sdt);
+                    command.Parameters.AddWithValue("GioiTinh", gioiTinh);
+                    command.Parameters.AddWithValue("NgaySinh", ngaySinh);
+
+                    try
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        if (rowsAffected == 0) return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                        return false; // Trả về false nếu có lỗi
+                    }
+                }
+
+                using (var command = new NpgsqlCommand(queryBangUsers, connection))
+                {
+                    command.Parameters.AddWithValue("ID", id);
+                    command.Parameters.AddWithValue("email", email);
+                    command.Parameters.AddWithValue("password", passsword);
+
+                    try
+                    {
+                        int rowsAffected = command.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
         }
 
 

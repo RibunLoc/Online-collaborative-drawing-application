@@ -378,7 +378,8 @@ namespace ProjectTeam
         private void iconButton6_Click(object sender, EventArgs e)
         {
             OpenChildForm(new ThietLap(UserInfo));
-            //Heading.Text = taskbarMenu.Tag.ToString();
+            Heading.Text = iconBtnCaiDat.Tag.ToString();
+            subheading.Text = "Bạn có thể thay đổi thông tin tài khoản tại trang này";
         }
 
         private void iconButton3_Click(object sender, EventArgs e) // tham gia phong ve

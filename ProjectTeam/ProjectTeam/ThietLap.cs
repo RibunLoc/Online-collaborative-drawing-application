@@ -96,7 +96,71 @@ namespace ProjectTeam
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            
+
+
+           if (string.IsNullOrEmpty(txtUsername.Text) || string.IsNullOrEmpty(tbEmail.Text) || string.IsNullOrEmpty(cmbOptions.Text) || 
+                string.IsNullOrEmpty(tb_NgaySinh.Text) || string.IsNullOrEmpty(tb_SoDienThoai.Text) || string.IsNullOrEmpty(tb_MatKhauCu.Text) ||
+                string.IsNullOrEmpty(tb_MatKhauMoi.Text) || string.IsNullOrEmpty(tbNhapLaimatKhau.Text))
+           {
+                MessageBox.Show("Xin vui lòng nhập đầy đủ thông tin", "Thông báo");
+                return;
+           }
+
+         
+           
+            string username = txtUsername.Text;
+            string email = tbEmail.Text;
+            string gioi_tinh = cmbOptions.Text;
+            string ngay_sinh = tb_NgaySinh.Text;
+            string sdt = tb_SoDienThoai.Text;
+            string password = tb_MatKhauMoi.Text;
+            string passwordOLD = tb_MatKhauCu.Text;
+
+
+            string passwordHash256 = HamMaHoa.HamBamSha256(password);
+            string passwordOldHash256 = HamMaHoa.HamBamSha256(passwordOLD);
+
+            //kiem tra mat khau de thay doi tai khoan
+            if (!dbhp.NguoiDungDangNhap(user_Info.email, passwordOldHash256))
+            {
+                MessageBox.Show("Mật khẩu không chính xác để thay đổi thông tin tài khoàn!", "Thông báo");
+                tb_MatKhauCu.Clear();
+                tb_MatKhauMoi.Clear();
+                tbNhapLaimatKhau.Clear();
+                return;
+            }
+
+            //kiem tra xac nhan lại mat khau
+            if (!password.Equals(tbNhapLaimatKhau.Text.Trim()))
+            {
+                MessageBox.Show("Mật khẩu xác nhận không trùng với mật khẩu mới!", "Thông báo");
+                tb_MatKhauMoi.Clear();
+                tbNhapLaimatKhau.Clear();
+                return;
+            }
+
+            int id = user_Info.id;
+            bool CoEmail = true;
+            if (user_Info.email.Equals(tbEmail.Text.Trim()))
+            {
+                CoEmail = false;
+            }
+
+           if (!dbhp.CapNhatThongTinNguoiDung(id, username, email, CoEmail, passwordHash256, sdt, gioi_tinh, ngay_sinh))
+           {
+               MessageBox.Show("Email này đã tồn tại xin vui lòng điền một tài khoản email đăng nhập khác!", "Thông báo");
+               return;
+           }
+           else
+           {
+                var result = MessageBox.Show("Thay đổi thông tin tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                {
+                    //
+                } 
+                user_Info = dbhp.LayThongTinNguoiDung(id);
+                    
+           } 
         }
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
