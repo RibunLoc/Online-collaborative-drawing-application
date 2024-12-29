@@ -22,6 +22,7 @@ namespace ProjectTeam
         private Color defaultcolor_close_iconcolor;
         private Form currentChildForm = null;
         private string username;
+        private bool KoNenDangXuat = true;
         public user_info UserInfo;
         private string previous_form;
 
@@ -201,6 +202,11 @@ namespace ProjectTeam
                 OpenChildForm(new Draw(UserInfo, previous_form));
                 CreateDraw.Enabled = false;
                 IconEnjoy.Enabled = false;
+                IconHome.Enabled = false;
+                iconButton4.Enabled = false;
+                iconButton5.Enabled = false;
+                iconBtnCaiDat.Enabled = false;
+                KoNenDangXuat = false;
             }
         }
 
@@ -211,6 +217,11 @@ namespace ProjectTeam
                 OpenChildForm(new TaoBanVe(UserInfo));
                 CreateDraw.Enabled = true;
                 IconEnjoy.Enabled = true;
+                IconHome.Enabled = true;
+                iconButton4.Enabled = true;
+                iconButton5.Enabled = true;
+                iconBtnCaiDat.Enabled = true;
+                KoNenDangXuat = true;
             }
 
             if (forName == "OpenEnjoyRoom")
@@ -218,6 +229,11 @@ namespace ProjectTeam
                 OpenChildForm(new ThamGiaPhongVe(UserInfo));
                 CreateDraw.Enabled = true;
                 IconEnjoy.Enabled = true;
+                IconHome.Enabled = true;
+                iconButton4.Enabled = true;
+                iconButton5.Enabled = true;
+                iconBtnCaiDat.Enabled = true;
+                KoNenDangXuat = true;
             }
         }
 
@@ -245,10 +261,17 @@ namespace ProjectTeam
 
         private void iconButton7_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if(KoNenDangXuat)
+            {
+                this.Close();
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+            else
+                MessageBox.Show("Vui lòng thoát khỏi phòng trước khi đăng xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            
 
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+
         }
 
         private void PanelDesktop_Paint(object sender, PaintEventArgs e)
@@ -398,6 +421,8 @@ namespace ProjectTeam
         private void iconButton4_Click(object sender, EventArgs e)
         {
             OpenChildForm(new LuuBanVe(UserInfo));
+            Heading.Text = iconButton4.Tag.ToString();
+            subheading.Text = "Nơi lưu trữ ảnh chụp của các bản vẽ";
         }
     }
 }

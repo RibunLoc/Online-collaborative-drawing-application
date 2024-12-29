@@ -21,6 +21,7 @@ using System.Windows.Shapes;
 using Path = System.IO.Path;
 using System.Web.WebSockets;
 using System.Drawing.Imaging;
+using System.Configuration;
 
 namespace ProjectTeam
 {
@@ -50,6 +51,7 @@ namespace ProjectTeam
         private Cursor CursorCustom;
         private Cursor CursorEraser;
         private string path;
+        string ftpHost = ConfigurationManager.AppSettings["FtpUrl"];
         public class DrawingPoint
         {
             public Point point;
@@ -713,18 +715,58 @@ namespace ProjectTeam
             }
         }
 
+        
+
         private async void iconButton1_Click(object sender, EventArgs e)
         {
             string timestamp = DateTime.Now.ToString("yyyyMMddHHmmss");
             //string path = "C:\\Users\\LOC\\Documents\\screenshot.png";
             string pathScreen = Path.Combine(path, "screenshot.png");
-            string ftpUrl = $"ftp://eu-central-1.sftpcloud.io/uploads/screenshot_{user.user_id}_{timestamp}.png";
+            string ftpUrl = $"{ftpHost}{user.user_id}/screen/screenshot_{user.user_id}_{timestamp}.png";
+            string fptTaoThuMucUserID = $"{ftpHost}{user.user_id}";
+            string fptTaoThuMucScreen = $"{ftpHost}{user.user_id}/screen";
+
             //await CapturePanel(path);
             await CapturePanel(pathScreen);
 
-           // UploadToFTP(path, ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
-            UploadToFTP(pathScreen, ftpUrl, "fc283a366b014819b79cc287326667ed", "6nKfz5RfXMdFbq5gSItjfnIz3n8NDIRz");
+            // UploadToFTP(path, ftpUrl, "ac28858bb11646e794d3c1fd8306cf89", "Gli0fgnQuirKCBD14FH3RqMtPTrs6asT");
+            CreateFtpDirectory(fptTaoThuMucUserID, "", "");
+            CreateFtpDirectory(fptTaoThuMucScreen, "", "");
 
+            UploadToFTP(pathScreen, ftpUrl, "", "");
+
+        }
+
+        public void CreateFtpDirectory(string ftpUrl, string username, string password)
+        {
+            try
+            {
+                // Tạo yêu cầu FTP để tạo thư mục
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpUrl);
+                request.Method = WebRequestMethods.Ftp.MakeDirectory;
+                request.Credentials = new NetworkCredential(username, password);
+                request.UsePassive = true;
+                request.UseBinary = true;
+                request.KeepAlive = false;
+
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                {
+                    MessageBox.Show($"Directory created, status {response.StatusDescription}");
+                }
+            }
+            catch (WebException ex)
+            {
+                FtpWebResponse response = (FtpWebResponse)ex.Response;
+                if (response != null && response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                {
+                    // Thư mục đã tồn tại, có thể bỏ qua
+                    MessageBox.Show("Directory already exists.");
+                }
+                else
+                {
+                    MessageBox.Show($"Error creating directory: {ex.Message}");
+                }
+            }
         }
     }
 

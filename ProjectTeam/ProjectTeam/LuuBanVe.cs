@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -17,7 +18,8 @@ namespace ProjectTeam
     {
         private user_info user;
         private string path;
-        
+        string ftpHost = ConfigurationManager.AppSettings["FtpUrl"];
+
         public LuuBanVe(user_info truyenUser)
         {
             InitializeComponent();
@@ -71,10 +73,11 @@ namespace ProjectTeam
                     continue;
                 }
                 string localPath = Path.Combine(path, Path.GetFileName(fileUrl)); //
-                string ftpUrl = $"ftp://eu-central-1.sftpcloud.io/uploads/{fileUrl}";
+                //string ftpUrl = $"ftp://eu-central-1.sftpcloud.io/uploads/{fileUrl}";
+                string ftpUrl = $"ftp://103.216.118.185/{user.user_id}/screen/{fileUrl}";
 
                 // Download each image
-                DownloadFromFTP(localPath, ftpUrl, "fc283a366b014819b79cc287326667ed", "6nKfz5RfXMdFbq5gSItjfnIz3n8NDIRz");
+                DownloadFromFTP(localPath, ftpUrl, "", "");
 
                 // Create a PictureBox to display the image
                 PictureBox pictureBox = new PictureBox
@@ -123,9 +126,10 @@ namespace ProjectTeam
             // In a real-world application, you would retrieve the list from the FTP server
             // Here we use a placeholder list for demonstration purposes.
 
-            string ftpUrl = "ftp://eu-central-1.sftpcloud.io/uploads/";
-
-            List<string> imageUrls = ListFilesOnFtp(ftpUrl, "fc283a366b014819b79cc287326667ed", "6nKfz5RfXMdFbq5gSItjfnIz3n8NDIRz");
+           // string ftpUrl = "ftp://eu-central-1.sftpcloud.io/uploads/";
+            
+            string ftpUrl = $"{ftpHost}{user.user_id}/screen/";
+            List<string> imageUrls = ListFilesOnFtp(ftpUrl, "", "");
             string list_file = "";
 
             foreach (string fileUrl in imageUrls)

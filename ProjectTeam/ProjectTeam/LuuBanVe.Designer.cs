@@ -34,8 +34,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(29, 812);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(13, 583);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(198, 80);
             this.button1.TabIndex = 3;
@@ -48,9 +48,9 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1341, 782);
+            this.panel1.Size = new System.Drawing.Size(1341, 555);
             this.panel1.TabIndex = 2;
             // 
             // LuuBanVe
@@ -60,7 +60,7 @@
             this.ClientSize = new System.Drawing.Size(1341, 954);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LuuBanVe";
             this.Text = "LuuBanVe";
             this.Load += new System.EventHandler(this.LuuBanVe_Load);

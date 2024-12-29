@@ -1,10 +1,12 @@
-﻿using ProjectTeam.Model;
+﻿using FluentFTP;
+using ProjectTeam.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -76,6 +78,9 @@ namespace ProjectTeam
 
         }
 
+   
+     
+
         private void btn_ThayAvatar_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog ofdl = new OpenFileDialog())
@@ -90,6 +95,8 @@ namespace ProjectTeam
                     string image_path = ofdl.FileName;
                     Avatar_Image.Image = Image.FromFile(image_path);
                     Avatar_Image.SizeMode = PictureBoxSizeMode.StretchImage;
+
+
                 }
             }
         }

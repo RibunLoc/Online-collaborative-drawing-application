@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
 using ProjectTeam.Model;
+using FluentFTP;
+using System.Net;
+using FluentFTP.Rules;
 
 namespace ProjectTeam
 {
@@ -103,6 +106,7 @@ namespace ProjectTeam
                     DialogResult result = MessageBox.Show("Đăng kí tài khoản thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (result == DialogResult.OK)
                     {
+                        
                         BackClicked?.Invoke(this, EventArgs.Empty);
                     }
                 }
@@ -115,6 +119,12 @@ namespace ProjectTeam
                 MessageBox.Show("Đăng kí thất bại. Email có thể đã tồn tại", "Lỗi");
             }
         }
+
+  
+
+
+
+
 
         private void btnShowHide_Click(object sender, EventArgs e)
         {
