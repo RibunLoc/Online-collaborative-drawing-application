@@ -22,6 +22,7 @@ using Path = System.IO.Path;
 using System.Web.WebSockets;
 using System.Drawing.Imaging;
 using System.Configuration;
+using System.Security.Cryptography;
 
 namespace ProjectTeam
 {
@@ -116,7 +117,7 @@ namespace ProjectTeam
 
             lblCodeRoom.Text = "mã phòng: " + roomId;
             //Khởi tạo draConnection
-            drawConnection = new DrawConnection("103.216.118.185", 5000, roomId, user.name);
+            drawConnection = new DrawConnection("127.0.0.1", 5000, roomId, user.name);
 
             drawConnection.isConnected = true;
 
@@ -403,6 +404,33 @@ namespace ProjectTeam
             }
         }
 
+        private async Task<string> EncryptDataAES(string data, string key)
+        {
+            // Convert data and key to byte arrays
+            byte[] dataBytes = Encoding.UTF8.GetBytes(data);
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key.PadRight(32, '0').Substring(0, 32)); // AES requires a 16, 24, or 32-byte key
+            byte[] ivBytes = keyBytes.Take(16).ToArray(); // Use the first 16 bytes of the key for IV
+
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = keyBytes;
+                aes.IV = ivBytes;
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(dataBytes, 0, dataBytes.Length);
+                        cs.FlushFinalBlock();
+
+                        // Get encrypted data
+                        byte[] encryptedBytes = ms.ToArray();
+                        return Convert.ToBase64String(encryptedBytes); // Return Base64 for easy transmission
+                    }
+                }
+            }
+        }
+
         private async void SendDrawDataToServer(DrawingPoint start, DrawingPoint end)
         {
             string mode = " ";
@@ -411,15 +439,44 @@ namespace ProjectTeam
             else
                 mode = "draw";
 
-            string DulieuVe = $"{mode}:{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}\n";
-            await drawConnection.GuiDuLieuAsync(DulieuVe);
+            string DulieuVe = $"{mode}:{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}";
+            string key = "YourSecureKeyForAES1234567890";
+            string encryptedData = await EncryptDataAES(DulieuVe, key);
+            await drawConnection.GuiDuLieuAsync(encryptedData + "\n");
 
         }
 
-        private void ProcessLine(string line)
+        private string DecryptDataAES(string encryptedData, string key)
+        {
+            byte[] encryptedBytes = Convert.FromBase64String(encryptedData);
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key.PadRight(32, '0').Substring(0, 32)); // Adjust for 256-bit key
+            byte[] ivBytes = keyBytes.Take(16).ToArray(); // Use the first 16 bytes as IV
+
+            using (Aes aes = Aes.Create())
+            {
+                aes.Key = keyBytes;
+                aes.IV = ivBytes;
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                    {
+                        cs.Write(encryptedBytes, 0, encryptedBytes.Length);
+                        cs.FlushFinalBlock();
+
+                        byte[] decryptedBytes = ms.ToArray();
+                        return Encoding.UTF8.GetString(decryptedBytes);
+                    }
+                }
+            }
+        }
+
+        private void ProcessLine(string encryptedLine)
         {
             try
             {
+                string key = "YourSecureKeyForAES1234567890"; // Ensure this matches the encryption key
+                string line = DecryptDataAES(encryptedLine, key);
                 if (line.StartsWith("chat:"))
                 {
                     string messeage = line.Substring(5);
@@ -576,8 +633,12 @@ namespace ProjectTeam
 
         private async void SendChatToServer(string messeage)
         {
-            string DulieuVe = $"chat:{messeage}\n";
-            await drawConnection.GuiDuLieuAsync(DulieuVe);
+            string DulieuVe = $"chat:{messeage}";
+
+            string key = "YourSecureKeyForAES1234567890";
+            string encryptedData = await EncryptDataAES(DulieuVe, key);
+            await drawConnection.GuiDuLieuAsync(encryptedData + "\n");
+            //await drawConnection.GuiDuLieuAsync(DulieuVe);
 
         }
 
