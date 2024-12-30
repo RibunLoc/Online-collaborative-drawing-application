@@ -439,10 +439,10 @@ namespace ProjectTeam
             else
                 mode = "draw";
 
-            string DulieuVe = $"{mode}:{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}";
+            string DulieuVe = $"{start.point.X},{start.point.Y},{end.point.X},{end.point.Y},{panel_Draw.Width},{panel_Draw.Height}";
             string key = "YourSecureKeyForAES1234567890";
             string encryptedData = await EncryptDataAES(DulieuVe, key);
-            await drawConnection.GuiDuLieuAsync(encryptedData + "\n");
+            await drawConnection.GuiDuLieuAsync(mode+":"+encryptedData + "\n");
 
         }
 
@@ -477,17 +477,21 @@ namespace ProjectTeam
             {
                 string key = "YourSecureKeyForAES1234567890"; // Ensure this matches the encryption key
                 string line = DecryptDataAES(encryptedLine, key);
-                if (line.StartsWith("chat:"))
+                if (encryptedLine.StartsWith("chat:"))
                 {
-                    string messeage = line.Substring(5);
+                    string[] parts = encryptedLine.Split(':');
+                    string mode = parts[0];
+                    string message = DecryptDataAES(parts[1], key);
+                    //string messeage = line.Substring(5);
                     HienThiTinNhanChat(messeage);
-                }else if (line.StartsWith("draw") ||line.StartsWith("erase"))
+                }else if (encryptedLine.StartsWith("draw") ||encryptedLine.StartsWith("erase"))
                 {
                    
-                    string[] parts = line.Split(':');
+                    string[] parts = encryptedLine.Split(':');
 
                     string mode = parts[0]; // draw hoac erase
-                    string[] ToaDoDiem = parts[1].Split(',');
+                    string data = DecryptDataAES(parts[1], key);
+                    string[] ToaDoDiem = data.Split(',');
 
                     int x1, x2;
                     int y1, y2;
@@ -633,11 +637,11 @@ namespace ProjectTeam
 
         private async void SendChatToServer(string messeage)
         {
-            string DulieuVe = $"chat:{messeage}";
+            string DulieuVe = messeage;
 
             string key = "YourSecureKeyForAES1234567890";
             string encryptedData = await EncryptDataAES(DulieuVe, key);
-            await drawConnection.GuiDuLieuAsync(encryptedData + "\n");
+            await drawConnection.GuiDuLieuAsync("chat:"+encryptedData + "\n");
             //await drawConnection.GuiDuLieuAsync(DulieuVe);
 
         }
