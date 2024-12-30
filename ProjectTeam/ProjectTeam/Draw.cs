@@ -476,14 +476,14 @@ namespace ProjectTeam
             try
             {
                 string key = "YourSecureKeyForAES1234567890"; // Ensure this matches the encryption key
-                string line = DecryptDataAES(encryptedLine, key);
+
                 if (encryptedLine.StartsWith("chat:"))
                 {
                     string[] parts = encryptedLine.Split(':');
                     string mode = parts[0];
                     string message = DecryptDataAES(parts[1], key);
                     //string messeage = line.Substring(5);
-                    HienThiTinNhanChat(messeage);
+                    HienThiTinNhanChat(message);
                 }else if (encryptedLine.StartsWith("draw") ||encryptedLine.StartsWith("erase"))
                 {
                    
